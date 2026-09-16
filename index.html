@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,16 +51,27 @@
       border-bottom: 2px solid #f1f5f9;
       padding-bottom: 10px;
     }
+    .temple-block {
+      margin-bottom: 35px;
+    }
+    .temple-block:last-child {
+      margin-bottom: 0;
+    }
+    .temple-block h3 {
+      color: #f59e0b;
+      margin-bottom: 5px;
+      font-size: 1.3rem;
+    }
     /* Professional Image Grid Styling */
     .image-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
     }
     .image-grid img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -120,15 +132,47 @@
       <p>Welcome! I'm <strong>Samnang</strong>, an explorer and digital content creator driven by a deep passion for historic architecture, ancient stonework, and forgotten ruins. My mission is to travel across world heritage sites—from ancient Cambodian temples to global historical monuments—capturing their architectural grandeur and preserving their rich histories through high-quality video and photographic documentation.</p>
     </div>
 
-    <!-- Featured Historical Site Showcase -->
+    <!-- Featured Historical Sites Showcase (3 Temples) -->
     <div class="card">
-      <h2>Featured Architecture & History</h2>
+      <h2>Featured Architecture & History (Ancient Temples)</h2>
       
-      <div style="margin-bottom: 25px;">
-        <h3 style="color: #f59e0b; margin-bottom: 5px;">Angkor Wat & Khmer Monuments</h3>
+      <!-- Temple 1: Angkor Wat -->
+      <div class="temple-block">
+        <h3>1. Angkor Wat (ប្រាសាទអង្គរវត្ត)</h3>
         <p><strong>Location:</strong> Siem Reap, Cambodia</p>
         <p>Constructed during the early 12th century under King Suryavarman II, Angkor Wat stands as the largest religious monument in the world. Originally dedicated to the Hindu deity Vishnu, it represents the pinnacle of classical Khmer architecture, featuring intricate bas-reliefs, soaring towers, and complex hydraulic engineering.</p>
+        <div class="image-grid">
+          <img src="angkor-wat-1.jpg" alt="Angkor Wat View 1">
+          <img src="angkor-wat-2.jpg" alt="Angkor Wat View 2">
+        </div>
       </div>
+
+      <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 25px 0;">
+
+      <!-- Temple 2: Pong Toek Temple -->
+      <div class="temple-block">
+        <h3>2. Pong Toek Temple (ប្រាសាទពងទឹក)</h3>
+        <p><strong>Location:</strong> Cambodia</p>
+        <p>Exploring the quiet woodland setting of Pong Toek Temple, featuring laterite and sandstone construction, ancient carved lintels, and false doors nestled within nature, capturing the timeless essence of Cambodia's hidden heritage.</p>
+        <div class="image-grid">
+          <img src="pong-toek-image-1.jpg" alt="Pong Toek Laterite Structure">
+          <img src="pong-toek-image-2.jpg" alt="Carved Lintel and False Door">
+        </div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 25px 0;">
+
+      <!-- Temple 3: Additional Temple / Ruin (អាចប្ដូរឈ្មោះ និងព័ត៌មានបាន) -->
+      <div class="temple-block">
+        <h3>3. Ancient Temple 3 (ប្រាសាទបុរាណទី៣ - ដាក់ឈ្មោះទីតាំងរបស់អ្នក)</h3>
+        <p><strong>Location:</strong> Cambodia</p>
+        <p>Description of the historical significance, unique architectural carvings, and archaeological context of this remarkable heritage site.</p>
+        <div class="image-grid">
+          <img src="temple3-image-1.jpg" alt="Temple 3 View 1">
+          <img src="temple3-image-2.jpg" alt="Temple 3 View 2">
+        </div>
+      </div>
+
     </div>
 
     <!-- Visual Storytelling: Tonle Sap Floating Communities -->
@@ -137,7 +181,6 @@
       <p><strong>Location:</strong> Tonle Sap Lake, Cambodia</p>
       <p>Venturing deep into the heart of Cambodia's aquatic communities to capture the raw, beautiful rhythm of daily life. From traditional stilted wooden houses and floating structures to calm waterways framed by lush greenery, every corner tells a unique story of culture and resilience.</p>
       
-      <!-- Clean professional image gallery grid for all 4 photos -->
       <div class="image-grid">
         <img src="IMG_7682.JPG" alt="Floating Village View 1">
         <img src="IMG_7727.JPG" alt="Floating Village View 2">
