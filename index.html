@@ -12,6 +12,7 @@
       --card-bg: #ffffff;
       --text-main: #2c3e50;
       --text-muted: #64748b;
+      --border-color: #e2e8f0;
     }
 
     body {
@@ -26,7 +27,7 @@
     /* Top Navigation Bar */
     .top-nav {
       background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid var(--border-color);
       padding: 15px 40px;
       display: flex;
       justify-content: space-between;
@@ -59,10 +60,76 @@
       color: var(--accent);
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
+    /* Hero Banner Style */
+    .hero-banner {
+      position: relative;
+      background: url('P1014764 2.JPG') center/cover no-repeat;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 25px 45px;
+      border-radius: 6px;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-content h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-content p {
+      margin: 10px 0 0 0;
+      font-size: 1.1rem;
+      color: #cbd5e1;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-bar {
+      max-width: 1200px;
+      margin: 20px auto 0 auto;
       padding: 0 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb-bar span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Main Layout with Sidebar */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Section Cards */
@@ -72,7 +139,7 @@
       padding: 35px;
       margin-bottom: 35px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-color);
     }
 
     .section-card h2 {
@@ -97,17 +164,73 @@
       margin-bottom: 5px;
     }
 
+    /* Sidebar Styling */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .sidebar-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 25px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .sidebar-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-top: 0;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+
+    .sidebar-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sidebar-list li:last-child {
+      border-bottom: none;
+    }
+
+    .sidebar-list a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .sidebar-list a:hover {
+      color: var(--accent);
+    }
+
     /* Professional Image Grid Styling */
     .image-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
       margin-top: 20px;
     }
 
     .image-grid img {
       width: 100%;
-      height: 180px;
+      height: 150px;
       object-fit: cover;
       border-radius: 6px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.08);
@@ -208,263 +331,271 @@
     </div>
   </nav>
 
+  <!-- Hero Banner with Featured Image Background -->
+  <div class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Samnang Relics</h1>
+      <p>Ancient Architecture, Historical Ruins & Heritage Documentation</p>
+    </div>
+  </div>
+
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb-bar">
+    Home &gt; Exploration Archives &gt; <span>Ancient Temples</span>
+  </div>
+
   <div class="container">
     
-    <!-- About Me Section -->
-    <div class="section-card">
-      <h2>About the Creator</h2>
-      <p>Welcome! I'm <strong>Samnang</strong>, an explorer and digital content creator driven by a deep passion for historic architecture, ancient stonework, and forgotten ruins. My mission is to travel across world heritage sites—from ancient Cambodian temples to global historical monuments—capturing their architectural grandeur and preserving their rich histories through high-quality video and photographic documentation.</p>
-    </div>
+    <!-- LEFT MAIN COLUMN: Content & Temple Galleries -->
+    <main>
+      <!-- About Me Section -->
+      <div class="section-card">
+        <h2>About the Creator</h2>
+        <p>Welcome! I'm <strong>Samnang</strong>, an explorer and digital content creator driven by a deep passion for historic architecture, ancient stonework, and forgotten ruins. My mission is to travel across world heritage sites—from ancient Cambodian temples to global historical monuments—capturing their architectural grandeur and preserving their rich histories through high-quality video and photographic documentation.</p>
+      </div>
 
-    <!-- Featured Historical Sites Showcase -->
-    <div class="section-card">
-      <h2>Featured Architecture & History (Ancient Temples)</h2>
+      <!-- Featured Historical Sites Showcase -->
+      <div class="section-card">
+        <h2>Featured Architecture & History (Ancient Temples)</h2>
+        
+        <!-- Temple 1: Pong Toek Temple -->
+        <div class="temple-block">
+          <h3>1. Pong Toek Temple</h3>
+          <p><strong>Location:</strong> Cambodia</p>
+          <p>Exploring the quiet woodland setting of Pong Toek Temple, featuring laterite and sandstone construction, ancient carved lintels, and false doors nestled within nature.</p>
+          <div class="image-grid">
+            <img src="20240215_042115_IMG_0022.HEIC" alt="Pong Toek 042115">
+            <img src="20240215_042406_IMG_0026.HEIC" alt="Pong Toek 042406">
+            <img src="20240215_043141_IMG_0044.HEIC" alt="Pong Toek 043141">
+            <img src="20240215_043817_IMG_0066.HEIC" alt="Pong Toek 043817">
+            <img src="20240215_043859_IMG_0070.HEIC" alt="Pong Toek 043859">
+            <img src="20240215_043952_IMG_0073.HEIC" alt="Pong Toek 043952">
+            <img src="20240215_043959_IMG_0075.HEIC" alt="Pong Toek 043959">
+            <img src="20240215_044005_IMG_0076.HEIC" alt="Pong Toek 044005">
+            <img src="20240215_044325_IMG_0081.HEIC" alt="Pong Toek 044325">
+            <img src="20240215_044327_IMG_0083.HEIC" alt="Pong Toek 044327">
+            <img src="20240215_044418_IMG_0087.HEIC" alt="Pong Toek 044418">
+            <img src="20240215_044432_IMG_0088.HEIC" alt="Pong Toek 044432">
+            <img src="20240215_044559_IMG_0102.HEIC" alt="Pong Toek 044559">
+            <img src="20240215_044608_IMG_0104.HEIC" alt="Pong Toek 044608">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Temple 2: Po Damnak Temple -->
+        <div class="temple-block">
+          <h3>2. Po Damnak Temple</h3>
+          <p><strong>Location:</strong> Cambodia</p>
+          <p>Documenting the cultural and historical significance of Po Damnak Temple, showcasing traditional architecture and spiritual heritage preserved through generations.</p>
+          <div class="image-grid">
+            <img src="20240215_091208_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091337_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091403_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091408_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091717_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091800_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_091904_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092221_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092402_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092654_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092740_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092929_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_092949_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_093023_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_093033_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_093241_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_093311_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_093819_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_094028_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_094039_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_094906_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_094957_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_095026_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_095049_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_095116_IMG_...HEIC" alt="Po Damnak Image">
+            <img src="20240215_095756_IMG_...HEIC" alt="Po Damnak Image">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Temple 3: Phnom Sandok Temple -->
+        <div class="temple-block">
+          <h3>3. Phnom Sandok Temple</h3>
+          <p><strong>Location:</strong> Cambodia</p>
+          <p>Venturing up the ancient hilltop sanctuary of Phnom Sandok, capturing panoramic views of the surrounding landscape, magnificent stone ruins, and historical Khmer architecture.</p>
+          <div class="image-grid">
+            <img src="IMG_6920.HEIC" alt="Phnom Sandok 6920">
+            <img src="IMG_6921.HEIC" alt="Phnom Sandok 6921">
+            <img src="IMG_6922.HEIC" alt="Phnom Sandok 6922">
+            <img src="IMG_6924.HEIC" alt="Phnom Sandok 6924">
+            <img src="IMG_6925.HEIC" alt="Phnom Sandok 6925">
+            <img src="IMG_6929.HEIC" alt="Phnom Sandok 6929">
+            <img src="IMG_6931.HEIC" alt="Phnom Sandok 6931">
+            <img src="IMG_6935.HEIC" alt="Phnom Sandok 6935">
+            <img src="IMG_6937.JPG" alt="Phnom Sandok 6937">
+            <img src="IMG_6939.HEIC" alt="Phnom Sandok 6939">
+            <img src="IMG_6941.HEIC" alt="Phnom Sandok 6941">
+            <img src="IMG_6942.HEIC" alt="Phnom Sandok 6942">
+            <img src="IMG_6944.HEIC" alt="Phnom Sandok 6944">
+            <img src="IMG_6946.HEIC" alt="Phnom Sandok 6946">
+            <img src="IMG_6947.HEIC" alt="Phnom Sandok 6947">
+            <img src="IMG_6948.HEIC" alt="Phnom Sandok 6948">
+            <img src="IMG_6951.HEIC" alt="Phnom Sandok 6951">
+            <img src="IMG_6952.HEIC" alt="Phnom Sandok 6952">
+            <img src="IMG_6956.HEIC" alt="Phnom Sandok 6956">
+            <img src="IMG_6957.HEIC" alt="Phnom Sandok 6957">
+            <img src="IMG_6959.HEIC" alt="Phnom Sandok 6959">
+            <img src="IMG_6960.HEIC" alt="Phnom Sandok 6960">
+            <img src="IMG_6961.HEIC" alt="Phnom Sandok 6961">
+            <img src="IMG_6965.HEIC" alt="Phnom Sandok 6965">
+            <img src="IMG_6969.HEIC" alt="Phnom Sandok 6969">
+            <img src="IMG_6972.HEIC" alt="Phnom Sandok 6972">
+            <img src="IMG_6975.HEIC" alt="Phnom Sandok 6975">
+            <img src="IMG_6976.HEIC" alt="Phnom Sandok 6976">
+            <img src="IMG_6977.HEIC" alt="Phnom Sandok 6977">
+            <img src="IMG_6978.HEIC" alt="Phnom Sandok 6978">
+            <img src="IMG_6979.HEIC" alt="Phnom Sandok 6979">
+            <img src="IMG_6980.HEIC" alt="Phnom Sandok 6980">
+            <img src="IMG_6982.HEIC" alt="Phnom Sandok 6982">
+            <img src="IMG_6985.HEIC" alt="Phnom Sandok 6985">
+            <img src="IMG_6988.HEIC" alt="Phnom Sandok 6988">
+            <img src="IMG_6989.HEIC" alt="Phnom Sandok 6989">
+            <img src="IMG_6990.HEIC" alt="Phnom Sandok 6990">
+            <img src="IMG_6992.HEIC" alt="Phnom Sandok 6992">
+            <img src="IMG_6994.HEIC" alt="Phnom Sandok 6994">
+            <img src="IMG_6995.HEIC" alt="Phnom Sandok 6995">
+            <img src="IMG_6996.HEIC" alt="Phnom Sandok 6996">
+            <img src="IMG_6997.HEIC" alt="Phnom Sandok 6997">
+            <img src="IMG_6999.HEIC" alt="Phnom Sandok 6999">
+            <img src="IMG_7005.HEIC" alt="Phnom Sandok 7005">
+            <img src="IMG_7012.HEIC" alt="Phnom Sandok 7012">
+            <img src="IMG_7013.HEIC" alt="Phnom Sandok 7013">
+            <img src="IMG_7020.HEIC" alt="Phnom Sandok 7020">
+            <img src="IMG_7022.HEIC" alt="Phnom Sandok 7022">
+            <img src="IMG_7024.HEIC" alt="Phnom Sandok 7024">
+            <img src="IMG_7025.HEIC" alt="Phnom Sandok 7025">
+            <img src="IMG_7026.HEIC" alt="Phnom Sandok 7026">
+            <img src="IMG_7028.HEIC" alt="Phnom Sandok 7028">
+            <img src="IMG_7029.HEIC" alt="Phnom Sandok 7029">
+            <img src="IMG_7031.HEIC" alt="Phnom Sandok 7031">
+            <img src="IMG_7036.HEIC" alt="Phnom Sandok 7036">
+            <img src="IMG_7037.HEIC" alt="Phnom Sandok 7037">
+            <img src="IMG_7042.HEIC" alt="Phnom Sandok 7042">
+            <img src="IMG_7044.HEIC" alt="Phnom Sandok 7044">
+            <img src="IMG_7046.HEIC" alt="Phnom Sandok 7046">
+            <img src="IMG_7047.HEIC" alt="Phnom Sandok 7047">
+            <img src="IMG_7048.HEIC" alt="Phnom Sandok 7048">
+            <img src="IMG_7049.HEIC" alt="Phnom Sandok 7049">
+            <img src="IMG_7050.HEIC" alt="Phnom Sandok 7050">
+            <img src="IMG_7052.HEIC" alt="Phnom Sandok 7052">
+            <img src="IMG_7061.HEIC" alt="Phnom Sandok 7061">
+            <img src="IMG_7062.HEIC" alt="Phnom Sandok 7062">
+            <img src="IMG_7063.HEIC" alt="Phnom Sandok 7063">
+            <img src="IMG_7064.HEIC" alt="Phnom Sandok 7064">
+            <img src="IMG_7065.HEIC" alt="Phnom Sandok 7065">
+            <img src="IMG_7066.HEIC" alt="Phnom Sandok 7066">
+            <img src="IMG_7071.HEIC" alt="Phnom Sandok 7071">
+            <img src="IMG_7073.HEIC" alt="Phnom Sandok 7073">
+            <img src="IMG_7074.HEIC" alt="Phnom Sandok 7074">
+            <img src="IMG_7075.HEIC" alt="Phnom Sandok 7075">
+            <img src="IMG_7076.HEIC" alt="Phnom Sandok 7076">
+            <img src="IMG_7078.HEIC" alt="Phnom Sandok 7078">
+            <img src="IMG_7079.HEIC" alt="Phnom Sandok 7079">
+            <img src="IMG_7080.HEIC" alt="Phnom Sandok 7080">
+            <img src="IMG_7081.HEIC" alt="Phnom Sandok 7081">
+            <img src="IMG_7083.HEIC" alt="Phnom Sandok 7083">
+            <img src="IMG_7084.HEIC" alt="Phnom Sandok 7084">
+            <img src="IMG_7085.HEIC" alt="Phnom Sandok 7085">
+            <img src="IMG_7087.HEIC" alt="Phnom Sandok 7087">
+            <img src="IMG_7094.HEIC" alt="Phnom Sandok 7094">
+          </div>
+        </div>
+      </div>
+
+      <!-- Global Monuments: Golden Gate Bridge -->
+      <div class="section-card">
+        <h2>Global Monuments: Golden Gate Bridge</h2>
+        <p><strong>Location:</strong> San Francisco, California, USA</p>
+        <p>Capturing the iconic International Orange art-deco suspension bridge shrouded in San Francisco's majestic coastal fog and coastal views.</p>
+        <div class="image-grid">
+          <img src="IMG_5054.jpg" alt="Golden Gate Bridge 5054">
+          <img src="IMG_5055.jpg" alt="Golden Gate Bridge 5055">
+          <img src="IMG_5071.jpg" alt="Golden Gate Bridge 5071">
+          <img src="IMG_5077.jpg" alt="Golden Gate Bridge 5077">
+          <img src="IMG_5089.jpg" alt="Golden Gate Bridge 5089">
+          <img src="IMG_5093.jpg" alt="Golden Gate Bridge 5093">
+          <img src="IMG_5094.jpg" alt="Golden Gate Bridge 5094">
+          <img src="IMG_5095.jpg" alt="Golden Gate Bridge 5095">
+          <img src="IMG_5097.jpg" alt="Golden Gate Bridge 5097">
+          <img src="IMG_5098.jpg" alt="Golden Gate Bridge 5098">
+          <img src="IMG_5099.jpg" alt="Golden Gate Bridge 5099">
+          <img src="IMG_5101.jpg" alt="Golden Gate Bridge 5101">
+          <img src="IMG_5102.jpg" alt="Golden Gate Bridge 5102">
+          <img src="IMG_5104.jpg" alt="Golden Gate Bridge 5104">
+          <img src="IMG_5106.jpg" alt="Golden Gate Bridge 5106">
+          <img src="IMG_5107.jpg" alt="Golden Gate Bridge 5107">
+          <img src="IMG_5110.jpg" alt="Golden Gate Bridge 5110">
+          <img src="IMG_5129.jpg" alt="Golden Gate Bridge 5129">
+          <img src="IMG_5134.jpg" alt="Golden Gate Bridge 5134">
+          <img src="IMG_5137.jpg" alt="Golden Gate Bridge 5137">
+          <img src="IMG_5138.jpg" alt="Golden Gate Bridge 5138">
+          <img src="IMG_5146.jpg" alt="Golden Gate Bridge 5146">
+          <img src="IMG_5952.jpg" alt="Golden Gate Bridge 5952">
+          <img src="IMG_5953.jpg" alt="Golden Gate Bridge 5953">
+          <img src="IMG_5959.jpg" alt="Golden Gate Bridge 5959">
+          <img src="IMG_5960.jpg" alt="Golden Gate Bridge 5960">
+        </div>
+      </div>
+
+      <!-- Visual Storytelling: Tonle Sap Floating Communities -->
+      <div class="section-card">
+        <h2>Visual Chronicle: Life on the Water</h2>
+        <p><strong>Location:</strong> Tonle Sap Lake, Cambodia</p>
+        <p>Venturing deep into the heart of Cambodia's aquatic communities to capture the raw, beautiful rhythm of daily life from traditional stilted and floating structures.</p>
+        <div class="image-grid">
+          <img src="IMG_7682.JPG" alt="Floating Village View 1">
+          <img src="IMG_7727.JPG" alt="Floating Village View 2">
+          <img src="IMG_7728.JPG" alt="Floating Village View 3">
+          <img src="IMG_7729.JPG" alt="Floating Village View 4">
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR COLUMN: Featuring your requested image and links -->
+    <aside class="sidebar">
       
-      <!-- Temple 1: Pong Toek Temple -->
-      <div class="temple-block">
-        <h3>1. Pong Toek Temple</h3>
-        <p><strong>Location:</strong> Cambodia</p>
-        <p>Exploring the quiet woodland setting of Pong Toek Temple, featuring laterite and sandstone construction, ancient carved lintels, and false doors nestled within nature.</p>
-        <div class="image-grid">
-          <img src="20240215_042115_IMG_0022.HEIC" alt="Pong Toek 042115">
-          <img src="20240215_042406_IMG_0026.HEIC" alt="Pong Toek 042406">
-          <img src="20240215_043141_IMG_0044.HEIC" alt="Pong Toek 043141">
-          <img src="20240215_043817_IMG_0066.HEIC" alt="Pong Toek 043817">
-          <img src="20240215_043859_IMG_0070.HEIC" alt="Pong Toek 043859">
-          <img src="20240215_043952_IMG_0073.HEIC" alt="Pong Toek 043952">
-          <img src="20240215_043959_IMG_0075.HEIC" alt="Pong Toek 043959">
-          <img src="20240215_044005_IMG_0076.HEIC" alt="Pong Toek 044005">
-          <img src="20240215_044325_IMG_0081.HEIC" alt="Pong Toek 044325">
-          <img src="20240215_044327_IMG_0083.HEIC" alt="Pong Toek 044327">
-          <img src="20240215_044418_IMG_0087.HEIC" alt="Pong Toek 044418">
-          <img src="20240215_044432_IMG_0088.HEIC" alt="Pong Toek 044432">
-          <img src="20240215_044559_IMG_0102.HEIC" alt="Pong Toek 044559">
-          <img src="20240215_044608_IMG_0104.HEIC" alt="Pong Toek 044608">
-          <img src="20240215_042115_5_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_042406_6_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04314_1_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04381_7_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04385_9_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04395_2_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04395_9_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04400_5_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04432_5_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04432_7_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04441_8_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04444_3_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04455_9_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04460_8_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04474_1_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04492_0_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04493_3_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04551_8_IMG_...HEIC" alt="Pong Toek Image">
-          <img src="20240215_04562_0_IMG_...HEIC" alt="Pong Toek Image">
+      <!-- Featured Image Sidebar Card -->
+      <div class="sidebar-card">
+        <h3>Featured Ruin Snapshot</h3>
+        <img src="P1014764 2.JPG" alt="Featured Ruin P1014764" class="sidebar-img">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0;">Preserving intricate ancient brickwork and magnificent tree-root structures from heritage site explorations.</p>
+      </div>
+
+      <!-- Quick Navigation Links -->
+      <div class="sidebar-card">
+        <h3>Exploration Categories</h3>
+        <ul class="sidebar-list">
+          <li><a href="#">Ancient Temples &amp; Ruins</a></li>
+          <li><a href="#">Global Monuments</a></li>
+          <li><a href="#">Tonle Sap Chronicles</a></li>
+          <li><a href="#">Photo Galleries</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media & Video Links -->
+      <div class="sidebar-card">
+        <h3>Connect & Watch</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Follow along on YouTube and Facebook for cinematic 4K video walkthroughs.</p>
+        <div class="social-links" style="margin-top: 10px;">
+          <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="btn btn-youtube" style="padding: 8px 14px; font-size: 0.85rem;">YouTube</a>
+          <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook" style="padding: 8px 14px; font-size: 0.85rem;">Facebook</a>
         </div>
       </div>
 
-      <hr class="divider">
-
-      <!-- Temple 2: Po Damnak Temple -->
-      <div class="temple-block">
-        <h3>2. Po Damnak Temple</h3>
-        <p><strong>Location:</strong> Cambodia</p>
-        <p>Documenting the cultural and historical significance of Po Damnak Temple, showcasing traditional architecture and spiritual heritage preserved through generations.</p>
-        <div class="image-grid">
-          <img src="20240215_091208_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091337_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09141_1_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091403_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091408_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09141_0_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09165_6_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091717_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091800_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_091904_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092221_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09231_9_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09234_7_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092402_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09251_4_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09262_5_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09265_1_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092654_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092740_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092929_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_092949_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_093023_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_093033_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_09313_5_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_093241_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_093311_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_093819_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_094028_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_094039_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_094906_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_094957_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095026_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095049_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095052_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095056_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095116_IMG_...HEIC" alt="Po Damnak Image">
-          <img src="20240215_095756_IMG_...HEIC" alt="Po Damnak Image">
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <!-- Temple 3: Phnom Sandok Temple -->
-      <div class="temple-block">
-        <h3>3. Phnom Sandok Temple</h3>
-        <p><strong>Location:</strong> Cambodia</p>
-        <p>Venturing up the ancient hilltop sanctuary of Phnom Sandok, capturing panoramic views of the surrounding landscape, magnificent stone ruins, and historical Khmer architecture.</p>
-        <div class="image-grid">
-          <img src="IMG_6920.HEIC" alt="Phnom Sandok 6920">
-          <img src="IMG_6921.HEIC" alt="Phnom Sandok 6921">
-          <img src="IMG_6922.HEIC" alt="Phnom Sandok 6922">
-          <img src="IMG_6924.HEIC" alt="Phnom Sandok 6924">
-          <img src="IMG_6925.HEIC" alt="Phnom Sandok 6925">
-          <img src="IMG_6929.HEIC" alt="Phnom Sandok 6929">
-          <img src="IMG_6931.HEIC" alt="Phnom Sandok 6931">
-          <img src="IMG_6935.HEIC" alt="Phnom Sandok 6935">
-          <img src="IMG_6937.JPG" alt="Phnom Sandok 6937">
-          <img src="IMG_6939.HEIC" alt="Phnom Sandok 6939">
-          <img src="IMG_6941.HEIC" alt="Phnom Sandok 6941">
-          <img src="IMG_6942.HEIC" alt="Phnom Sandok 6942">
-          <img src="IMG_6944.HEIC" alt="Phnom Sandok 6944">
-          <img src="IMG_6946.HEIC" alt="Phnom Sandok 6946">
-          <img src="IMG_6947.HEIC" alt="Phnom Sandok 6947">
-          <img src="IMG_6948.HEIC" alt="Phnom Sandok 6948">
-          <img src="IMG_6951.HEIC" alt="Phnom Sandok 6951">
-          <img src="IMG_6952.HEIC" alt="Phnom Sandok 6952">
-          <img src="IMG_6956.HEIC" alt="Phnom Sandok 6956">
-          <img src="IMG_6957.HEIC" alt="Phnom Sandok 6957">
-          <img src="IMG_6959.HEIC" alt="Phnom Sandok 6959">
-          <img src="IMG_6960.HEIC" alt="Phnom Sandok 6960">
-          <img src="IMG_6961.HEIC" alt="Phnom Sandok 6961">
-          <img src="IMG_6965.HEIC" alt="Phnom Sandok 6965">
-          <img src="IMG_6969.HEIC" alt="Phnom Sandok 6969">
-          <img src="IMG_6972.HEIC" alt="Phnom Sandok 6972">
-          <img src="IMG_6973 (1).HEIC" alt="Phnom Sandok 6973">
-          <img src="IMG_6974 (1).HEIC" alt="Phnom Sandok 6974">
-          <img src="IMG_6975.HEIC" alt="Phnom Sandok 6975">
-          <img src="IMG_6976.HEIC" alt="Phnom Sandok 6976">
-          <img src="IMG_6977.HEIC" alt="Phnom Sandok 6977">
-          <img src="IMG_6978.HEIC" alt="Phnom Sandok 6978">
-          <img src="IMG_6979.HEIC" alt="Phnom Sandok 6979">
-          <img src="IMG_6980.HEIC" alt="Phnom Sandok 6980">
-          <img src="IMG_6982.HEIC" alt="Phnom Sandok 6982">
-          <img src="IMG_6985.HEIC" alt="Phnom Sandok 6985">
-          <img src="IMG_6988.HEIC" alt="Phnom Sandok 6988">
-          <img src="IMG_6989.HEIC" alt="Phnom Sandok 6989">
-          <img src="IMG_6990.HEIC" alt="Phnom Sandok 6990">
-          <img src="IMG_6992.HEIC" alt="Phnom Sandok 6992">
-          <img src="IMG_6994.HEIC" alt="Phnom Sandok 6994">
-          <img src="IMG_6995.HEIC" alt="Phnom Sandok 6995">
-          <img src="IMG_6996.HEIC" alt="Phnom Sandok 6996">
-          <img src="IMG_6997.HEIC" alt="Phnom Sandok 6997">
-          <img src="IMG_6999.HEIC" alt="Phnom Sandok 6999">
-          <img src="IMG_7005.HEIC" alt="Phnom Sandok 7005">
-          <img src="IMG_7012.HEIC" alt="Phnom Sandok 7012">
-          <img src="IMG_7013.HEIC" alt="Phnom Sandok 7013">
-          <img src="IMG_7020.HEIC" alt="Phnom Sandok 7020">
-          <img src="IMG_7022.HEIC" alt="Phnom Sandok 7022">
-          <img src="IMG_7024.HEIC" alt="Phnom Sandok 7024">
-          <img src="IMG_7025.HEIC" alt="Phnom Sandok 7025">
-          <img src="IMG_7026.HEIC" alt="Phnom Sandok 7026">
-          <img src="IMG_7028.HEIC" alt="Phnom Sandok 7028">
-          <img src="IMG_7029.HEIC" alt="Phnom Sandok 7029">
-          <img src="IMG_7031.HEIC" alt="Phnom Sandok 7031">
-          <img src="IMG_7036.HEIC" alt="Phnom Sandok 7036">
-          <img src="IMG_7037.HEIC" alt="Phnom Sandok 7037">
-          <img src="IMG_7042.HEIC" alt="Phnom Sandok 7042">
-          <img src="IMG_7044.HEIC" alt="Phnom Sandok 7044">
-          <img src="IMG_7046.HEIC" alt="Phnom Sandok 7046">
-          <img src="IMG_7047.HEIC" alt="Phnom Sandok 7047">
-          <img src="IMG_7048.HEIC" alt="Phnom Sandok 7048">
-          <img src="IMG_7049.HEIC" alt="Phnom Sandok 7049">
-          <img src="IMG_7050.HEIC" alt="Phnom Sandok 7050">
-          <img src="IMG_7052.HEIC" alt="Phnom Sandok 7052">
-          <img src="IMG_7061.HEIC" alt="Phnom Sandok 7061">
-          <img src="IMG_7062.HEIC" alt="Phnom Sandok 7062">
-          <img src="IMG_7063.HEIC" alt="Phnom Sandok 7063">
-          <img src="IMG_7064.HEIC" alt="Phnom Sandok 7064">
-          <img src="IMG_7065.HEIC" alt="Phnom Sandok 7065">
-          <img src="IMG_7066.HEIC" alt="Phnom Sandok 7066">
-          <img src="IMG_7071.HEIC" alt="Phnom Sandok 7071">
-          <img src="IMG_7073.HEIC" alt="Phnom Sandok 7073">
-          <img src="IMG_7074.HEIC" alt="Phnom Sandok 7074">
-          <img src="IMG_7075.HEIC" alt="Phnom Sandok 7075">
-          <img src="IMG_7076.HEIC" alt="Phnom Sandok 7076">
-          <img src="IMG_7078.HEIC" alt="Phnom Sandok 7078">
-          <img src="IMG_7079.HEIC" alt="Phnom Sandok 7079">
-          <img src="IMG_7080.HEIC" alt="Phnom Sandok 7080">
-          <img src="IMG_7081.HEIC" alt="Phnom Sandok 7081">
-          <img src="IMG_7083.HEIC" alt="Phnom Sandok 7083">
-          <img src="IMG_7084.HEIC" alt="Phnom Sandok 7084">
-          <img src="IMG_7085.HEIC" alt="Phnom Sandok 7085">
-          <img src="IMG_7087.HEIC" alt="Phnom Sandok 7087">
-          <img src="IMG_7094.HEIC" alt="Phnom Sandok 7094">
-        </div>
-      </div>
-    </div>
-
-    <!-- Global Monuments: Golden Gate Bridge -->
-    <div class="section-card">
-      <h2>Global Monuments: Golden Gate Bridge</h2>
-      <p><strong>Location:</strong> San Francisco, California, USA</p>
-      <p>Capturing the iconic International Orange art-deco suspension bridge shrouded in San Francisco's majestic coastal fog and coastal views.</p>
-      <div class="image-grid">
-        <img src="IMG_5054.jpg" alt="Golden Gate Bridge 5054">
-        <img src="IMG_5055.jpg" alt="Golden Gate Bridge 5055">
-        <img src="IMG_5071.jpg" alt="Golden Gate Bridge 5071">
-        <img src="IMG_5077.jpg" alt="Golden Gate Bridge 5077">
-        <img src="IMG_5089.jpg" alt="Golden Gate Bridge 5089">
-        <img src="IMG_5093.jpg" alt="Golden Gate Bridge 5093">
-        <img src="IMG_5094.jpg" alt="Golden Gate Bridge 5094">
-        <img src="IMG_5095.jpg" alt="Golden Gate Bridge 5095">
-        <img src="IMG_5097.jpg" alt="Golden Gate Bridge 5097">
-        <img src="IMG_5098.jpg" alt="Golden Gate Bridge 5098">
-        <img src="IMG_5099.jpg" alt="Golden Gate Bridge 5099">
-        <img src="IMG_5101.jpg" alt="Golden Gate Bridge 5101">
-        <img src="IMG_5102.jpg" alt="Golden Gate Bridge 5102">
-        <img src="IMG_5104.jpg" alt="Golden Gate Bridge 5104">
-        <img src="IMG_5106.jpg" alt="Golden Gate Bridge 5106">
-        <img src="IMG_5107.jpg" alt="Golden Gate Bridge 5107">
-        <img src="IMG_5110.jpg" alt="Golden Gate Bridge 5110">
-        <img src="IMG_5129.jpg" alt="Golden Gate Bridge 5129">
-        <img src="IMG_5134.jpg" alt="Golden Gate Bridge 5134">
-        <img src="IMG_5137.jpg" alt="Golden Gate Bridge 5137">
-        <img src="IMG_5138.jpg" alt="Golden Gate Bridge 5138">
-        <img src="IMG_5146.jpg" alt="Golden Gate Bridge 5146">
-        <img src="IMG_5952.jpg" alt="Golden Gate Bridge 5952">
-        <img src="IMG_5953.jpg" alt="Golden Gate Bridge 5953">
-        <img src="IMG_5959.jpg" alt="Golden Gate Bridge 5959">
-        <img src="IMG_5960.jpg" alt="Golden Gate Bridge 5960">
-      </div>
-    </div>
-
-    <!-- Visual Storytelling: Tonle Sap Floating Communities -->
-    <div class="section-card">
-      <h2>Visual Chronicle: Life on the Water</h2>
-      <p><strong>Location:</strong> Tonle Sap Lake, Cambodia</p>
-      <p>Venturing deep into the heart of Cambodia's aquatic communities to capture the raw, beautiful rhythm of daily life from traditional stilted and floating structures.</p>
-      <div class="image-grid">
-        <img src="IMG_7682.JPG" alt="Floating Village View 1">
-        <img src="IMG_7727.JPG" alt="Floating Village View 2">
-        <img src="IMG_7728.JPG" alt="Floating Village View 3">
-        <img src="IMG_7729.JPG" alt="Floating Village View 4">
-      </div>
-    </div>
-
-    <!-- Social Media & Video Links -->
-    <div class="section-card">
-      <h2>Connect & Watch Explorations</h2>
-      <p>Follow along on YouTube and Facebook for cinematic 4K walkthroughs and on-location video coverage of world monuments.</p>
-      <div class="social-links">
-        <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="btn btn-youtube">YouTube: Urban Walk Studio</a>
-        <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">Facebook: Urban Explorer 4K</a>
-      </div>
-    </div>
+    </aside>
 
   </div>
 
@@ -483,7 +614,7 @@
     const modalImg = document.getElementById('modalImg');
     const closeBtn = document.querySelector('.modal-close');
 
-    document.querySelectorAll('.image-grid img').forEach(img => {
+    document.querySelectorAll('.image-grid img, .sidebar-img').forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
         modalImg.src = img.src;
