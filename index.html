@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,30 +137,29 @@
         .prev { left: 15px; }
         .next { right: 15px; }
 
-        .temple-block, .temple-section {
+        .temple-block {
             margin-top: 40px;
             border-top: 1px solid var(--border-color);
             padding-top: 30px;
         }
 
-        .temple-block h3, .temple-section h2 {
+        .temple-block h3 {
             font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 5px;
         }
 
-        .khmer-title, .khmer-sub {
+        .khmer-title {
             font-size: 1rem;
             color: var(--text-muted);
             font-weight: 600;
             margin-bottom: 10px;
         }
 
-        /* កែទំហំរូបភាពឱ្យស្រស់ស្អាតនិងមានស្តង់ដារសមរម្យ */
         .temple-img {
             width: 100%;
-            height: 420px; /* កំណត់កម្ពស់ស្ដង់ដារឱ្យរូបថតទាំងអស់មើលទៅស្មើគ្នាល្អ */
-            object-fit: cover; /* ការពារមិនឱ្យរូបភាពរីកបែកទ្រង់ទ្រាយ */
+            height: 420px;
+            object-fit: cover;
             border-radius: 6px;
             margin: 15px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -285,7 +284,7 @@
     <div class="wrapper">
         <main>
             <div class="breadcrumb">
-                <a href="#">Home</a> > <a href="#">Travel</a> > Ancient History
+                <a href="#">Home</a> &gt; <a href="#">Travel</a> &gt; Ancient History
             </div>
 
             <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
@@ -625,32 +624,29 @@
 
     <script>
         // Slideshow functionality script
-        let slideIndex = 0;
-        function showSlides() {
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
             let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
             for (let i = 0; i < slides.length; i++) {
                 slides[i].classList.remove("active");
             }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
             if (slides.length > 0) {
                 slides[slideIndex - 1].classList.add("active");
             }
-            setTimeout(showSlides, 5000); 
         }
-        function changeSlide(n) {
-            let slides = document.getElementsByClassName("slide");
-            slideIndex += n;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            if (slideIndex < 1) { slideIndex = slides.length; }
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            slides[slideIndex - 1].classList.add("active");
-        }
-        if (document.getElementsByClassName("slide").length > 0) {
-            showSlides();
-        }
+
+        // Auto slide every 5 seconds
+        setInterval(function() {
+            changeSlide(1);
+        }, 5000);
     </script>
 </body>
 </html>
