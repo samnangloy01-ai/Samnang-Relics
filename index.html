@@ -628,50 +628,14 @@
         </aside>
     </div>
 
-    <!-- JavaScript for Slideshow -->
-    <script>
-        let slideIndex = 0;
-        showSlides();
-        let slideInterval = setInterval(autoSlide, 5000); // Change image every 5 seconds
-
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
-            resetTimer();
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n - 1);
-            resetTimer();
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slide");
-            let dots = document.getElementsByClassName("dot");
-            
-            if (n >= slides.length) { slideIndex = 0; }
-            if (n < 0) { slideIndex = slides.length - 1; }
-            
-            for (i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-            
-            slides[slideIndex].classList.add("active");
-            dots[slideIndex].classList.add("active");
-        }
-
-        function autoSlide() {
-            slideIndex++;
-            showSlides(slideIndex);
-        }
-
-        function resetTimer() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(autoSlide, 5000);
-        }
+   <div class="temple-block">
+    <span class="file-tag">IMG Code: IMG_9118.jpg</span>
+    <h3>Intricate Bas-Relief Carvings</h3>
+    <div class="khmer-title">ចម្លាក់ផ្ទាំងថ្មបុរាណ</div>
+    <p><strong>Description:</strong> Ancient Wall Carvings</p>
+    <img src="IMG_9118.jpg" alt="Ancient Temple Carvings" class="temple-img">
+    <p>A stunning ancient wall featuring rows of intricate seated figures carved directly into the sandstone blocks.</p>
+</div>
     </script>
 </body>
 </html>
