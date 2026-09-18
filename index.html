@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>28 Essential Ancient Cambodian Temples Beyond Angkor Wat - Urban Explorer 4K</title>
-    <style>
+<style>
         :root {
             --bg-color: #ffffff;
             --text-main: #111111;
@@ -93,21 +87,23 @@
             margin-bottom: 25px;
         }
 
-        /* Slideshow Container Styles */
+        /* Slideshow Container Styles - បានកែសម្រួលទីនេះ */
         .slideshow-container {
             position: relative;
             max-width: 100%;
+            height: 450px; /* កំណត់កម្ពស់ស្តង់ដារសម្រាប់ប្លុកស្លាយទាំងមូល */
             margin-bottom: 30px;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #000; /* ពណ៌ផ្ទៃខាងក្រោយពេលរូបភាពកំពុង ਲੋដ */
         }
 
         .slide {
             display: none;
             width: 100%;
-            height: 450px;
-            object-fit: cover;
+            height: 100%; /* ឱ្យសមាមាត្រពេញ container */
+            object-fit: cover; /* ការពារមិនឱ្យរូបភាពស្រអាប់ ឬបែកទ្រង់ទ្រាយ */
         }
 
         .slide.active {
@@ -262,7 +258,7 @@
             .nav-menu {
                 display: none;
             }
-            .slide, .temple-img {
+            .slideshow-container, .slide, .temple-img {
                 height: 280px;
             }
         }
