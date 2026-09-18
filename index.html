@@ -22,16 +22,41 @@
             line-height: 1.6;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 40px;
+        /* ផ្នែក Cover ថ្មីដែលមានរូបភាពចម្លាក់ថ្មខាងក្រោយ */
+        .temple-cover {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            background-image: url('IMG_9118_2.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        /* ស្រទាប់ពណ៌ខ្មៅស្រទន់ពីលើរូបភាព ដើម្បីให້ນའអត្ថបទមើលទៅច្បាស់ល្អ */
+        .temple-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        .temple-cover header {
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .header-left {
@@ -45,6 +70,7 @@
             font-size: 1.1rem;
             letter-spacing: -0.5px;
             text-transform: uppercase;
+            color: #111;
         }
 
         .nav-menu {
@@ -55,8 +81,41 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--text-main);
+            color: #333;
             font-weight: 500;
+        }
+
+        .lang-switch a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        .lang-switch a.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 50px 50px 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            margin: 0;
         }
 
         .wrapper {
@@ -77,20 +136,6 @@
         .breadcrumb a {
             color: var(--text-muted);
             text-decoration: none;
-        }
-
-        h1.article-title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        .article-intro {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 25px;
         }
 
         /* Slideshow Container Styles */
@@ -260,23 +305,40 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-left">
-            <div class="logo">⚡ Urban Explorer 4K</div>
-            <nav class="nav-menu">
-                <a href="#">Ancient History</a>
-                <a href="#">Temples</a>
-                <a href="#">History</a>
-                <a href="#">Art & Artists</a>
-            </nav>
+    <!-- ផ្នែក Cover រូបភាពចម្លាក់ថ្មថ្មី -->
+    <div class="temple-cover">
+        <header>
+            <div class="header-left">
+                <div class="logo">⚡ Urban Explorer 4K</div>
+                <nav class="nav-menu">
+                    <a href="#">Ancient History</a>
+                    <a href="#">Temples</a>
+                    <a href="#">History</a>
+                    <a href="#">Art & Artists</a>
+                </nav>
+            </div>
+            <div class="lang-switch">
+                <a href="#" class="active">English</a> | <a href="#">ខ្មែរ</a>
+            </div>
+        </header>
+
+        <div class="hero-content">
+            <h1>28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
+            <p>Angkor Wat shines globally, but exploring beyond reveals stunning ancient Khmer architecture, hidden ruins, and centuries of rich history.</p>
         </div>
-    </header>
+    </div>
 
     <div class="wrapper">
         <main>
             <div class="breadcrumb">
                 <a href="#">Home</a> &gt; <a href="#">Travel</a> &gt; Ancient History
             </div>
+            <!-- អត្ថបទ និងមាតិកាផ្សេងៗរបស់អ្នកបន្តនៅទីនេះ -->
+        </main>
+    </div>
+
+</body>
+</html>  </div>
 
             <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
             <p class="article-intro">Angkor Wat shines globally, but exploring beyond reveals stunning ancient Khmer architecture, hidden ruins, and centuries of rich history.</p>
