@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +24,14 @@
 
         header {
             border-bottom: 1px solid var(--border-color);
-            padding: 15px 40px;
+            padding: 12px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-left {
@@ -42,7 +45,6 @@
             font-size: 1.1rem;
             letter-spacing: -0.5px;
             text-transform: uppercase;
-            color: #111;
         }
 
         .nav-menu {
@@ -53,7 +55,7 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-main);
             font-weight: 500;
         }
 
@@ -77,38 +79,174 @@
             text-decoration: none;
         }
 
-        .temple-block {
+        h1.article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .article-intro {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* Slideshow Container Styles */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        /* Next & Previous Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 12px 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        .temple-block, .temple-section {
             margin-top: 40px;
             border-top: 1px solid var(--border-color);
             padding-top: 30px;
         }
 
-        .temple-block h3 {
+        .temple-block h3, .temple-section h2 {
             font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 5px;
         }
 
-        .khmer-title {
+        .khmer-title, .khmer-sub {
             font-size: 1rem;
             color: var(--text-muted);
             font-weight: 600;
             margin-bottom: 10px;
         }
 
-        /* ទំហំរូបភាពធម្មតា មិនបែកធំពេកទេ */
+        /* កែទំហំរូបភាពឱ្យស្រស់ស្អាតនិងមានស្តង់ដារសមរម្យ */
         .temple-img {
             width: 100%;
-            height: 320px;
-            object-fit: cover;
+            height: 420px; /* កំណត់កម្ពស់ស្ដង់ដារឱ្យរូបថតទាំងអស់មើលទៅស្មើគ្នាល្អ */
+            object-fit: cover; /* ការពារមិនឱ្យរូបភាពរីកបែកទ្រង់ទ្រាយ */
             border-radius: 6px;
             margin: 15px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
+        .file-tag {
+            font-size: 0.8rem;
+            background: #f1f1f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #444;
+        }
+
         aside.sidebar {
             border-left: 1px solid var(--border-color);
             padding-left: 30px;
+        }
+
+        .social-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-box h3 {
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .fb-btn { background-color: #1877f2; }
+        .yt-btn { background-color: #ff0000; }
+        .ig-btn { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040); }
+
+        .social-btn:hover {
+            opacity: 0.9;
+        }
+
+        .sidebar-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-box input[type="email"] {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar-box button {
+            background: #7b51e3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         @media (max-width: 900px) {
@@ -124,49 +262,13 @@
             .nav-menu {
                 display: none;
             }
+            .slide, .temple-img {
+                height: 280px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-left">
-            <div class="logo">⚡ URBAN EXPLORER 4K</div>
-            <nav class="nav-menu">
-                <a href="#">Ancient History</a>
-                <a href="#">Temples</a>
-                <a href="#">History</a>
-                <a href="#">Art & Artists</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="wrapper">
-        <main>
-            <div class="breadcrumb">
-                <a href="#">Home</a> &gt; <a href="#">Travel</a> &gt; Ancient History
-            </div>
-
-            <h1>28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
-            <p>Angkor Wat shines globally, but exploring beyond reveals stunning ancient Khmer architecture, hidden ruins, and centuries of rich history.</p>
-
-            <!-- ផ្នែកបង្ហាញរូបភាព IMG_9118.jpg ក្នុងទំហំធម្មតាស្អាត -->
-            <div class="temple-block">
-                <h3>Ancient Wall Carvings</h3>
-                <div class="khmer-title">ចម្លាក់បុរាណនៅលើជញ្ជាំងប្រាសាទ</div>
-                <img src="IMG_9118.jpg" alt="Ancient Wall Carvings" class="temple-img">
-                <p>A detailed look at the ancient stone carvings and bas-relief sculptures.</p>
-            </div>
-        </main>
-
-        <aside class="sidebar">
-            <h3>About This Guide</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">Exploring architectural details and historical wonders across Cambodia.</p>
-        </aside>
-    </div>
-
-</body>
-</html>
 
             <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
             <p class="article-intro">Angkor Wat shines globally, but exploring beyond reveals stunning ancient Khmer architecture, hidden ruins, and centuries of rich history.</p>
