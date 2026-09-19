@@ -134,16 +134,15 @@ Sent
             margin-bottom: 25px;
         }
 
-       .slideshow-container {
+      .slideshow-container {
     position: relative;
-    width: 100vw; /* ពង្រីកទទឹងឱ្យពេញ ១០០ភាគរយនៃអេក្រង់ */
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    height: 500px; /* កំណត់កម្ពស់តាមต้องการ (អាចសារ៉េឡើងចុះបាន ដូចជា 400px ឬ 600px) */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    max-width: 100vw;
+    height: 500px;
     margin-bottom: 30px;
-    border-radius: 0; /* ដកកោងជ្រុងចេញ ដើម្បីឱ្យវា tràn ពេញគែមស្អាត */
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     background-color: #000;
