@@ -25,12 +25,11 @@
   text-block.khmer, .text-block.english {
   font-size: 16px; /* កំណត់ទំហំអត្ថបទឱ្យសមល្មមមិនធំពេក */
   line-height: 1.6; /* ទុកគម្លាតចន្លោះបន្ទាត់ឱ្យអានស្រួល */
-  word-break: break-word; /* ទប់កុំអោយអត្ថបទវែងពេករត់ហៀរចេញក្រៅ */
+  word-break: break-all; /* ទប់កុំអោយអត្ថបទវែងពេករត់ហៀរចេញក្រៅ */
+  overflow-wrap:break-word;
+  font-family: "kantumruy Pro",sans-serif;
+  color: var(--text-main);
 }
-    font-family: "Kantumruy Pro", sans-serif;
-    color: var(--text-main);
-}
-
 .text-block.english {
     color: var(--text-muted);
 }
