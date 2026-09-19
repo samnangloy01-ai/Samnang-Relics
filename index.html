@@ -134,18 +134,20 @@ Sent
             margin-bottom: 25px;
         }
 
-        /* Slideshow Container Styles - បានកែសម្រួលទីនេះ */
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            height: 650px; /* កំណត់កម្ពស់ស្តង់ដារសម្រាប់ប្លុកស្លាយទាំងមូល */
-            margin-bottom: 30px;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #000; /* ពណ៌ផ្ទៃខាងក្រោយពេលរូបភាពកំពុង ਲੋដ */
-        }
-
+       .slideshow-container {
+    position: relative;
+    width: 100vw; /* ពង្រីកទទឹងឱ្យពេញ ១០០ភាគរយនៃអេក្រង់ */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: 500px; /* កំណត់កម្ពស់តាមต้องการ (អាចសារ៉េឡើងចុះបាន ដូចជា 400px ឬ 600px) */
+    margin-bottom: 30px;
+    border-radius: 0; /* ដកកោងជ្រុងចេញ ដើម្បីឱ្យវា tràn ពេញគែមស្អាត */
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #000;
+}
         .slide {
             display: none;
             width: 100%;
