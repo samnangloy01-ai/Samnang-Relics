@@ -1,4 +1,31 @@
 <style>
+        /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
+.temple-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
+.content-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.text-block.khmer {
+    font-family: "Kantumruy Pro", sans-serif;
+    color: var(--text-main);
+}
+
+.text-block.english {
+    color: var(--text-muted);
+}
+Sent
         :root {
             --bg-color: #ffffff;
             --text-main: #111111;
@@ -273,7 +300,18 @@
     </style>
 </head>
 <body>
-
+<div class="temple-card">
+  <h2>1. Prasat Pram (Border Siem Reap-Preah Vihear)</h2>
+  <div class="content-columns">
+    <div class="text-block khmer">
+      <p>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏អស្ចារ្យ...</p>
+    </div>
+    <div class="text-block english">
+      <p>Prasat Pram is an impressive 10th-century temple located within the Koh Ker archaeological landscape...</p>
+    </div>
+  </div>
+</div>
+        
          <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
 <h2>Beyond Angkor: 28 Hidden Temples of Ancient Cambodia</h2>
 <h3>ស្វែងយល់ពីប្រាសាទបុរាណលាក់ខ្លួនទាំង ២៨ នៅក្រៅតំបន់អង្គរ</h3>
