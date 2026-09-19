@@ -1,17 +1,13 @@
-<head>
-<meta name="google-site-verification" content="sXbA7RvvhuzCQQbqLTrGVG0vU1z2Fja6uKZlxL3XVS0" />
 <style>
         /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
 .temple-card {
-    max-width: 800px;
-    margin: 20px auto;
     background-color: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
+}
 
 /* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
 .content-columns {
@@ -22,14 +18,10 @@
 }
 
 .text-block.khmer {
-  text-block.khmer, .text-block.english {
-  font-size: 16px; /* កំណត់ទំហំអត្ថបទឱ្យសមល្មមមិនធំពេក */
-  line-height: 1.6; /* ទុកគម្លាតចន្លោះបន្ទាត់ឱ្យអានស្រួល */
-  word-break: break-all; /* ទប់កុំអោយអត្ថបទវែងពេករត់ហៀរចេញក្រៅ */
-  overflow-wrap:break-word;
-  font-family: "kantumruy Pro",sans-serif;
-  color: var(--text-main);
+    font-family: "Kantumruy Pro", sans-serif;
+    color: var(--text-main);
 }
+
 .text-block.english {
     color: var(--text-muted);
 }
@@ -42,7 +34,7 @@ Sent
             --accent-color: #000000;
         }
          h1 {
-            font-size: 1.5rem; /* កំណត់ទំហំអក្សរចំណងជើងឱ្យតូចល្មមស្អាត */
+            font-size: 2.2rem; /* កំណត់ទំហំអក្សរចំណងជើងឱ្យតូចល្មមស្អាត */
             line-height: 1.2;
             margin-bottom: 15px;
        }
@@ -79,7 +71,7 @@ Sent
 
         .logo {
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             letter-spacing: -0.5px;
             text-transform: uppercase;
         }
@@ -97,11 +89,12 @@ Sent
         }
 
         .wrapper {
-            max-width: 900px;
-            width: 100%
-            margin-left: auto
-            margin-right: auto
+            max-width: 1250px;
+            margin: 30px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.3fr 1fr;
+            gap: 45px;
         }
 
         .breadcrumb {
@@ -116,7 +109,7 @@ Sent
         }
 
         h1.article-title {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             line-height: 1.2;
             font-weight: 800;
             margin-top: 0;
@@ -133,7 +126,7 @@ Sent
         .slideshow-container {
             position: relative;
             max-width: 100%;
-            height: 550px; /* កំណត់កម្ពស់ស្តង់ដារសម្រាប់ប្លុកស្លាយទាំងមូល */
+            height: 450px; /* កំណត់កម្ពស់ស្តង់ដារសម្រាប់ប្លុកស្លាយទាំងមូល */
             margin-bottom: 30px;
             border-radius: 6px;
             overflow: hidden;
@@ -302,17 +295,19 @@ Sent
             }
             .slideshow-container, .slide, .temple-img {
                 height: 280px;
-          }         
+            }
         }
     </style>
 </head>
 <body>
 <div class="temple-card">
+  <h2>1. Prasat Pram (Border Siem Reap-Preah Vihear)</h2>
   <div class="content-columns">
     <div class="text-block khmer">
+      <p>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏អស្ចារ្យ...</p>
     </div>
     <div class="text-block english">
-     
+      <p>Prasat Pram is an impressive 10th-century temple located within the Koh Ker archaeological landscape...</p>
     </div>
   </div>
 </div>
