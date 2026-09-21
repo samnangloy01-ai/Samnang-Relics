@@ -1,25 +1,18 @@
 <head>
  <meta name="google-site-verification" content="sXbA7Rvv..." />
 <style>
-  .modal-overlay {
+ .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none; /* ប្តូរមកជា none ដើម្បីលាក់វាជាមុន */
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 400px;
-  width: 100%;
 }     
  /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
 .temple-card {
@@ -329,7 +322,6 @@ Sent
             .slideshow-container, .slide, .temple-img {
                 height: 280px;
 }
-</style>
 
 <style>
     body {
@@ -357,15 +349,22 @@ Sent
     <a href="#">បានចុះឈ្មោះរួចហើយឬនៅ?</a>
   </div>
 </div>
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 0;
-        padding: 0;
-    }
+      
 </style>
-        
+        <!-- កូដ CSS របស់អ្នក -->
+  </style> 
+
+  <!-- កូដ JavaScript ដាក់នៅខាងក្រៅបែបនេះ -->
+  <script>
+    function openLoginModal() {
+      document.getElementById('login-modal').style.display = 'flex';
+    }
+
+    function closeLoginModal() {
+      document.getElementById('login-modal').style.display = 'none';
+    }
+  </script>
+</body>
               <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
               <h2>Beyond Angkor: 28 Hidden Temples of Ancient Cambodia</h2>
               <h3>ស្វែងយល់ពីប្រាសាទបុរាណលាក់ខ្លួនទាំង ២៨ នៅក្រៅតំបន់អង្គរ</h3>
