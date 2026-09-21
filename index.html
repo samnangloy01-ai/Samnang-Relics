@@ -1,7 +1,27 @@
 <head>
  <meta name="google-site-verification" content="sXbA7Rvv..." />
 <style>
-        /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
+  .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}     
+ /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
 .temple-card {
     background-color: var(--bg-color);
     border: 1px solid var(--border-color);
@@ -313,6 +333,30 @@ Sent
 
 <style>
     body {
+     <div id="login-modal" class="modal-overlay">
+  <div class="modal-content">
+    <a href="#">ត្រឡប់ទៅទំព័រដើម</a>
+    <h2>Hello Angkor</h2>
+    <p>ចុះឈ្មោះឥឡូវនេះ ដើម្បីអានអត្ថបទនេះដោយឥតគិតថ្លៃ</p>
+    <p>ចូលរួមជាមួយគណនី Google របស់អ្នក ដើម្បីចូលអានអត្ថបទនេះដោយឥតគិតថ្លៃ។</p>
+    
+    <!-- កន្លែងដាក់ប៊ូតុង Google Sign-In -->
+    <div id="g_id_onload"
+       data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+       data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+       data-type="standard"
+       data-shape="pill"
+       data-theme="outline"
+       data-text="continue_with"
+       data-size="large">
+    </div>
+
+    <p style="font-size: 12px; color: gray;">តាមរយៈການចុះឈ្មោះជាមួយ Google អ្នកយល់ព្រមចែករំលែកឈ្មោះ និងអ៊ីមែល...</p>
+    <a href="#">បានចុះឈ្មោះរួចហើយឬនៅ?</a>
+  </div>
+</div>
         display: flex;
         flex-direction: column;
         align-items: center;
