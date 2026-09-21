@@ -1,12 +1,33 @@
-<!DOCTYPE html>
-<html lang="km">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AngkorLens - 28 Essential Ancient Cambodian Temples</title>
-    <meta name="google-site-verification" content="sXbA7Rvv..." />
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
+ <meta name="google-site-verification" content="sXbA7Rvv..." />
+<style>
+        /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
+.temple-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
+.content-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.text-block.khmer {
+    font-family: "Kantumruy Pro", sans-serif;
+    color: var(--text-main);
+}
+
+.text-block.english {
+    color: var(--text-muted);
+}
+Sent
         :root {
             --bg-color: #ffffff;
             --text-main: #111111;
@@ -14,16 +35,24 @@
             --border-color: #e5e5e5;
             --accent-color: #000000;
         }
-
+         h1 {
+            font-size: 2.2rem; /* កំណត់ទំហំអក្សរចំណងជើងឱ្យតូចល្មមស្អាត */
+            line-height: 1.2;
+            margin-bottom: 15px;
+       }
         body {
-            font-family: 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
-
+           p {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
         header {
             border-bottom: 1px solid var(--border-color);
             padding: 12px 40px;
@@ -44,11 +73,9 @@
 
         .logo {
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             letter-spacing: -0.5px;
             text-transform: uppercase;
-            text-decoration: none;
-            color: var(--text-main);
         }
 
         .nav-menu {
@@ -62,66 +89,25 @@
             color: var(--text-main);
             font-weight: 500;
         }
-
-        .nav-menu a:hover {
-            color: #ff0000;
-        }
-
-        /* Hero Banner Search Section */
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-            margin-bottom: 40px;
-        }
-
-        .hero-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .search-box {
-            display: flex;
-            background: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            padding: 8px;
-            font-family: 'Kantumruy Pro', sans-serif;
-        }
-
-        .search-box button {
-            background: #000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .wrapper {
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+          .wrapper {
+    max-width: 900px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* គ្រប់គ្រោងធាតុខាងក្នុងទាំងអស់ឱ្យមករក្សានៅចំកណ្តាលទទឹង */
+    text-align: center;
+}
+    .wrapper h1, 
+.wrapper p, 
+.wrapper div, 
+.wrapper span {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
 
         .breadcrumb {
             font-size: 0.85rem;
@@ -135,8 +121,8 @@
         }
 
         h1.article-title {
-            font-size: 2.2rem;
-            line-height: 1.3;
+            font-size: 2.5rem;
+            line-height: 1.2;
             font-weight: 800;
             margin-top: 0;
             margin-bottom: 15px;
@@ -148,146 +134,193 @@
             margin-bottom: 25px;
         }
 
-        p {
-            text-align: justify;
-            line-height: 1.8;
-            margin-bottom: 20px;
+      .slideshow-container {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    max-width: 100vw;
+    height: 700px;
+    margin-bottom: 30px;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #000;
+}
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%; /* ឱ្យសមាមាត្រពេញ container */
+            object-fit: cover; /* ការពារមិនឱ្យរូបភាពស្រអាប់ ឬបែកទ្រង់ទ្រាយ */
         }
 
+        .slide.active {
+            display: block;
+        }
+
+        /* Next & Previous Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 12px 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        .temple-block, .temple-section {
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        .temple-block h3, .temple-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .khmer-title, .khmer-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* កែទំហំរូបភាពឱ្យស្រស់ស្អាតនិងមានស្តង់ដារសមរម្យ */
         .temple-img {
             width: 100%;
-            max-height: 550px;
-            object-fit: cover;
+           max-height: 750px; /* កំណត់កម្ពស់ស្ដង់ដារឱ្យរូបថតទាំងអស់មើលទៅស្មើគ្នាល្អ */
+            object-fit: contain; /* ការពារមិនឱ្យរូបភាពរីកបែកទ្រង់ទ្រាយ */
             border-radius: 6px;
             margin: 15px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: none;
-            justify-content: center;
+        .file-tag {
+            font-size: 0.8rem;
+            background: #f1f1f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #444;
+        }
+
+        aside.sidebar {
+            border-left: 1px solid var(--border-color);
+            padding-left: 30px;
+        }
+
+        .social-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-box h3 {
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
             align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .modal-content h2 {
-            margin-top: 10px;
-            font-size: 1.5rem;
-        }
-
-        .close-modal {
-            float: right;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: bold;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .fb-btn { background-color: #1877f2; }
+        .yt-btn { background-color: #ff0000; }
+        .ig-btn { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040); }
+
+        .social-btn:hover {
+            opacity: 0.9;
+        }
+
+        .sidebar-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-box input[type="email"] {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .sidebar-box button {
+            background: #7b51e3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         @media (max-width: 900px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+            }
+            aside.sidebar {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid var(--border-color);
+                padding-top: 30px;
+            }
             .nav-menu {
                 display: none;
             }
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
+            .slideshow-container, .slide, .temple-img {
+                height: 280px;
+}
+</style>
 
-    <!-- Header / Navigation -->
-    <header>
-        <div class="header-left">
-            <a href="#" class="logo">AngkorLens</a>
-            <nav class="nav-menu">
-                <a href="#">Angkor</a>
-                <a href="#">Temple Groups</a>
-                <a href="#">Provinces</a>
-                <a href="#">Books</a>
-                <a href="#">Events</a>
-                <a href="#" onclick="openLoginModal(); return false;">Login</a>
-            </nav>
-        </div>
-        <div>
-            <button onclick="openLoginModal()" style="background: #1877f2; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;">Sign In</button>
-        </div>
-    </header>
-
-    <!-- Hero Search Banner -->
-    <div class="hero-section">
-        <h1>Search Temples, Attractions & More</h1>
-        <div class="search-box">
-            <input type="text" placeholder="Search temples, ruins, architecture...">
-            <button>Search</button>
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="wrapper">
-        <div class="breadcrumb">
-            <a href="#">Home</a> &gt; <a href="#">Travel</a> &gt; Ancient Temples
-        </div>
-
-        <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
-        <div class="article-intro">
-            <strong>Beyond Angkor: 28 Hidden Temples of Ancient Cambodia</strong>
-        </div>
-        <p>ស្វែងយល់អំពីប្រាសាទបុរាណលាក់ខ្លួនទាំង ២៨ នៅក្រៅតំបន់អង្គរ ដែលពោរពេញទៅដោយរឿងរ៉ាវប្រវត្តិសាស្ត្រ និងស្ថាបត្យកម្មដ៏អស្ចារ្យ។</p>
-
-        <img src="https://images.unsplash.com/photo-1608678564027-2e1189912061?auto=format&fit=crop&w=1200&q=80" alt="Ancient Temple" class="temple-img">
-
-        <p>ទស្សនាស្វេបសាយនេះដើម្បីស្វែងយល់បន្ថែមអំពីបេតិកភណ្ឌខ្មែរយើង ដែលត្រូវបានថែរក្សា និងកត់ត្រាទុកយ៉ាងលម្អិតតាមរយៈកញ្ចក់ស្ថាបត្យកម្ម AngkorLens។</p>
-    </div>
-
-    <!-- Login Modal Box -->
-    <div id="login-modal" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal" onclick="closeLoginModal(); return false;">&times;</a>
-            <h2>Hello Angkor</h2>
-            <p>ចុះឈ្មោះឥឡូវនេះ ដើម្បីអានអត្ថបទនេះដោយឥតគិតថ្លៃ។</p>
-            <p style="font-size: 0.9rem; color: #666;">ចូលរួមជាមួយគណនី Google របស់អ្នក ដើម្បីចូលអានអត្ថបទនេះដោយឥតគិតថ្លៃ។</p>
-            
-            <!-- Google Sign-In Placeholder -->
-            <div style="margin: 20px 0;">
-                <button onclick="alert('Google Sign-In Triggered')" style="width: 100%; padding: 10px; border: 1px solid #ccc; background: white; border-radius: 4px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                    Continue with Google
-                </button>
-            </div>
-
-            <p style="font-size: 11px; color: gray;">តាមរយៈການចុះឈ្មោះជាមួយ Google អ្នកយល់ព្រមចែករំលែកឈ្មោះ និងអ៊ីមែល...</p>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script>
-        function openLoginModal() {
-            document.getElementById('login-modal').style.display = 'flex';
-        }
-
-        function closeLoginModal() {
-            document.getElementById('login-modal').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+    }
+</style>
               <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
               <h2>Beyond Angkor: 28 Hidden Temples of Ancient Cambodia</h2>
               <h3>ស្វែងយល់ពីប្រាសាទបុរាណលាក់ខ្លួនទាំង ២៨ នៅក្រៅតំបន់អង្គរ</h3>
