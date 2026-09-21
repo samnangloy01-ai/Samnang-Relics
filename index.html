@@ -23,13 +23,12 @@
     margin-bottom: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     
-    /* បន្ថែមទំហំស្តង់ដារសម្រាប់កាត */
+    /* កំណត់ទំហំ និងកម្ពស់កាតឱ្យស្មើគ្នា */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* ធានាថាគ្រប់ card គឺកម្ពស់ស្មើគ្នា */
+    height: 100%;
 }
-
 /* កំណត់ទំហំរូបភាពក្នុងកាតឱ្យមានទំហំស្មើគ្នាប្រហាក់ប្រហែលគ្នា */
 .temple-card img {
     width: 100%;
@@ -39,11 +38,11 @@
 }
 
 /* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
-.content-columns {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
+.content-columns { /* ឬឈ្មោះ Container មេរបស់អ្នក */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
 }
 
 .text-block.khmer {
