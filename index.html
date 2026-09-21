@@ -14,7 +14,7 @@
   z-index: 1000;
 }
 }     
- /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
+/* កំណត់ទំហំកាតនីមួយៗឱ្យស្មើគ្នា */
 .temple-card {
     background-color: var(--bg-color);
     border: 1px solid var(--border-color);
@@ -22,6 +22,20 @@
     padding: 20px;
     margin-bottom: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    /* បន្ថែមទំហំស្តង់ដារសម្រាប់កាត */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* ធានាថាគ្រប់ card គឺកម្ពស់ស្មើគ្នា */
+}
+
+/* កំណត់ទំហំរូបភាពក្នុងកាតឱ្យមានទំហំស្មើគ្នាប្រហាក់ប្រហែលគ្នា */
+.temple-card img {
+    width: 100%;
+    height: 180px; /* កំណត់កម្ពស់រូបភាពឱ្យកាយទំហំស្មើគ្នា (អាចសារ៉េលេខនេះតាមតម្រូវការ) */
+    object-fit: cover; /* ជួយការពារកុំឱ្យរូបភាពរាយប៉ាយ ឬខូចទម្រង់ */
+    border-radius: 6px;
 }
 
 /* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
