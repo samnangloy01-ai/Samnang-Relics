@@ -75,77 +75,167 @@
         <section id="temples" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-black text-neutral-900 tracking-tight">Featured Monuments</h2>
-                <p class="text-neutral-500 mt-2">Browse through sacred sanctuaries and archaeological marvels. You can add as many cards as you like below!</p>
+                <p class="text-neutral-500 mt-2">Add as many cards/columns as you want nonstop. Use the "See More" button below to load extra batches!</p>
             </div>
 
             <!-- 
-              INFINITE FLEXIBLE GRID:
-              Change 'lg:grid-cols-3' to 'lg:grid-cols-4' if you want 4 columns, 
-              or use 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5' 
-              to accommodate as many columns as you want automatically!
+              INFINITE COLUMN GRID: 
+              You can add as many cards as you want here. 
+              It automatically wraps into columns (1 on mobile, 2 on tablets, up to 4 on large screens).
             -->
-            <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 
                 <!-- Card 1 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Angkor Wat">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Angkor Wat" class="w-full h-52 object-cover">
-                        <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Angkor Wat" class="w-full h-48 object-cover">
+                        <div class="p-5">
                             <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Angkor Wat</h3>
-                            <p class="text-neutral-600 text-sm leading-relaxed">The largest religious monument in the world, featuring magnificent bas-reliefs and iconic towers.</p>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Angkor Wat</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">The largest religious monument in the world, featuring magnificent bas-reliefs and iconic towers.</p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button onclick="openModal('Angkor Wat', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world. Originally constructed as a Hindu temple dedicated to the god Vishnu...')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Angkor Wat', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Bayon">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800" alt="Bayon" class="w-full h-52 object-cover">
-                        <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800" alt="Bayon" class="w-full h-48 object-cover">
+                        <div class="p-5">
                             <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Angkor Thom</span>
-                            <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Bayon</h3>
-                            <p class="text-neutral-600 text-sm leading-relaxed">Famous for its serene, smiling stone faces carved into massive towers throughout the central peak.</p>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Bayon</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">Famous for its serene, smiling stone faces carved into massive towers throughout the central peak.</p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button onclick="openModal('Bayon', 'Angkor Thom, Cambodia', ['https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'], 'The Bayon is a richly decorated Khmer temple at Angkor in Cambodia. Built in the late 12th or early 13th century, it stands as the official state temple of the Mahayana Buddhist King Jayavarman VII.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Bayon', 'Angkor Thom, Cambodia', ['https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'], 'The Bayon is a richly decorated Khmer temple at Angkor in Cambodia.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Ta Prohm">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800" alt="Ta Prohm" class="w-full h-52 object-cover">
-                        <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800" alt="Ta Prohm" class="w-full h-48 object-cover">
+                        <div class="p-5">
                             <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Ta Prohm</h3>
-                            <p class="text-neutral-600 text-sm leading-relaxed">Known famously as the "jungle temple," where enormous tree roots intertwine with ancient stone corridors.</p>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Ta Prohm</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">Known famously as the jungle temple, where enormous tree roots intertwine with ancient stone corridors.</p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button onclick="openModal('Ta Prohm', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Ta Prohm is the modern name of the temple at Angkor, Siem Reap, built in the Bayon style largely in the late 12th and early 13th century and left largely in its natural overgrown state.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Ta Prohm', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Ta Prohm is left largely in its natural overgrown state with giant tree roots.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
-                <!-- Card 4 (You can easily duplicate this block to add as many columns/cards as you want!) -->
+                <!-- Card 4 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Banteay Srei">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Banteay Srei" class="w-full h-52 object-cover">
-                        <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Banteay Srei" class="w-full h-48 object-cover">
+                        <div class="p-5">
                             <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Banteay Srei</h3>
-                            <p class="text-neutral-600 text-sm leading-relaxed">A 10th-century Cambodian temple dedicated to the Hindu god Shiva, known for intricate pinkish sandstone carvings.</p>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Banteay Srei</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">A 10th-century temple known for its intricate pinkish sandstone carvings and exceptional detail.</p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button onclick="openModal('Banteay Srei', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Banteay Srei is built of a red sandstone that bears elaborate decorative wall carvings which are still remarkably well preserved today.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Banteay Srei', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Banteay Srei is built of a red sandstone with elaborate decorative carvings.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- EXTRA BATCHES FOR "SEE MORE" (Supports up to 5 times clicking See More) -->
+            <div id="extraBatch-1" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Batch 1 Extra Cards (Duplicate or add your own nonstop) -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Beng Mealea">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Beng Mealea" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 1</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Beng Mealea</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">A mysterious temple completely swallowed by the jungle and forest vines.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Beng Mealea', 'Cambodia', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Beng Mealea temple details.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extraBatch-2" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Batch 2 Extra Cards -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Preah Khan">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800" alt="Preah Khan" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 2</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Preah Khan</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">A ruined monastic complex filled with intricate stone chambers and corridors.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Preah Khan', 'Angkor, Cambodia', ['https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'], 'Preah Khan temple details.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extraBatch-3" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Batch 3 Extra Cards -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Koh Ker">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800" alt="Koh Ker" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 3</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Koh Ker Pyramid</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">A remote 10th-century temple pyramid standing tall amidst deep forests.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Koh Ker', 'Cambodia', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Koh Ker pyramid details.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extraBatch-4" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Batch 4 Extra Cards -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Phnom Bakheng">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Phnom Bakheng" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 4</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Phnom Bakheng</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">A Hindu temple mountain famous worldwide for its magnificent sunset views.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Phnom Bakheng', 'Angkor', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Phnom Bakheng details.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="extraBatch-5" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+                <!-- Batch 5 Extra Cards -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Neak Pean">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Neak Pean" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 5 (Final)</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Neak Pean</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">An artificial island with a Buddhist temple on a circular island in Jayataka baray.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="openModal('Neak Pean', 'Angkor', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Neak Pean details.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- See More Button (Click up to 5 times) -->
+            <div class="text-center mt-12">
+                <button id="seeMoreBtn" onclick="loadMoreBatches()" class="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-8 py-3 rounded-full transition text-sm shadow-md">See More Temples (5 Batches Available)</button>
             </div>
         </section>
     </main>
@@ -241,6 +331,29 @@
             menu.classList.toggle('hidden');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-xmark');
+        }
+
+        // "See More" 5 Times Batch Loader Functionality
+        let currentBatch = 0;
+        const maxBatches = 5;
+
+        function loadMoreBatches() {
+            currentBatch++;
+            if (currentBatch <= maxBatches) {
+                const batchEl = document.getElementById(`extraBatch-${currentBatch}`);
+                if (batchEl) {
+                    batchEl.classList.remove('hidden');
+                }
+            }
+            
+            // Update button text or hide when all 5 batches are shown
+            const btn = document.getElementById('seeMoreBtn');
+            const remaining = maxBatches - currentBatch;
+            if (remaining > 0) {
+                btn.innerText = `See More Temples (${remaining} batches left)`;
+            } else {
+                btn.style.display = 'none';
+            }
         }
 
         // Modal Functionality
