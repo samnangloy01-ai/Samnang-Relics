@@ -1,1 +1,204 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngkorLens - CMS Layout Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-neutral-50 text-neutral-800 font-sans">
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900 text-white p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-800">
+        <p class="text-xs sm:text-sm text-neutral-300">We use cookies to improve your experience on AngkorLens. By browsing, you agree to our privacy policy.</p>
+        <button onclick="dismissCookies()" class="bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-semibold px-6 py-2 rounded-full transition flex-shrink-0">Accept & Close</button>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-black text-neutral-900 tracking-tight">Dynamic CMS Temple Grid</h1>
+            <p class="text-neutral-500 mt-2 text-sm">Cards are generated dynamically from an array/database. Add unlimited items easily!</p>
+        </div>
+
+        <!-- Dynamic Grid Container -->
+        <div id="dynamicGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- JavaScript will inject cards here automatically -->
+        </div>
+
+        <!-- Load More / Non-stop Pagination -->
+        <div class="text-center mt-12">
+            <button onclick="loadMoreItems()" id="loadMoreBtn" class="bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-medium px-8 py-3 rounded-full transition shadow-md">Load More Temples</button>
+        </div>
+    </main>
+
+    <!-- Multi-Image Modal Lightbox -->
+    <div id="mediaModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 hidden px-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 bg-black/50 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/80"><i class="fa-solid fa-xmark"></i></button>
+            <div class="relative w-full h-80 bg-black">
+                <img id="modalMainImg" class="w-full h-full object-cover">
+                <button onclick="prevPhoto()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/80"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="nextPhoto()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/80"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <!-- Thumbnails for multiple pictures -->
+            <div id="modalThumbnails" class="flex gap-2 p-3 bg-neutral-100 overflow-x-auto"></div>
+            <div class="p-6 overflow-y-auto">
+                <span id="modalCategory" class="text-xs font-bold text-cyan-600 uppercase"></span>
+                <h3 id="modalHeading" class="text-2xl font-bold text-neutral-900 mb-2"></h3>
+                <p id="modalDesc" class="text-neutral-600 text-sm mb-4 leading-relaxed"></p>
+                <button onclick="closeModal()" class="w-full bg-neutral-900 text-white py-3 rounded-xl text-sm font-medium">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CMS Database & Controller Script -->
+    <script>
+        // Simulated Database / CMS Data Source (You can replace this with Airtable, Firebase, or a JSON API)
+        const databaseItems = [
+            {
+                title: "Prasat Pram",
+                category: "Koh Ker Region",
+                description: "ប្រាសាទប្រាំ គឺជាបូជនីយដ្ឋានបុរាណដែលមានរចនាសម្ព័ន្ធអគារព័ទ្ធជុំវិញដោយព្រៃព្រឹក្សា.",
+                images: [
+                    "https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Bayon Temple",
+                category: "Angkor Thom",
+                description: "Famous for its serene, smiling stone faces carved into massive towers throughout the central peak.",
+                images: [
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Ta Prohm",
+                category: "Siem Reap",
+                description: "Known famously as the jungle temple, where enormous tree roots intertwine with ancient stone corridors.",
+                images: [
+                    "https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Banteay Srei",
+                category: "Siem Reap",
+                description: "A 10th-century temple known for its intricate pinkish sandstone carvings and exceptional detail.",
+                images: [
+                    "https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Beng Mealea",
+                category: "Jungle Ruins",
+                description: "A mysterious temple completely swallowed by the jungle and forest vines, offering an adventurous walk.",
+                images: [
+                    "https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Preah Khan",
+                category: "Angkor",
+                description: "A ruined monastic complex filled with intricate stone chambers, long corridors, and ancient guardian statues.",
+                images: [
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800"
+                ]
+            }
+        ];
+
+        let itemsToShow = 4;
+
+        function renderGrid() {
+            const grid = document.getElementById('dynamicGrid');
+            grid.innerHTML = '';
+            
+            const slicedData = databaseItems.slice(0, itemsToShow);
+            
+            slicedData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md";
+                card.innerHTML = `
+                    <div>
+                        <img src="${item.images[0]}" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">${item.category}</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">${item.title}</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">${item.description}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick='openModal(${JSON.stringify(item)})' class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2.5 rounded-xl transition">
+                            View Gallery (${item.images.length} Photos)
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (itemsToShow >= databaseItems.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+
+        function loadMoreItems() {
+            itemsToShow += 2;
+            renderGrid();
+        }
+
+        // Modal State Variables
+        let activeItemImages = [];
+        let activePhotoIdx = 0;
+
+        function openModal(item) {
+            activeItemImages = item.images;
+            activePhotoIdx = 0;
+            document.getElementById('modalCategory').innerText = item.category;
+            document.getElementById('modalHeading').innerText = item.title;
+            document.getElementById('modalDesc').innerText = item.description;
+            updateModalView();
+            document.getElementById('mediaModal').classList.remove('hidden');
+        }
+
+        function updateModalView() {
+            document.getElementById('modalMainImg').src = activeItemImages[activePhotoIdx];
+            const thumbBox = document.getElementById('modalThumbnails');
+            thumbBox.innerHTML = '';
+            activeItemImages.forEach((imgSrc, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = `w-16 h-12 object-cover rounded cursor-pointer border-2 ${idx === activePhotoIdx ? 'border-cyan-600 scale-105' : 'border-transparent opacity-60'}`;
+                thumb.onclick = () => { activePhotoIdx = idx; updateModalView(); };
+                thumbBox.appendChild(thumb);
+            });
+        }
+
+        function nextPhoto() {
+            activePhotoIdx = (activePhotoIdx + 1) % activeItemImages.length;
+            updateModalView();
+        }
+
+        function prevPhoto() {
+            activePhotoIdx = (activePhotoIdx - 1 + activeItemImages.length) % activeItemImages.length;
+            updateModalView();
+        }
+
+        function closeModal() {
+            document.getElementById('mediaModal').classList.add('hidden');
+        }
+
+        function dismissCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        // Initial render on load
+        window.onload = renderGrid;
+    </script>
+</body>
+</html>
