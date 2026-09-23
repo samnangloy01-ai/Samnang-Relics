@@ -1,993 +1,333 @@
+<!DOCTYPE html>
+<html lang="km" dir="ltr">
 <head>
- <meta name="google-site-verification" content="sXbA7Rvv..." />
-<style>
-        /* រចនាប្រអប់កាតសម្រាប់អត្ថបទនីមួយៗ */
-.temple-card {
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* រចនាភាសាខ្មែរ និងអង់គ្លេសឱ្យមានរបៀប */
-.content-columns {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.text-block.khmer {
-    font-family: "Kantumruy Pro", sans-serif;
-    color: var(--text-main);
-}
-
-.text-block.english {
-    color: var(--text-muted);
-}
-Sent
-        :root {
-            --bg-color: #ffffff;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --border-color: #e5e5e5;
-            --accent-color: #000000;
-        }
-         h1 {
-            font-size: 2.2rem; /* កំណត់ទំហំអក្សរចំណងជើងឱ្យតូចល្មមស្អាត */
-            line-height: 1.2;
-            margin-bottom: 15px;
-       }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-           p {
-            text-align: justify;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .logo {
-            font-weight: 900;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9rem;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-          .wrapper {
-    max-width: 900px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* គ្រប់គ្រោងធាតុខាងក្នុងទាំងអស់ឱ្យមករក្សានៅចំកណ្តាលទទឹង */
-    text-align: center;
-}
-    .wrapper h1, 
-.wrapper p, 
-.wrapper div, 
-.wrapper span {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
-}
-
-        .breadcrumb {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb a {
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-
-        h1.article-title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            font-weight: 800;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        .article-intro {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 25px;
-        }
-
-      .slideshow-container {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    max-width: 100vw;
-    height: 700px;
-    margin-bottom: 30px;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background-color: #000;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngkorLens - Temples, Architecture & Heritage Discovery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-banner { position: relative; overflow: hidden; }
         .slide {
-            display: none;
-            width: 100%;
-            height: 100%; /* ឱ្យសមាមាត្រពេញ container */
-            object-fit: cover; /* ការពារមិនឱ្យរូបភាពស្រអាប់ ឬបែកទ្រង់ទ្រាយ */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: 0;
         }
+        .slide.active { opacity: 1; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-[#fafafa] text-neutral-800 antialiased min-h-screen flex flex-col justify-between">
 
-        .slide.active {
-            display: block;
-        }
-
-        /* Next & Previous Buttons */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 12px 16px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            border-radius: 3px;
-        }
-
-        .slider-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev { left: 15px; }
-        .next { right: 15px; }
-
-        .temple-block, .temple-section {
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
-        }
-
-        .temple-block h3, .temple-section h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        .khmer-title, .khmer-sub {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        /* កែទំហំរូបភាពឱ្យស្រស់ស្អាតនិងមានស្តង់ដារសមរម្យ */
-        .temple-img {
-            width: 100%;
-           max-height: 750px; /* កំណត់កម្ពស់ស្ដង់ដារឱ្យរូបថតទាំងអស់មើលទៅស្មើគ្នាល្អ */
-            object-fit: contain; /* ការពារមិនឱ្យរូបភាពរីកបែកទ្រង់ទ្រាយ */
-            border-radius: 6px;
-            margin: 15px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .file-tag {
-            font-size: 0.8rem;
-            background: #f1f1f1;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: #444;
-        }
-
-        aside.sidebar {
-            border-left: 1px solid var(--border-color);
-            padding-left: 30px;
-        }
-
-        .social-box {
-            background: #f8f8f8;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-
-        .social-box h3 {
-            font-size: 1rem;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .fb-btn { background-color: #1877f2; }
-        .yt-btn { background-color: #ff0000; }
-        .ig-btn { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040); }
-
-        .social-btn:hover {
-            opacity: 0.9;
-        }
-
-        .sidebar-box {
-            background: #f8f8f8;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .sidebar-box input[type="email"] {
-            width: 80%;
-            padding: 8px;
-            margin: 10px 0;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
-
-        .sidebar-box button {
-            background: #7b51e3;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        @media (max-width: 900px) {
-            .wrapper {
-                grid-template-columns: 1fr;
-            }
-            aside.sidebar {
-                border-left: none;
-                padding-left: 0;
-                border-top: 1px solid var(--border-color);
-                padding-top: 30px;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .slideshow-container, .slide, .temple-img {
-                height: 280px;
-}
-</style>
-
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 0;
-        padding: 0;
-    }
-</style>
-        
-              <h1 class="article-title">28 Essential Ancient Cambodian Temples Beyond Angkor Wat</h1>
-              <h2>Beyond Angkor: 28 Hidden Temples of Ancient Cambodia</h2>
-              <h3>ស្វែងយល់ពីប្រាសាទបុរាណលាក់ខ្លួនទាំង ២៨ នៅក្រៅតំបន់អង្គរ</h3>
-<div class="breadcrumb">
-    <a href="#">Home</a> &gt; <a href="#">Travel</a> &gt; <span class="current">Ancient Temples</span>
-</div>
-            <!-- Image Slideshow Cover (5 Pictures) -->
-            <div class="slideshow-container">
-                <img src="IMG_0712.JPG" class="slide active" alt="Temple Slide 1">
-                <img src="01000787.JPG" class="slide" alt="Temple Slide 2">
-                <img src="01012482.JPG" class="slide" alt="Temple Slide 3">
-                <img src="01000713 2.JPG" class="slide" alt="Temple Slide 4">
-                <img src="IMG_2307.JPG" class="slide" alt="Temple Slide 5">
-                <img src="IMG_2176.JPG" class="slide" alt="Temple Slide 6">
-                <img src="IMG_4691.JPG" class="slide" alt="Temple Slide 7">
-                <img src="01000713 5.jpg" class="slide" alt="Temple Slide 8">
-                <img src="IMG_7682.JPG" class="slide" alt="Temple Slide 9">
-                <img src="IMG_7729.JPG" class="slide" alt="Temple Slide 10">
-                <img src="IMG_7729.JPG" class="slide" alt="Temple Slide 10">
-             <img src="IMG_0516.jpeg" class="slide" alt="Temple Slide 11">
-             <img src="IMG_9200.jpeg" class="slide" alt="Temple Slide 12">
-             <img src="IMG_9546.jpeg" class="slide" alt="Temple Slide 13">
-             <img src="IMG_4356.jpeg" class="slide" alt="Temple Slide 14">
-             <img src="IMG_2856.jpeg" class="slide" alt="Temple Slide 15">
-             <img src="IMG_2249.jpeg" class="slide" alt="Temple Slide 16">
-             <img src="IMG_0726.jpeg" class="slide" alt="Temple Slide 17">
-             <img src="IMG_0592.jpeg" class="slide" alt="Temple Slide 18">
-             <img src="IMG_0674.jpeg" class="slide" alt="Temple Slide 19">
-             <img src="IMG_0552.jpeg" class="slide" alt="Temple Slide 20">
-             <img src="01000713 5.jpg" class="slide" alt="Temple Slide 21">
-             <img src="IMG_0227.jpg" class="slide" alt="Temple Slide 22">
-
-                <!-- Navigation Buttons -->
-                <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-                <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+    <!-- Header Section -->
+    <header class="bg-white border-b border-neutral-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <a href="#" class="text-3xl font-extrabold tracking-tight text-cyan-600 flex items-center gap-2">
+                    <span class="text-neutral-900">Angkor</span><span class="text-cyan-600">Lens</span>
+                </a>
             </div>
 
-            <!-- Temple 1 -->
-            <div class="temple-block">
-                <img src="01000713 2.JPG" alt="Prasat Pram" class="temple-img">
-                <h3>1. Prasat Pram (Border Siem Reap-Preah Vihear)</h3>
-                <div class="khmer-title">ប្រាសាទប្រាំ (ព្រំប្រទល់ខេត្តសៀមរាប-ព្រះវិហារ)</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                <p>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបុរាណវិទ្យា កោះកេរ (ស្ថិតក្នុងឃុំស្រយ៉ង ស្រុកគូលែន ខេត្តព្រះវិហារ ដែលជាតំបន់ព្រំប្រទល់ជិតខេត្តសៀមរាប)។
-                សម័យកាលសាងសង់៖ ប្រាសាទនេះត្រូវបានសាងសង់ឡើងនៅ សតវត្សរ៍ទី១០ (ប្រហែលឆ្នាំ ៩២១ ដល់ ៩៤១ គ្រិស្តសករាជ) ក្នុងរជ្ជកាល ព្រះបាទជ័យវរ្ម័នទី៤ ពេលដែលព្រះអង្គបានទ្រង់យកក្រុងកោះកេរ (ឆោកគគីរ) ជា រាជធានីនៃអាណាចក្រខ្មែរ។
-                រចនាសម្ព័ន្ធ៖ ទោះបីជាឈ្មោះហៅថា «ប្រាសាទប្រាំ» ក៏ដោយ តាមការពិតស្ថាបត្យកម្មនេះមានតួប៉មចំនួន ៦ សាងសង់ពីឥដ្ឋ និងថ្មភក់ ឈរលើខឿនតែមួយ ដោយបែរមុខទៅទิសខាងកើត។
-                ​​​​ភាពល្បីល្បាញនិងធម្មជាតិ៖ ភាពទាក់ទាញដ៏ខ្លាំងបំផុតនៃប្រាសាទនេះ គឺតួប៉មឥដ្ឋមួយត្រូវបានឫសឈើបុរាណ (ជាទូទៅគឺដើមស្រឡៅ ឬដើមឈើធំ) គ្របដណ្តប់ និងរុំព័ទ្ធយ៉ាងជិតស្និទ្ធ បង្កើតបានជារូបរាងធម្មជាតិលាយឡំប្រវត្តិសាស្ត្រយ៉ាងស្រស់ស្អាត ដែលគេច្រើនប្រៀបធៀបទៅនឹងភាពអស្ចារ្យនៃប្រាសាទតាកែវ ឬតាព្រហ្មនៅអង្គរ ប៉ុន្តែមានភាពល្វតល្វើយ និងទាក់ទាញម្យ៉ាងទៀត។</p>
-                <p>Prasat Pram is an impressive 10th-century temple located within the Koh Ker archaeological landscape (situated in Preah Vihear province, near the border of Siem Reap).
-                Historical Background: The temple was built during the 10th century (between 921 and 941 AD) during the reign of King Jayavarman IV, when he established his capital at Koh Ker (known historically as Chok Gargyar) for the Khmer Empire.
-                Architecture: Despite its name "Prasat Pram" (meaning "Five Temples"), the site actually consists of six brick and sandstone towers standing on a single laterite platform, facing eastward.
-                Nature and Heritage: The most iconic feature of Prasat Pram is one of its brick sanctuary towers being entirely embraced and entwined by massive, ancient tree roots. This breathtaking fusion of ancient brickwork and thriving nature creates a mystical atmosphere reminiscent of the famous temples in Angkor, making it a favorite spot for travelers and photographers.</p>
-                <p>Located on the remote border region between Siem Reap and Preah Vihear, featuring classic architectural elements of the period.</p>
-            </div>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
+                <a href="#" class="hover:text-cyan-600 transition">Angkor</a>
+                <a href="#" class="hover:text-cyan-600 transition">Temple Groups</a>
+                <a href="#" class="hover:text-cyan-600 transition">Creator</a>
+                <a href="#about" class="hover:text-cyan-600 transition">About</a>
+            </nav>
 
-            <!-- Temple 2 -->
-            <div class="temple-block">
-                <img src="01000787.JPG" alt="Prasat Pram Koh Ker" class="temple-img">
-                <h3>2. Prasat Pram (Koh Ker)</h3>
-                <div class="khmer-title">ប្រាសាទប្រាំ (តំបន់កោះកេរ)</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                <p>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណសម័យអង្គរដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបេតិកភណ្ឌពិភពលោក UNESCO កោះកេរ (ឆោកគគីរ) ប្រហែល ១ម៉ោងកន្លះ ទៅ ២ម៉ោង ធ្វើដំណើរពីខេត្តសៀមរាប។
-​​​            ​​   ​​ប្រវត្តិនិងសម័យកាល៖ ប្រាសាទនេះត្រូវបានសាងសង់ឡើងក្នុង សតវត្សរ៍ទី១០ (ចន្លោះឆ្នាំ ៩២១ ដល់ ៩៤១ គ្រិស្តសករាជ) ក្នុងរជ្ជកាល ព្រះបាទជ័យវរ្ម័នទី៤ ពេលដែលព្រះអង្គបានប្តូររាជធានីមកតំបន់កោះកេរ។
-​               ​រចនាសម្ព័ន្ធស្ថាបត្យកម្ម៖ ទោះបីជាមានឈ្មោះថា «ប្រាសាទប្រាំ» ក៏ដោយ តាមការពិតសំណង់នេះមានប៉មសរុបចំនួន ៥ សាងសង់នៅលើខឿនថ្មបាយក្រៀម និងថ្មភក់តែមួយ៖
-               តួប៉មឥដ្ឋទាំង ៣ នៅជួរខាងក្រោយ៖ តម្រៀបជួរគ្នាពីជើងទៅត្បូង បែរមុខទៅទិសកើត ឧទ្ទិសថ្វាយព្រះសិវៈក្នុងសាសនាហិណ្ឌូ។
-           ​​    តួប៉មខាងមុខ៖ រួមមានសំណង់ដែលគេជឿថាជាបណ្ណាល័យ និងរោងភ្លើង សាងសង់ពីថ្មបាយក្រៀម បែរមុខទៅទិសលិច។
-               ភាពអស្ចារ្យនៃធម្មជាតិ៖ ចំណុចលេចធ្លោបំផុតគឺឫសឈើបុរាណធំៗបានល្មាយ និងរុំព័ទ្ធជុំវិញតួប៉មឥដ្ឋយ៉ាងស្អិតរមួត ដែលបង្កើតបានជាទេសភាពដ៏ស្រស់ស្អាតប្លែកភ្នែក រវាងស្នាដៃបុរាណនិងធម្មជាតិ ដែលទាក់ទាញភ្ញៀវទេសចរឱ្យចូលចិត្តមកទស្សនា និងថតរូបភាព។</p>
-                <p>Prasat Pram is an impressive 10th-century temple located within the UNESCO World Heritage site of Koh Ker, roughly a 1.5 to 2-hour drive from Siem Reap.
-                History and Era: The temple was built during the 10th century (between 921 and 941 AD) during the reign of King Jayavarman IV when Koh Ker served as the capital of the Khmer Empire.
-                Architectural Structure: Despite its name meaning "Five Temples," the site actually consists of five main towers standing on a single laterite and sandstone base:
-                The Three Brick Towers (Back Row): Aligned from north to south, facing east, and originally dedicated to Lord Shiva.
-                 The Front Structures: Includes structures identified as a library and a firehouse built from laterite, facing west.
-                 Nature's Embrace: The most iconic feature of Prasat Pram is how massive, ancient tree roots have tightly grown over and intertwined with the brick towers. This stunning combination of ancient human architecture and thriving nature creates a breathtaking view for visitors and photographers.
-                <p>A remarkable brick temple ruin located within the majestic archaeological complex of Koh Ker.</p>
-            </div>
-
-            <!-- Temple 3 -->
-            <div class="temple-block">
-                <img src="01012482.JPG" alt="Preah Khan of Kampong Svay" class="temple-img">
-                <h3>3. Preah Khan of Kampong Svay</h3>
-                <div class="khmer-title">ប្រាសាទព្រះខ័នកំពង់ស្វាយ</div>
-                <p><strong>Century:</strong> 12th Century</p>
-                <p>ប្រាសាទព្រះខ័នកំពង់ស្វាយ គឺជាតំបន់រមណីយដ្ឋានប្រាសាទបុរាណដ៏ធំល្វឹងល្វើយបំផុត ដែលត្រូវបានសាងសង់ឡើងក្នុងសម័យអង្គរ។ ប្រាសាទនេះមានទីតាំងស្ថិតនៅក្នុងខេត្តព្រះវិហារ (មានចម្ងាយប្រហែល ១០០ គីឡូម៉ែត្រ ភាគខាងកើតទីក្រុងអង្គរ ខេត្តសៀមរាប)។
-                ​ប្រវត្តិសាស្ត្រ និងសម័យកាលសាងសង់៖
-​​​​​​​                ប្រាសាទនេះត្រូវបានកសាងឡើងជាបន្តបន្ទាប់ចាប់ពី សតវត្សរ៍ទី៩ ដល់ទី១៣ (ក្នុងរជ្ជកាលព្រះបាទសូរ្យវរ្ម័នទី១ ព្រះបាទសូរ្យវរ្ម័នទី២ និងព្រះបាទជ័យវរ្ម័នទី៧)។
-                សារៈសំខាន់ផ្នែកយោធា៖
-​​​​​                ទីកន្លែងនេះធ្លាប់ជាទីក្រុង និងជាមជ្ឈមណ្ឌលនយោបាយ ព្រមទាំងយោធាដ៏មានសារៈសំខាន់ខ្លាំង។ ក្នុងសម័យកាលដែលកងទ័ពចាមវាយលុកយកបានរាជធានីអង្គរនាចុងសតវត្សរ៍ទី១២ ព្រះបាទជ័យវរ្ម័នទី៧ ធ្លាប់បានប្រើប្រាស់ទីតាំងនេះជាមូលដ្ឋានទ័ពដ៏សំខាន់ ដើម្បីបណ្តុះបណ្តាលកងទ័ព និងរៀបចំកម្លាំងទុក្ខរៀបចំដកហូតយកទឹកដី និងរាជធានីអង្គរមកវិញ។
-             ​    ស្ថាបត្យកម្មសំខាន់ៗ៖
-                 ប្រាសាទព្រះស្ទឹង៖ មានតួប៉មមុខបួនឆ្លាក់ស្នាមញញឹមដ៏អាថ៌កំបាំងស្រដៀងនឹងប្រាសាទបាយ័ន។
-​​                ​ ប្រាសាទព្រះដំរី៖ ជាប្រាសាទរូបពិរ៉ាមីត កសាងឡើងក្នុងទម្រង់ជាភ្នំ មានរូបសំណាកដំរីថ្មធំៗនៅតាមជ្រុង។
-                 តំបន់ឧស្សាហកម្មដែក៖ ទីនេះស្ថិតនៅជិតភ្នំដែក ដែលជាមជ្ឈមណ្ឌលរុករក និងផលិតដែកដ៏ធំបំផុត ដើម្បីបម្រើឱ្យការសាងសង់អាណាចក្រអង្គរ។</p>
-                <p>Preah Khan Kompong Svay (also known locally as Prasat Bakan) is the largest single religious enclosure complex ever built during the Angkorian period of the Khmer Empire. It is located in Preah Vihear Province, roughly 100 kilometers east of Angkor Wat.
-                 History and Timeline:
-                 The vast temple-city was constructed and expanded between the 9th and 13th centuries under notable kings such as Suryavarman I, Suryavarman II, and Jayavarman VII.
-                  Military and Strategic Significance:
-                 The site served as a major political and military center. During the late 12th century, when Angkor was occupied by the Chams, future King Jayavarman VII utilized this remote and heavily fortified jungle stronghold as a strategic military base to train troops, reorganize his army, and eventually recapture Angkor.
-                  Key Architectural Features:
-                  Prasat Preah Stung: A temple featuring iconic four-faced towers mirroring the Bayon style.
-                 Preah Damrei Temple: A 15-meter-high pyramid structure guarded by large stone elephant statues at its corners.
-                 Industrial Hub: Located near Phnom Dek (the iron mountain), it served as a vital economic center for iron smelting to support the construction of the empire.</p>
-                <p>One of the largest provincial temple complexes of the Khmer Empire, hidden deep within forested lands.</p>
-            </div>
-
-            <!-- Temple 4 -->
-            <div class="temple-block">
-               <img src="01000713 4.jpg" alt="Pong Toek Temple" class="temple-img">
-                <h3>4. Pong Toek Temple</h3>
-                <div class="khmer-title">ប្រាសាទពងទឹក</div>
-                <p><strong>Century:</strong> 10th-11th Century</p>
-                <p>ប្រាសាទពងទឹក គឺជាប្រាសាទបុរាណសម័យអង្គរដ៏គួរឱ្យទាក់ទាញ និងលាក់ខ្លួនយ៉ាងស្ងៀមស្ងាត់ក្នុងព្រៃធម្មជាតិ ដែលមានទីតាំងស្ថិតនៅក្នុងខេត្តព្រះវិហារ (ក្បែរតំបន់ស្រយ៉ង ស្រុកគូលែន និងស្ថិតក្នុងតំបន់ជុំវិញទីក្រុងបុរាណកោះកេរ)។
-​​                ប្រវត្តិនិងសម័យកាលសាងសង់៖
-                ប្រា​​​សាទនេះត្រូវបានកសាងឡើងក្នុងអំឡុង សតវត្សរ៍ទី១១ ដល់ទី១២ (ស្ថិតក្នុងសម័យកាលរចនាបថបាពួន ដល់រចនាបថអង្គរវត្ត) ដែលជាសម័យកាលកសាងស្ថាបត្យកម្មថ្មភក់ដ៏វិចិត្រ។
-​​​​                រចនាសម្ព័ន្ធស្ថាបត្យកម្ម៖
-                មានតួប៉មសាងសង់ពីថ្មភក់ចំនួន ៣ តម្រៀបជួរគ្នាមុខបែរទៅទិសកើត ដោយឈរលើខឿនថ្មបាយក្រៀមតែមួយ។
-         ​​​​       ទោះបីជាមានការទ្រុឌទ្រោមខ្លះតាមអាយុកាល និងមានដើមឈើធំៗដុះព័ទ្ធជុំវិញក៏ដោយ ប៉ុន្តែប្រាសាទនេះនៅសេសសល់នូវចម្លាក់ផ្ដែ និងស៊ុមទ្វារដ៏មានតម្លៃ ដែលបង្ហាញពីសិល្បៈខ្មែរយ៉ាងប្រណីត។
-              ​  ភាពលាក់ខ្លួន៖
-                ដោយសារទីតាំងនៅដាច់ស្រយាល និងត្រូវធ្វើដំណើរតាមផ្លូវលំក្នុងព្រៃ ទើបប្រាសាទពងទឹកក្លាយជា «ប្រាសាទបុរាណដែលលាក់ខ្លួន» ដ៏មានតម្លៃសម្រាប់អ្នកចូលចិត្តការស្វែងរក និងរុករកប្រាង្គប្រាសាទបុរាណស្ងប់ស្ងាត់។</p>
-                </p>Pong Toek Temple is an enchanting and hidden ancient Angkorian jungle temple located in Preah Vihear Province (near the Srayong area in Kulen district, close to the broader Koh Ker archaeological landscape).
-                History and Era:
-                The temple was constructed between the 11th and 12th centuries (spanning the Baphuon to Angkor Wat architectural styles), a period renowned for intricate sandstone temple-building craftsmanship.
-                 Architectural Structure:
-                 The complex consists of three sandstone sanctuary towers aligned in a row facing east, standing upon a single laterite platform.
-                 Despite weathering and the encroachment of surrounding jungle trees, the site still preserves remarkable lintels, door frames, and carved architectural details showcasing classic Khmer artistry.
-                 The "Hidden Ruin" Experience:
-                 Due to its remote location and rugged forest access paths, Pong Toek remains a peaceful and secluded "hidden ruin" that captivates travelers and explorers seeking out-of-the-way ancient heritage sites.
-                <p>An ancient sanctuary site reflecting early architectural traditions.</p>
-            </div>
-
-            <!-- Temple 5 -->
-            <div class="temple-block">
-                <img src="01000713 5.jpg" alt="Po Damnak Temple" class="temple-img">
-                <h3>5. Po Damnak Temple</h3>
-                <div class="khmer-title">ប្រាសាទពោធិ៍ដំណាក់</div>
-                <p><strong>Century:</strong> 10th-11th Century</p>
-                <p>ប្រវត្តិ និងទីតាំងាប្រាសាទពោធិ៍ដំណាក់ គឺជាប្រាសាទបុរាណសម័យអង្គរដ៏ស្ងប់ស្ងាត់មួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់ដាច់ស្រយាល ក្នុងភូមិក្ដាក ឃុំភ្នំត្បែងបី ស្រុកគូលែន ខេត្តព្រះវិហារ និងស្ថិតក្នុងបណ្តុំតំបន់ប្រវត្តិសាស្ត្រជុំវិញឧទ្យានបុរាណវិទ្យាកោះកេរ។
-​​​​​                ឆ្នាំ និងសតវត្សរ៍សាងសង់៖ ត្រូវបានកសាងឡើងក្នុងអំឡុង សតវត្សរ៍ទី១០ ដល់ទី១២ ក្នុងសម័យអង្គរ ដែលមានអាយុកាលប្រហាក់ប្រហែលនឹងការអភិវឌ្ឍតំបន់ជុំវិញទីក្រុងបុរាណកោះកេរ។ បរិបទ និងសារៈសំខាន់៖
-               ប្រាសាទនេះស្ថិតនៅជិតតំបន់វត្តអារាមក្នុងមូលដ្ឋាន និងនៅជិតតំបន់ប្រាសាទបុរាណពាក់ព័ន្ធផ្សេងទៀត ដូចជាប្រាសាទដាក (Prasat Kdak) ដែលស្ថិតនៅភាគខាងជើងបន្តិច។ ទោះបីជាមានខ្នាតតូចក៏ដោយ ប៉ុន្តែទីនេះឆ្លុះបញ្ចាំងពីបណ្តាញតាំងទីលំនៅ និងរចនាសម្ព័ន្ធសាសនាជនបទសម័យអង្គរ ដែលបម្រើឱ្យសហគមន៍ ឬអ្នកដំណើរក្នុងសម័យកាលនោះ។</p>
-                <p>History and Location:
-                Po Damnak Temple is a quiet, remote ancient Angkorian temple site located near Kdak village in Phnum Tbaeng Pir commune, Kulen district, Preah Vihear province, nestled within the historical landscape surrounding the broader Koh Ker region.
-                 Construction Period / Century:
-                 Built between the 10th and 12th centuries during the Angkorian period, contemporaneous with the regional expansion around Koh Ker.
-                Context and Significance:
-                The site is situated near a local modern pagoda and close to other ancient structures such as Prasat Kdak just to the north. While smaller in scale, Po Damnak reflects the widespread rural settlement and religious network of the Angkorian era, likely functioning as a local sanctuary or community shrine outside the primary capital centers.</p>
-                <p>A historical site surrounded by nature, holding rich archaeological significance.</p>
-            </div>
-
-            <!-- Temple 6 -->
-            <div class="temple-block">
-                <img src="IMG_0151.jpeg" alt="Trapeang Prasat Temple" class="temple-img">
-                <h3>6. Trapeang Prasat Temple</h3>
-                <div class="khmer-title">ប្រាសាទត្រពាំងប្រាសាទ</div>
-                <p><strong>Century:</strong> 9th-10th Century</p>
-                <p>ប្រាសាទត្រពាំងប្រាសាទ គឺជាតំបន់រមណីយដ្ឋានប្រាសាទបុរាណសម័យអង្គរដ៏សំខាន់មួយ ដែលមានទីតាំងស្ថិតនៅក្នុងស្រុកត្រពាំងប្រាសាទ ខេត្តឧត្តរមានជ័យ។
-                  ប្ររវត្តិ និងសម័យកាលសាងសង់៖
-                 ប្រាសាទនេះត្រូវបានកសាងឡើងក្នុងអំឡុង សតវត្សរ៍ទី១១ ដល់ទី១២ (ស្ថិតក្នុងសម័យកាលរចនាបថបាពួន ឬដើមសម័យអង្គរវត្ត) ដែលជាសម័យកាលនៃការរីកចម្រើនខ្លាំងលើការសាងសង់សំណង់ស្ថាបត្យកម្មថ្ម និងឥដ្ឋ។
-                 ​​​រចនាសម្ព័ន្ធស្ថាបត្យកម្ម៖ មានតួប៉មឥដ្ឋចំនួន ៣ តម្រៀបជួរគ្នាមុខបែរទៅទិសកើត ដោយសាងសង់នៅលើខឿនថ្មបាយក្រៀមតែមួយ។
-                 មានព័ទ្ធជុំវិញដោយកំផែងថ្មបាយក្រៀម និងមានរន្ធទ្វារចូល (គោបុរាណ) ព្រមទាំងមានត្រពាំងទឹកបុរាណធំមួយនៅខាងមុខប្រាសាទ ដែលជាទម្រង់គំរូនៃការរៀបចំប្លង់ប្រាសាទខ្មែរបុរាណ។
-​​​​​​​​                 សារៈសំខាន់៖ទីតាំងនេះធ្លាប់ជាមជ្ឈមណ្ឌលសហគមន៍ និងជាស្ថានីយ៍ឈប់សម្រាកដ៏សំខាន់សម្រាប់ផ្លូវគមនាគមន៍បុរាណដែលតភ្ជាប់ពីតំបន់ផ្សេងៗក្នុងអាណាចក្រខ្មែរ។</p>
-                <p>Prasat Trapeang Prasat is an important ancient Angkorian temple site located in Trapeang Prasat District, Oddar Meanchey Province.
-                History and Century:
-                The temple was constructed between the 11th and 12th centuries (during the Baphuon to early Angkor Wat architectural styles), a period characterized by vibrant brick and stone temple-building craftsmanship across the Khmer Empire.
-                Architectural Structure:
-                The complex consists of three brick sanctuary towers aligned in a row facing east, standing upon a shared laterite base platform.
-                It is enclosed by laterite boundary walls and features entry gopuras, accompanied by a large ancient reservoir (trapeang) in front of the complex, reflecting classic traditional Khmer temple layout planning.
-                Significance:
-                Historically, the site served as an important local religious center and likely functioned as a strategic waystation along the ancient roads connecting various regions of the Khmer Empire.</p>
-                <p>Ancient structured brick and stone remains dating back to the earlier periods of Khmer development.</p>
-            </div>
-
-            <!-- Temple 7 -->
-            <div class="temple-block">
-                <img src="IMG_0265.jpeg" alt="Trapeang Prasat Toch Temple" class="temple-img">
-                <h3>7. Trapeang Prasat Toch Temple</h3>
-                <div class="khmer-title">ប្រាសាទត្រពាំងប្រាសាទតូច</div>
-                <p><strong>Century:</strong> 12th Century (Hospital / Rest House)</p>
-                <p>ទីតាំង និងទំនាក់ទំនង៖ប្រាសាទត្រពាំងប្រាសាទតូច ស្ថិតនៅមានចម្ងាយប្រហែល ២០០ម៉ែត្រ ភាគខាងជើងនៃ ប្រាសាទត្រពាំងប្រាសាទធំ ក្នុងភូមិត្រពាំងដាក ឃុំទំពោកដាក ស្រុកត្រពាំងប្រាសាទ ខេត្តឧត្តរមានជ័យ។
-​​​​                ឆ្នាំនិងសតវត្សរ៍សាងសង់៖
-                ត្រូវបានកសាងឡើងក្នុងអំឡុង សតវត្សរ៍ទី១១ ដល់ទី១២ (សម័យអង្គរ) ដែលមានសម័យកាលប្រហាក់ប្រហែលគ្នាទៅនឹងប្រាសាទមេនៅក្បែរនោះ។
-                 រចនាសម្ព័ន្ធស្ថាបត្យកម្ម៖
-                 សំណង់នេះមានកំផែងព័ទ្ធជុំវិញធ្វើពីថ្មបាយក្រៀម និងមានខឿនព្រះវិហារ ឬគោបុរាណ (ផ្លូវចូល) នៅខាងកើត។
-​​                នៅខាងក្នុងមានសំណង់តួប៉ម ឬអគារតូចធ្វើពីថ្មបាយក្រៀម និងមានអគារបណ្ណាល័យតូចមួយ ដែលមានរចនាសម្ព័ន្ធស្រដៀងទៅនឹងបណ្តុំសំណង់ឧបទ្ទវហេតុ ឬមន្ទីរពេទ្យបុរាណ ប៉ុន្តែមិនមានសិលាចារឹកបញ្ជាក់ច្បាស់លាស់ឡើយ។</p>
-                <p></p>Location and Context:
-                 Trapeang Prasat Toch (Little Trapeang Prasat Temple) is located about 200 meters north of the main Trapeang Prasat temple complex in Trapeang Dach Village, Tomnop Dach Commune, Trapeang Prasat District, Oddar Meanchey Province.
-                  Construction Period / Century:
-                Built between the 11th and 12th centuries during the Angkorian period, contemporaneous with the main nearby sanctuary.
-                Architectural Structure:
-                The site features the remains of an outer laterite enclosure wall with an eastern entrance pavilion (gopura).
-                Inside, it houses a laterite central sanctuary tower and a subsidiary "library" building, showing architectural layouts reminiscent of regional chapels or ancient waystations, though no foundation stele has been discovered to formally designate its precise administrative function.</p>
-                <p>Believed to have served as an ancient hospital or traveler's rest house along historic routes.</p>
-            </div>
-
-            <!-- Temple 8 -->
-            <div class="temple-block">
-                <img src="IMG_0389.jpeg" alt="Prasat Toch" class="temple-img">
-                <h3>8. Prasat Toch</h3>
-                <div class="khmer-title">ប្រាសាទតូច</div>
-                <p><strong>Century:</strong> 12th Century (Hospital / Rest House)</p>
-                <p>ទីតាំងជាក់ស្តែង៖ ប្រាសាទ​តូច​​ នេះស្ថិតនៅតាមបណ្តោយ ឬក្បែរផ្លូវជាតិលេខ ៦២ ក្នុងភូមិសាស្ត្រខេត្តព្រះវិហារ ដែលមានចម្ងាយជិតគួរសមពីតំបន់ជើងភ្នំ និងច្រកឡើងទៅកាន់ ប្រាសាទព្រះវិហារ។
-                កាលបរិច្ឆេទសាងសង់ (សតវត្សរ៍ទី១៣)៖
-​​​​​​                សំណង់ ឬប្រាសាទតូចៗជាច្រើននៅតាមបណ្តោយផ្លូវគមនាគមន៍បុរាណឆ្ពោះទៅកាន់ប្រាសាទព្រះវិហារ ភាគច្រើនត្រូវបានកសាងឡើង ឬពង្រីកបន្ថែមក្នុងអំឡុង សតវត្សរ៍ទី១៣ (ជាពិសេសក្នុងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៧) ដែលជាសម័យកាលនៃការសាងសង់មន្ទីរពេទ្យព្រះសង្ឃ (Dharmasala) និងស្ថានីយ៍សម្រាកតាមដងផ្លូវ ដើម្បីបម្រើឱ្យអ្នកដំណើរ និងកងទ័ពក្នុងអាណាចក្រ។</p>
-                <p>Corrected Location: The Prasat Toch shown near National Highway 62 (close to Koh Roh Ko primary school) is actually situated in Preah Vihear Province, forming part of the historical corridor leading up toward the Preah Vihear Temple region.
-                13th Century Dating:
-                Many of these smaller roadside sanctuaries and rest-station structures along the ancient routes leading to major pilgrimage sites like Preah Vihear date to the 13th century (notably under King Jayavarman VII's extensive infrastructure campaign, which included rest houses and chapels along vital imperial roads).</p>
-                <p>Another classic example of Jayavarman VII's social structure architecture (Chapel/Hospital).</p>
-            </div>
-
-            <!-- Temple 9 -->
-            <div class="temple-block">
-                <img src="IMG_0712.JPG" alt="Preah Vihear Temple" class="temple-img">
-                <h3>9. Preah Vihear Temple</h3>
-                <div class="khmer-title">ប្រាសាទព្រះវិហារ</div>
-                <p><strong>Century:</strong> 9th to the 12th</p>
-                <p>ប្រវត្តិសាងសង់ និងរជ្ជកាល៖
-                ប្រាសាទព្រះវិហារមិនមែនកសាងឡើងក្នុងពេលតែមួយនោះទេ ប៉ុន្តែត្រូវបានផ្តួចផ្តើម និងសាងសង់ថែមជាបន្តបន្ទាប់ដោយព្រះមហាក្សត្រខ្មែរបុរាណหลายព្រះអង្គ ក្នុងចន្លោះ សតវត្សរ៍ទី៩ ដល់ទី១២ (ចាប់ផ្តើមពីសម័យព្រះបាទយសវរ្ម័នទី១ និងបន្តពង្រីកដោយព្រះបាទសូរ្យវរ្ម័នទី១ និងព្រះបាទសូរ្យវរ្ម័នទី២)។
-​​​                គោលបំណង និងការបូជា៖
-               ប្រាសាទនេះត្រូវបានសាងសង់ឡើងដើម្បីឧទ្ទិសថ្វាយដល់ព្រះសិវៈ ក្នុងศาสនាយោគ/ព្រហ្មញ្ញសាសនា ដោយយកទ្រង់ទ្រាយតាមធម្មជាតិនៃភ្នំដើម្បីតំណាងឱ្យភ្នំកៃលាស (Kailash) ដែលជាលំនៅដ្ឋានរបស់ព្រះសិវៈ។
-​​​​​​               ស្ថាបត្យកម្ម៖
-​​​​​               ចំណុចពិសេសរបស់ប្រាសាទព្រះវិហារគឺការសាងសង់បណ្ដោយតាមអ័ក្សត្រង់ពីជើងទៅត្បូង ឡើងតាមខ្នងភ្នំដែលមានកម្ពស់ខុសគ្នាយ៉ាងគួរសម ដោយមានគោបុរាណ (ខ្លោងទ្វារ) ធំៗចំនួនប្រាំរៀបចំឡើងជាលំដាប់ ឆ្លុះបញ្ចាំងពីជំនឿ និងភាពប៉ិនប្រសប់កម្រិតខ្ពស់របស់ជាងបុរាណខ្មែរ។
-               បេតិកភណ្ឌពិភពលោក៖
-               ប្រាសាទនេះត្រូវបានអង្គការយូណេស្កូ (UNESCO) ដាក់បញ្ចូលជាបេតិកភណ្ឌពិភពលោកនៅថ្ងៃទី៧ ខែកក្កដា ឆ្នាំ២០០៨។</p>
-                <p>History and Construction:
-                 Preah Vihear Temple was built over several centuries, spanning from the 9th to the 12th centuries during the Angkorian period. Construction began during the reign of King Yasovarman I and was continually expanded by subsequent monarchs, notably Suryavarman I and Suryavarman II.
-                 Religious Significance:
-                Dedicated primarily to the Hindu god Shiva, the temple was designed to represent Mount Kailash, the sacred cosmic abode of Shiva, majestically integrated into the natural cliffside landscape of the Dangrek Mountains.
-
-                 Architecture Layout:
-                 Unlike conventional flat-land temples, Preah Vihear is uniquely laid out along a long north-south linear axis stretching up the mountain slope. It features a stunning sequence of monumental staircases, causeways, and five impressive gopuras (entrance pavilions) leading progressively to the central sanctuary.
-
-                 UNESCO World Heritage:
-                 Due to its exceptional architecture and monumental landscape, Preah Vihear was officially inscribed as a UNESCO World Heritage Site on July 7, 2008.</p>
-                <p>An architectural masterpiece perched on a natural cliff of the Dângrêk Mountains.</p>
-            </div>
-
-            <!-- Temple 10 -->
-            <div class="temple-block">
-                <img src="IMG_0783.jpeg" alt="Cha Eh Temple" class="temple-img">
-                <h3>10. Cha Eh Temple</h3>
-                <div class="khmer-title">ប្រាសាទចាអេះ</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងឈ្មោះ៖ ប្រាសាទាសាទចាអះ​  ស្ថិតនៅក្នុងភូមិ​ចាអះ ឃុំទឹកក្រហម ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ ប្រាសាទនេះក៏ត្រូវបានគេស្គាល់ក្នុងឯកសារបុរាណវិទ្យាខ្លះថាជា ប្រាសាទត្រពាំងថ្នល់ ឬ ថ្នល់បែក ផងដែរ។
-​                 រចនាសម្ព័ន្ធស្ថាបត្យកម្ម៖
-                សំណង់ដើមសាងសង់ឡើងដោយឥដ្ឋ ដែលមានតួប៉មប្រាសាទនៅចំកណ្ដាល។
-                មានអគាររង ឬ «បណ្ណាល័យ» ចំនួនពីរ សាងសង់អមសងខាងមុខប្រាសាទ និងមានកំផែងព័ទ្ធជុំវិញជាលក្ខណៈគ្រឹះបុរាណ។
-            ​    ប្រវត្តិ និងការស្រាវជ្រាវ (សតវត្សរ៍ទី១១)៖
-                ទីតាំងនេះត្រូវបានកត់ត្រាក្នុងបញ្ជីសារពើភណ្ឌបេតិកភណ្ឌ និងការស្ទង់មតិរបស់បារាំងតាំងពីដើមសតវត្សរ៍ទី២០ (ដោយអ្នកជំនាញដូចជា Lunet de Lajonquière និង Henri Parmentier) ដែលបង្ហាញថាវាជាបូជនីយដ្ឋានកសាងឡើងក្នុងសម័យអង្គរ (សតវត្សរ៍ទី១២) ដើម្បីបម្រើឱ្យសហគមន៍ និងអ្នកដំណើរតាមដងផ្លូវបុរាណក្នុងតំបន់ភូមិសាស្ត្រខេត្តព្រះវិហារ៕</p>
-                <p>Location and Naming: Cha-eh Temple is located in Cha-eh Village, Tuek Kraham Commune, Choam Khsant District, Preah Vihear Province. It is also historically referenced in early archaeological records as Prasat Trapeang Thnal or Thnal Bek.
-                Architectural Structure:
-                The original structure is built of brick with a central sanctuary tower.
-                It features two subsidiary "library" buildings flanking the front of the sanctuary, enclosed by an ancient foundation boundary wall.
-                History and Research (11th Century):
-                The site was documented in heritage inventories and French explorations since the early 20th century (by experts such as Lunet de Lajonquière and Henri Parmentier), indicating that it is an Angkorian-era sanctuary (11th century) built to serve local communities and travelers along ancient routes in the Preah Vihear region.</p>
-                <p>An old jungle ruin showcasing traditional 11th-century craftsmanship.</p>
-            </div>
-
-            <!-- Temple 11 -->
-            <div class="temple-block">
-                <img src="01000713 9.jpeg" alt="Suor Mab Temple" class="temple-img">
-                <h3>11. Suor Mab Temple</h3>
-                <div class="khmer-title">ប្រាសាទសួរប៉ាប់</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                    <p>ទីតាំង និងប្រវត្តិ៖ 
-                     ប្រាសាទសួរម៉ាប់ គឺជាបុរាណដ្ឋានប្រាសាទខ្មែរដ៏ចំណាស់មួយ ស្ថិតនៅតំបន់ភាគខាងជើងប្រទេសកម្ពុជា (ជាទូទៅត្រូវបានគេស្គាល់ថាស្ថិតក្នុងភូមិសាស្ត្រខេត្តព្រះវិហារ)។ បើទោះបីជាប្រាសាទនេះមិនសូវល្បីល្បាញខ្លាំង ឬមានសិលាចារឹកធំដុំដូចប្រាសាទអង្គរវត្ត ឬប្រាសាទព្រះវិហារក៏ដោយ ប៉ុន្តែវាមានប្រវត្តិ និងលក្ខណៈរចនាសម្ព័ន្ធស្ថាបត្យកម្មបុរាណដាច់ដោយឡែកពីគេ៖
-                     ប្ររវត្តិសាស្ត្រ និងការកសាង៖ ប្រាសាទនេះត្រូវបានកសាងឡើងក្នុងសម័យអង្គរ ដែលឆ្លុះបញ្ចាំងពីការពង្រីកឥទ្ធិពល និងការសាងសង់សាសនដា្ឋននៅតាមតំបន់ខេត្តឆ្ងាយៗពីបុរីធំ។ អ្នកជំនាញបុរាណវិទ្យាបានកត់សម្គាល់ថា វាជាសំណង់ស្ថាបត្យកម្មធ្វើអំពីឥដ្ឋ ដែលជាបច្ចេកទេសសាងសង់ដ៏ពេញនិយមក្នុងសម័យកាលមុន និងដើមសម័យអង្គរ។
-                     ប្លង់ និងស្ថាបត្យកម្ម៖ ប្រាសាទសួរម៉ាប់មានតួប៉មឥដ្ឋចំនួន ៣ ឈរតម្រៀបគ្នាតាមអ័ក្សជើង-ត្បូង និងបែរមុខទៅទิសខាងកើត ព្រមទាំងមានបណ្ណាល័យឥដ្ឋតូចមួយនៅទิសអាគ្នេយ៍។
-​​​ ​                   ​​ សារៈសំខាន់៖ ប្រាសាទនេះគឺជាភស្តុតាងនៃស្ថាបត្យកម្មកសាងព្រះរាជដំណាក់ ឬទេវស្ថានក្នុងតំបន់ជនបទនៃអាណាចក្រខ្មែរបុរាណ ដែលបច្ចុប្បន្ននៅសេសសល់ជារូបរាងបុរាណសម្រាប់អ្នកស្រាវជ្រាវប្រវត្តិសាស្ត្រ។</p>
-                    <p>Prasat Suor Mab is an ancient Khmer temple site located in northern Cambodia (specifically within the Preah Vihear region). Although it is less prominent and lacks the massive epigraphic archives of major tourist centers like Angkor Wat, it holds a distinct place in regional Khmer architecture and history:
-                     History and Construction: The temple dates back to the Angkorian era, reflecting the empire's extensive reach in constructing religious and provincial sanctuaries across remote territories. Archaeologists identify its use of brick masonry as a hallmark characteristic of regional temple-building traditions.
-                     Layout and Architecture: The complex consists of three standing brick towers aligned neatly along a north-south axis, all facing toward the east, accompanied by a small brick library structure positioned to the southeast.
-                     Significance: Prasat Suor Mab serves as a valuable archaeological marker of ancient Khmer provincial temple planning, offering insight into the architectural dispersion and religious life outside the core capital.</p>
-                <p>An ancient sanctuary structure hidden in historical landscapes.</p>
-            </div>
-
-            <!-- Temple 12 -->
-            <div class="temple-block">
-                <img src="IMG_1288.jpeg" alt="Kuk Pros Temple" class="temple-img">
-                <h3>12. Kuk Pros Temple</h3>
-                <div class="khmer-title">ប្រាសាទគុកប្រុស</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទគុកប្រុស ស្ថិតនៅក្នុងខេត្តព្រះវិហារ (ជាពិសេសនៅក្នុងតំបន់ជាំក្សាន្ត ដែលច្រើនតែស្ថិតនៅជិតប្រាសាទបុរាណដទៃទៀតដូចជា ប្រាសាទគុកស្រី និងតំបន់ជុំវិញប្រាសាទនាងបូស)។ ប្រាសាទនេះក៏ត្រូវបានគេផ្សារភ្ជាប់ទៅនឹងរឿងព្រេងតំបន់ផងដែរ។
-                កាលបរិច្ឆេទសាងសង់៖ ប្រាសាទនេះត្រូវបានកសាងឡើងក្នុងអំឡុងចុងសម័យអង្គរ (ប្រហែលសតវត្សរ៍ទី១២) ឆ្លុះបញ្ចាំងពីការរីកសាយភាយនៃសំណង់ស្ថាបត្យកម្មទូទាំងព្រះរាជាណាចក្រ។
-                ស្ថាបត្យកម្ម និងសារៈសំខាន់៖ ទោះបីជួបប្រទះការបាក់បែកតាមអាយុកាលក៏ដោយ ប្រាសាទនេះនៅតែរក្សាបាននូវទម្រង់សំណង់ដែលជាតម្រុយប្រវត្តិសាស្ត្រដ៏មានតម្លៃសម្រាប់សិក្សាពីជីវភាព និងជំនឿនៅតាមខេត្តឆ្ងាយៗ។</p>
-                <p>Location & History: 
-                Prasat Kuk Pros is located in Preah Vihear Province (specifically within the Choam Khsant area, often grouped geographically near other remote sites like Prasat Kuk Srei and the surrounding areas of Prasat Neak Buos). The site is also deeply tied in local folklore to regional legends.
-                Construction Date: The temple dates back to the late Angkorian period (circa the 12th century), reflecting the expansion of architecture across the kingdom.
-                Architecture & Significance: Despite weathering and partial collapse, it features traditional elements serving as an important marker for understanding provincial religious architecture and regional folklore.</p>
-                <p>Part of twin style structures traditionally tied to local folklore.</p>
-            </div>
-
-            <!-- Temple 13 -->
-            <div class="temple-block">
-                <img src="IMG_1474.jpeg" alt="Kuk Srei Temple" class="temple-img">
-                <h3>13. Kuk Srei Temple</h3>
-                <div class="khmer-title">ប្រាសាទគុកស្រី</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទគុកស្រី ស្ថិតនៅក្បែរជ្រុងខាងជើងនៃកសិណទឹកបុរាណ និងនៅភាគខាងត្បូងនៃប្រាសាទព្រះបួស ក្នុងតំបន់ខេត្តព្រះវិហារ។ ប្រាសាទនេះស្ថិតនៅលើគន្លងផ្លូវរាជបុរាណ (Ancient Royal Road)
-                និងជាបុរាណដ្ឋានដែលមានរចនាសម្ព័ន្ធប្លែកពីប្រាសាទដទៃទៀត។   ស្ថាបត្យកម្ម និងប្លង់៖ ខុសប្លែកពីប្រាសាទតំបន់ស្រដៀងគ្នា ប្រាសាទគុកស្រីមានរចនាសម្ព័ន្ធរាងជាអក្សរ «U» (U-shaped building) ផ្សំឡើងដោយជញ្ជាំងថ្មបាយក្រៀម និងគ្រឹះថ្មភក់ ព្រមទាំងមានផ្នែកមុខរបៀបជាសាលវែង (Peristyle) 
-                ដែលអ្នកជំនាញបុរាណវិទ្យាចាត់ទុកថាជាសំណង់ប្រភេទ «ព្រះរាជដំណាក់ ឬទីតាំងរដ្ឋបាល»។ ព័ទ្ធជុំវិញដោយថ្មបាយក្រៀមដែលមានរចនាបទខ្លោងទ្វារខាងកើត និងខាងលិច។   សារៈសំខាន់៖ ប្រាសាទនេះគឺជាតឹកតាងដ៏សំខាន់នៃបណ្តាញស្ថាបត្យកម្មតាមដងផ្លូវរាជការបុរាណ ដែលតភ្ជាប់ចក្រភពខ្មែរពីសម័យមុន និងក្នុងសម័យអង្គរ។</p>
-                <p>Location & History:
-                Prasat Kuk Srei is located just south of the larger Preah Vihear temple complex of Neak Buos, positioned along the historical Ancient Royal Road network.   Architecture & Layout: Unlike standard single-tower 
-                shrines, Prasat Kuk Srei features an unusual layout consisting of a U-shaped sandstone-and-laterite structure fronted by a long columned gallery hall. Archaeologists and researchers classify this unique
-                configuration as a type of ancient "palace" or administrative waystation. It is enclosed by a laterite wall featuring entrances on both the east and west sides.   Significance: The site serves as a fascinating 
-                architectural marker of the infrastructure, royal roadways, and specialized regional administrative buildings utilized during the height of the Khmer Empire.</p>      
-                <p>Complementary historical structure associated with the regional temple network.</p>
-            </div>
-
-            <!-- Temple 14 -->
-            <div class="temple-block">
-                <img src="IMG_1979.JPG" alt="Neak Buos Temple" class="temple-img">
-                <h3>14. Neak Buos Temple</h3>
-                <div class="khmer-title">ប្រាសាទនាគបួស</div>
-                <p><strong>Century:</strong> 10th-11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទនាគបួស (ដែលពេលខ្លះត្រូវបានគេស្គាល់ថាជាប្រាសាទ «ខ្សឹប ឬរូងខ្លា») គឺជាបុរាណដ្ឋានដ៏ធំ និងមានសារៈសំខាន់ខ្លាំង ស្ថិតនៅជើងភ្នំដងរែក ក្នុងខេត្តព្រះវិហារ។ ប្រាសាទនេះមានប្រវត្តិសាស្ត្រវែងឆ្ងាយ តាំងពីសម័យមុនអង្គរ និងត្រូវបានកែលម្អបន្ថែមជាបន្តបន្ទាប់រហូតដល់ចុងសម័យអង្គរ។កាលបរិច្ឆេទសាងសង់៖
-                ការសាងសង់បានចាប់ផ្តើមដំបូងនៅ ចុងសតវត្សរ៍ទី៧ (សម័យចេនឡា) ហើយត្រូវបានពង្រីក និងកសាងបន្ថែមក្នុងសតវត្សរ៍ទី៩ ទី១០ ទី១១ និងចុងក្រោយក្នុងរជ្ជកាល ព្រះបាទជ័យវរ្ម័នទី៧ (សតវត្សរ៍ទី១២-១៣) ដែលបានសាងសង់មន្ទីរពេទ្យសាសនា ឬអាគាររដ្ឋបាលបន្ថែម។ស្ថាបត្យកម្ម និងប្លង់៖ 
-                ប្រាសាទនេះមានភាពលេចធ្លោដោយសារការប្រើប្រាស់សម្ភារៈចម្រុះរួមមាន ឥដ្ឋ ថ្មភក់ និងថ្មបាយក្រៀម។ ប៉មប្រាសាទកណ្តាលមានទំហំធំមិនធម្មតា ដែលផ្នែកខាងក្រោមធ្វើពីថ្មបាយក្រៀម និងផ្នែកខាងលើធ្វើពីឥដ្ឋ ព្រមទាំងមានរចនាសម្ព័ន្ធខ្លោងទ្វារ (Gopura) ថែវ និងអាគាររងជាច្រើនទៀតព័ទ្ធជុំវិញក្នុងសម្ព័ន្ធតែមួយ។ 
-                សារៈសំខាន់៖ ក្នុងនាមជាមជ្ឈមណ្ឌលសាសនា និងជាទីតាំងនៅលើផ្លូវរាជបុរាណ ប្រាសាទនាគបួសគឺជាតំណាងឱ្យការវិវត្តន៍ស្ថាបត្យកម្មខ្មែរឆ្លងកាត់ច្រើនសម័យកាលដ៏មានតម្លៃបំផុត៕</p>
-                <p>Location & History: 
-                Prasat Neak Buos (sometimes associated locally with the "Tiger Cave" area) is a massive and historically significant temple complex located near the foot of the Dângrêk Mountains in Preah Vihear
-                Province. It has one of the longest continuous histories of use among regional northern sites, spanning multiple eras from pre-Angkorian times down to the late Angkorian period.   Construction Timeline:
-                Initial construction dates back to the late 7th century (Chenla period), with major expansions and structural additions continuing through the 9th, 10th, and 11th centuries, concluding with a 
-                chapel/hospital-related addition built under King Jayavarman VII in the 12th–13th centuries.   Architecture & Layout: The complex is uniquely constructed using a hybrid of brick, sandstone, and laterite materials. 
-                The grand central sanctuary features a distinct layout where the lower tiers are built of laterite and the upper sections are built of brick. It includes large enclosure walls, weathered entrance gopuras, elongated 
-                subsidiary buildings, and exquisite lintels depicting Hindu mythological motifs (such as Indra on Airavata and friezes of ascetics).   Significance: Prasat Neak Buos serves as a vital archaeological key for understanding
-                how regional Khmer religious centers evolved and adapted architecturally across centuries of empire building.</p>   
-                <p>A fascinating mountaintop or remote forest sanctuary with unique layouts.</p>
-            </div>
-
-            <!-- Temple 15 -->
-            <div class="temple-block">
-                <img src="IMG_2017.jpg" alt="Seima Temple" class="temple-img">
-                <h3>15. Seima Temple</h3>
-                <div class="khmer-title">ប្រាសាទសីមា</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទសីមា ស្ថិតនៅតំបន់ភាគខាងជើងក្នុងខេត្តព្រះវិហារ (ក្នុងតំបន់ជុំវិញឃុំជាំក្សាន្ត) ដែលស្ថិតនៅមិនឆ្ងាយគ្នាទៅនឹងប្រាសាទបុរាណដទៃទៀតដូចជា ប្រាសាទសួរម៉ាប់ និងប្រាសាទនាគបួស。
-                ស្ថាបត្យកម្ម និងសំណង់៖ ជាទូទៅ ប្រាសាទនេះត្រូវបានកសាងឡើងជាទេវស្ថាន ឬទីតាំងសាសនាស្របតាមទម្រង់ស្ថាបត្យកម្មសម័យអង្គរ 
-                ដោយប្រើប្រាស់ឥដ្ឋ និងថ្មភក់ជាវត្ថុធាតុដើមចម្បង។ ទោះបីជាបច្ចុប្បន្ននៅសេសសល់ជារូបរាងបាក់បែកក៏ដោយ ក៏វាមានលក្ខណៈវិនិច្ឆ័យដ៏សំខាន់សម្រាប់បង្ហាញពីបណ្តាញសាសនា។សារៈសំខាន់៖ 
-                ប្រាសាទនេះរួមចំណែកយ៉ាងសំខាន់ក្នុងការសិក្សាអំពីបដិសណ្ឋារកិច្ច និងបណ្តាញហេដ្ឋារចនាសម្ព័ន្ធសាសនាតាមតំបន់ព្រំប្រទល់ខាងជើងនៃអាណាចក្រខ្មែរបុរាណ។</p>
-                <p>Location & History:
-                Prasat Seima is an ancient Hindu temple site located in northern Cambodia's 
-                Preah Vihear Province (Choam Khsant area), sitting in close geographic proximity to Prasat Suor Mab and the broader Neak Buos temple network. 
-                Architecture & Layout: Built as a regional sanctuary during the Angkorian period, it incorporates traditional regional materials like brick and sandstone. 
-                Though heavily weathered and existing mostly in ruins today, its layout follows classic provincial temple positioning.Significance: It serves as another key 
-                archaeological puzzle piece that maps out how local shrines, settlements, and religious networks were distributed across the northern frontier of the ancient Khmer Empire.</p>
-                <p>Known for its boundary markers and classic structural elements.</p>
-            </div>
-
-            <!-- Temple 16 -->
-            <div class="temple-block">
-                <img src="IMG_2176.jpg" alt="South Sneang Krabei Temple" class="temple-img">
-                <h3>16. South Sneang Krabei Temple</h3>
-                <div class="khmer-title">ប្រាសាទស្នែងក្របីត្បូង</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទស្នែងក្របីខាងត្បូង ស្ថិតនៅក្បែរតំបន់ប្រាសាទស្នែងក្របីខាងជើង ក្នុងឃុំរំដោះស្រែ ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ វាជាបុរាណដ្ឋានសម័យអង្គរដ៏ស្ងប់ស្ងាត់មួយ ដែលស្ថិតក្នុងបណ្តាញប្រាសាទតំបន់ជនបទឆ្ងាយៗ។
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះមានរចនាសម្ព័ន្ធស្រដៀងគ្នាទៅនឹងប្រាសាទផ្សេងៗដទៃទៀតដែលដែលនៅជំុវិញនោះ ដោយមានការប្រើប្រាស់ថ្មភក់ និងថ្មបាយក្រៀម។ ទោះបីជាស្ថិតក្នុងស្ថានភាពបាក់បែកខ្លាំងតាមអាយុកាលក៏ដោយ ក៏វានៅបន្សល់ទុកនូវដាននៃខឿន តួប៉ម និងកាកសំណល់ថ្មឆ្លាក់ផ្សេងៗ។
-            ​   សារៈសំខាន់៖ ការសិក្សាអំពីប្រាសាទស្នែងក្របីទាំងខាងជើង និងខាងត្បូងជួយឱ្យអ្នកបុរាណវិទ្យាអាចយល់ដឹងកាន់តែច្បាស់អំពីប្លង់ស្ថាបត្យកម្មភ្លោះ ឬក្រុមប្រាសាទដទៃទៀតដែលសាងសង់ឡើងក្នុងសម័យកាលជាមួយគ្នានៅតាមតំបន់ព្រំដែន។</p>
-                <p>Location & History:
-                South Snaeng Krabei Temple (Prasat Snaeng Krabei Khang Tboung) is situated right near its northern counterpart in Rumdaoh Srae Commune, Choam Khsant District of Preah Vihear Province.
-                It is part of the remote cluster of ancient Angkorian ruins scattered across the northern frontier.
-                Architecture & Layout: The site shares architectural similarities and material choices (primarily sandstone and laterite) 
-                with neighboring regional structures. Although it has experienced more severe weathering and collapse over the centuries, remnants of its foundation, platform layout, and fallen architectural pieces remain visible.
-                Significance: Studying South Snaeng Krabei alongside North Snaeng Krabei provides archaeologists with a clearer picture of paired temple distributions, regional planning, and construction phases during the Angkorian period.</p> 
-                <p>Southern tower ruin of the Snaeng Krabei group.</p>
-            </div>
-
-            <!-- Temple 17 -->
-            <div class="temple-block">
-                <img src="IMG_2307.JPG" alt="North Snaeng Krabei Temple" class="temple-img">
-                <h3>17. North Snaeng Krabei Temple</h3>
-                <div class="khmer-title">ប្រាសាទស្នែងក្របីជើង</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទស្នែងក្របីខាងជើង ស្ថិតនៅឃុំរំដោះស្រែ ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ ប្រាសាទនេះគឺជាបុរាណដ្ឋានសម័យអង្គរដ៏ពិសេសមួយ ដែលបង្ហាញពីការដ្ឋានសាងសង់ដែលមិនទាន់បានបញ្ចប់រួចរាល់ជាស្ថាពរ។ 
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះមានតួប៉មធ្វើពីថ្មភក់ចំនួន ៣ ឈរតម្រៀបគ្នាតាមអ័ក្សជើង-ត្បូងនៅលើខឿនតែមួយ បែរមុខទៅទิសខាងកើត ព័ទ្ធជុំវិញដោយកំពែថ្មបាយក្រៀម និងមានខ្លោងទ្វារចូល (Gopura) 
-                នៅខាងកើត។ភាពពិសេស និងការឆ្លាក់លម្អ៖ តួប៉មកណ្ដាលមានកម្ពស់ខ្ពស់ជាងគេបន្តិច ប៉ុន្តែតួប៉មខាងត្បូងគឺជាចំណុចចាប់អារម្មណ៍បំផុត ព្រោះវាជាតួប៉មតែមួយគត់ដែលចាប់ផ្តើមឆ្លាក់លម្អផ្ដែ បុស្បុក និងក្បាច់ក្របខណ្ឌទ្វារ 
-                (ទោះបីជាផ្នែកខ្លះមិនទាន់រួចរាល់ ឬត្រូវខូចខាតតាមពេលវេលាក៏ដោយ)យើងអាចសង្កេតឃើញ មានដានរូបឆ្លាក់អទិទេព និងសសរពេជ្រដែលមានរចនាបទប្លែកពីគ្នា។</p>
-        ​​​        <p>Location & History:
-                North Snaeng Krabei Temple (Prasat Snaeng Krabei Khang Cheung) is located in Srae Village, Rumdaoh Srae Commune, Choam Khsant District of Preah Vihear Province.
-                It is an intriguing Angkorian-era site that provides a rare look into an ancient temple construction project that was left unfinished.   Architecture & Layout:
-                The complex consists of three sandstone sanctuaries built on a shared platform aligned along a north-south axis, with their doorways facing east. 
-                The site is enclosed by a laterite outer wall featuring an entrance pavilion (gopura) on the eastern side.   Unique Features: While the central tower rises 
-                slightly higher than the others, the southern tower is the most architecturally notable. It is the only tower among the three that began receiving its final artistic decorations,
-                showing unfinished or partially damaged pediments, lintels, faint outlines of deities on the door frames, and uniquely contrasting pilster designs.</p>   
-                <p>Northern sanctuary showing unique stone masonry and tree integration.</p>
-            </div>
-
-            <!-- Temple 18 -->
-            <div class="temple-block">
-                <img src="IMG_2407.jpeg" alt="Prasat O Krouch Temple" class="temple-img">
-                <h3>18. Prasat O Krouch Temple</h3>
-                <div class="khmer-title">ប្រាសាទអូរក្រូច</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទអូរក្រូច ស្ថិតនៅក្នុងភូមិសាស្ត្រឃុំកន្ទួត ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ វាជាបុរាណដ្ឋានសម័យអង្គរដ៏ស្ងប់ស្ងាត់មួយ ដែលសាងសង់ឡើងនៅលើខឿនតែមួយ និងមានតំណភ្ជាប់ស្ថាបត្យកម្មប្រហាក់ប្រហែលនឹងតំបន់ប្រាសាទរងផ្សេងទៀតក្នុងតំបន់។
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះមានតួប៉មថ្មភក់ចំនួន ៣ ឈរតម្រៀបគ្នាតាមអ័ក្ស និងបែរមុខទៅទิសខាងកើត។ បច្ចុប្បន្ន តួប៉មខាងត្បូងនៅសេសសល់រូបរាងល្អជាងគេ តួប៉មកណ្តាលបានបាក់បែកសល់ត្រឹមជញ្ជាំងខ្លះ ខណៈដែលតួប៉មខាងជើងនៅសល់ជញ្ជាំងម្ខាងទល់ទ្រដោយឯកឯងយ៉ាងចម្លែក។
-               ​​ ភាពពិសេស៖ ផ្នែកខាងក្នុង និងស្នាដៃឆ្លាក់ក្បាច់លើសសរពេជ្រ ផ្ដែ និងផ្តែរទ្វារបង្ហាញឱ្យឃើញពីបច្ចេកទេសសាងសង់ដោយថ្មភក់ដ៏វិចិត្រ ប៉ុន្តែការឆ្លាក់លម្អមួយចំនួនត្រូវបានគេបន្សល់ទុកចោលក្នុងសភាព «មិនទាន់រួចរាល់ជាស្ថាពរ» (Unfinished carving) ដែលផ្តល់ជាតម្រុយដ៏មានតម្លៃពីដំណើរការនៃការដ្ឋានសាងសង់បុរាណស្ថាន។</p>
-                Location & History: 
-                Prasat O Krouch (Aur Krauch) is located in Kantuot Commune, Choam Khsant District, Preah Vihear Province. It is a quiet, heavily overgrown Angkorian-era ruin sharing stylistic ties with the region's 
-                other remote temple clusters.   Architecture & Layout: The site consists of three sandstone towers built upon a common terrace, all opening toward the east. Today, only the southern tower remains mostly standing,
-                the central tower has largely collapsed, and one freestanding wall of the northern tower stands miraculously isolated without structural support.   Unique Features: The site features finely cut sandstone masonry 
-                and detailed pilaster decorations. Similar to North Snaeng Krabei, a close examination of the southern tower reveals that the process of decorative stonework and carving was left unfinished, offering researchers a
-                unique window into ancient Khmer construction and artistic workflows.</p>   
-                <p>A quiet, secluded ruin surrounded by old trees and nature.</p>
-            </div>
-
-            <!-- Temple 19 -->
-            <div class="temple-block">
-                <img src="IMG_2599.jpeg" alt="Prasat Tram Preal" class="temple-img">
-                <h3>19. Prasat Tram Preal</h3>
-                <div class="khmer-title">ប្រាសាទត្រាំប្រាល</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទត្រាំប្រាល (ឬដែលពេលខ្លះហៅថា ប្រាសាទចេញ) ស្ថិតនៅឃុំទឹកក្រហម ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ ស្ថិតនៅជើងភ្នំសាំប៉ាឌូ (Sam Padu)។ បុរាណដ្ឋាននេះត្រូវបានសិក្សាដំបូងដោយអ្នកស្រាវជ្រាវបារាំង Émilien Laya de Lajonquière និង Henri Parmentier。
-                កាលបរិច្ឆេទសាងសង់៖ ទោះបីជាមិនមានសិលាចារឹកច្បាស់លាស់បញ្ជាក់ពីឆ្នាំសាងសង់ពិតប្រាកដក៏ដោយ ស្ថាបត្យកម្ម និងទម្រង់ប្លង់របស់វាបង្ហាញពីលក្ខណៈនៃសម័យកាលមុនអង្គរទាក់ទងនឹងចុងសម័យកាលរចនាបទប្រហាក់ប្រហែលនឹងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៥。  
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះមានការរៀបចំព័ទ្ធដោយថែវ ឬកំពែពីរជាន់។ បរិវេណខាងក្នុងមានតួប៉មឥដ្ឋចំនួន ៣ ឈរលើខឿនថ្មបាយក្រៀមតែមួយ ដោយមានតួប៉មកណ្តាលធំជាងគេ និងមានបុស្បុក ឬថែវមុខមុនចូល។ អ្វីដែលគួរឱ្យចាប់អារម្មណ៍គឺ ប៉មខាងត្បូងនៅសល់សភាពដុំដំល្អជាងគេ 
-                ដោយមានឆ្លាក់ក្បាច់ផ្ដែ ទ្វារបញ្ឆោត និងសសរពេជ្រធ្វើពីថ្មភក់យ៉ាងប្រណិត៕</p>
-                <p>Location & History: 
-                Prasat Tram Preal (also known as Prasat Chenh) is located in Tuek Kraham Commune, Choam Khsant District, Preah Vihear Province, near the base of Phnom Sam Padu. 
-                It was originally documented by early French explorers like L. de Lajonquière.   Construction Date: While exact epigraphic dates are scarce, its architectural layout and
-                extended-plan system link it stylistically to the late 10th-century framework (around the era of King Jayavarman V).   Architecture & Layout: The temple features a double-enclosure
-                layout built with a mix of brick and laterite. The main sanctuary houses three brick towers on a common laterite platform, facing east. The southern tower is notably the best preserved,
-                featuring intact brick pilasters, false doors, and a distinct sandstone lintel/pediment structure, alongside rare surviving architectural elements like round stone pedestals and fallen crown decorative pieces.</p>   
-                <p>An ancient temple site holding deep historical remnants.</p>
-            </div>
-
-            <!-- Temple 20 -->
-            <div class="temple-block">
-                <img src="IMG_2835.jpeg" alt="Lom Neang Temple" class="temple-img">
-                <h3>20. Lom Neang Temple</h3>
-                <div class="khmer-title">ប្រាសាទលោមនាង</div>
-                <p><strong>Century:</strong> 10th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទលោមនាង (ដែលគេស្គាល់ទូទៅក្នុងបញ្ជីបុរាណវិទ្យាថា ប្រាសាទត្រពាំងគោល) ស្ថិតនៅឃុំទឹកក្រហម ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ。 ប្រាសាទនេះត្រូវបានកត់ត្រាទុកក្នុងបញ្ជីស្រាវជ្រាវរបស់បារាំងដោយ É. Lunet de Lajonquière (ឆ្នាំ១៩០៧) និង Henri Parmentier (ឆ្នាំ១៩១៣)。
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះមានរចនាសម្ព័ន្ធល្អប្រសើរគួរឱ្យកត់សម្គាល់ ដោយវាស្ថិតនៅចំកណ្តាលព័ទ្ធជុំវិញដោយកំពែថ្មបាយក្រៀមពីរជាន់。 បរិវេណខាងក្នុងមានតួប៉មឥដ្ឋទោលដ៏ខ្ពស់សាងសង់បែរមុខទៅខាងទิសកើត មានទ្វារបញ្ឆោតសងខាង និងមានរចនាសម្ព័ន្ធបណ្ណាល័យថ្មភក់នៅខាងទិងអាគ្នេយ៍。  
-                ភាពពិសេស៖ ផ្ដែ និងសសរពេជ្រធ្វើពីថ្មភក់របស់ប្រាសាទនេះបង្ហាញពីក្បាច់រចនាដ៏ប្រណិត ប៉ុន្តែមិនទាន់ត្រូវបានឆ្លាក់បញ្ចប់សព្វគ្រប់ជាស្ថាពរនោះទេ (Unfinished carvings) ដែលជាលក្ខណៈពិសេសស្រដៀងគ្នាទៅនឹងប្រាសាទផ្សេងទៀតក្នុងតំបន់ជាំក្សាន្ត។</p>
-                <p>Location & History: 
-                Prasat Lom Neang (commonly known in archaeological records as Prasat Trapeang Kol) is located in Tuek Kraham Commune, Choam Khsant District, Preah Vihear Province. 
-                It was documented early on by French researchers like Lunet de Lajonquière and Henri Parmentier.   Architecture & Layout: This site is noted for being in a relatively well-preserved state.
-                It features a double enclosure wall made of laterite. Inside stands a tall, elegant single brick sanctuary facing east with decorative false doors, accompanied by a sandstone library structure positioned to the southeast.
-                Unique Features: The sandstone lintels and false doors showcase fine lines, but similar to several other remote temples in the district (like North Snaeng Krabei and O Krouch), 
-                elements of the decorative carving work were left unfinished, offering researchers valuable insight into ancient construction workflows.</p>  
-                <p>Characterized by beautiful brickwork intertwined with large tree roots.</p>
-            </div>
-
-            <!-- Temple 21 -->
-            <div class="temple-block">
-                <img src="IMG_3034.jpeg" alt="Chau Kom Mon Temple" class="temple-img">
-                <h3>21. Chau Kom Mon Temple</h3>
-                <div class="khmer-title">ប្រាសាទចៅកំម៉ុន</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទចៅកំបុណ្យ ស្ថិតនៅក្នុងភូមិត្រពាំងធំ ឃុំជាំក្សាន្ត ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ បុរាណដ្ឋាននេះត្រូវបានកត់ត្រាទុកក្នុងបញ្ជីសារពើភណ្ឌបុរាណវិទ្យា (Inventory) ក្រោមលេខសម្គាល់ IK 292 និង CISARK 604។ 
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះគឺជាសំណង់ទោល ឬប៉មតូចរាងការ៉េធ្វើពីថ្មភក់ ដែលបច្ចុប្បន្នស្ថិតក្នុងស្ថានភាពសេសសល់ជារូបរាងបាក់បែកខ្លះ (Partially standing small square sandstone temple)។  
-                សារៈសំខាន់៖ ទោះបីជាវាជាប្រាសាទខ្នាតតូចក៏ដោយ ប៉ុន្តែវត្តមានរបស់វាជួយបន្ថែមរូបភាពច្បាស់លាស់អំពីបណ្តាញសាសនដ្ឋាន និងស្ថាបត្យកម្មរងដែលរាយប៉ាយនៅទូទាំងស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។</p>
-                <p>Location & History: Prasat Chau Kombon (frequently noted locally as Chau Kom Mon) is located in Trâpeang Thom Village, Choam Khsant Commune,
-                Choam Khsant District, Preah Vihear Province. It is cataloged in official archaeological surveys under reference IDs such as IK 292 and CISARK 604.
-                Architecture & Layout: The site consists of a small, partially standing single-room square sanctuary constructed of sandstone.   Significance: 
-                Though modest in size compared to massive mountain complexes, it serves as another important piece of the puzzle mapping out the dense distribution of smaller architectural shrines across the Choam Khsant region.</p>
-                <p>A secluded sanctuary site tucked away in forest canopies.</p>
-            </div>
-
-            <!-- Temple 22 -->
-            <div class="temple-block">
-                <img src="IMG_3572.JPG" alt="Punnareay Temple" class="temple-img">
-                <h3>22. Punnareay Temple</h3>
-                <div class="khmer-title">ប្រាសាទពណ្ណរាយ</div>
-                <p><strong>Century:</strong> 12th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទពណ្ណរាយ ប្រាសាទពណ្ណរាយ កសាងអំពីប្លែកក់ សាងសង់ជាកាកបាទ មានលក្ខណៈដូចជាសំណង់ស្រះស្រង់ ដែលគេយកថ្មភក់ មករៀបមានលក្ខណៈដូចជាកាំជណ្តើរទៅតាមខ្នងបារាណ៍ផ្នែកខាងលិច។ បារាណ៍មានរាងចតុកោណកែងមានទទឹងទំហំប្រមាណ ២០០ម៉ែត្រ និងបណ្តោយ ១គីឡូម៉ែត្រ 
-                ស្ថិតជ្រុងឥសាន្តនៃប្រាសាទខ្នារប្រមាណ ៥០ម៉ែត្រ。 នៅទីតាំងប្រាសាទមានបំណែករូបចម្លាក់មួយចំនួនដូចជា បំណែករូបព្រះពุទ្ធប្រក់នាគបាក់បែក មានកំស់ ១៩០សង់ទីម៉ែត្រ ទទឹង ១១៥សង់ទីម៉ែត្រ បាត់ចាប់ពីព្រះកេសឡើងទៅលើ និងបែកផ្នែកខាងមុខរូបៗ。 បំណែកដែចម្លាក់ ដែលរូបនេះប្រហែលមានទំហំ 
-                បំណែកចម្លាក់ផ្នែកខាងក្រោម បំណែកចម្លាក់មនុស្សគមខ្នង មានប្រទះឃើញនៅប្រាសាទបាយ័នផងដែរ。 ភស្តុតាងនេះអាចបង្ហាញថាមានការគោរពព្រះពុទ្ធសាសនាផងដែរ៕</p> 
-                <p>Prasat Punnareay is constructed from laterite, built in a cross shape, with characteristics like a pond-like structure where sandstone is arranged like stairs leading into the western baray side. 
-                The baray is rectangular, measuring about 200 meters wide and 1 kilometer long, located near the area of the sandstone temple by about 50 meters. At the temple site, there are some sculpture fragments 
-                such as a broken Buddha image fragment measuring 190 cm in height and 115 cm in width, missing from the head upward and broken at the front. The carved fragments, which probably have dimensions including 
-                lower carving fragments and back-figure carving fragments, are also found at the Bayon Temple. This evidence may indicate the worship of Buddhism as well.</p>   
-                <p>An architectural structure built during the peak empire era.</p>
-            </div>
-<!-- Temple 23 -->
-<div class="temple-block">
-  <div class="image-row">
-    <img src="IMG_3678.jpeg" alt="Khnar Temple" class="temple-img">
-    <img src="IMG_3404.jpeg" alt="Second view of Khnar Temple" class="temple-img">
-  </div>
-  <h3>23. Khnar Temple</h3>
-  <div class="khmer-title">ប្រាសាទខ្ល្នារ</div>
-  <p><strong>Century:</strong> 10th–11th Century</p>
-  <p>ទីតាំង និងប្រវត្តិ៖</p>
-</div>
-                ប្រាសាទខ្នារ ស្ថិតនៅក្នុងភូមិក្រឡភេសន៏ ឃុំព្រៃធំ ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ ប្រាសាទនេះមានប្រវត្តិសាស្ត្រទាក់ទងយ៉ាងសំខាន់ជាមួយអត្ថបទសិលាចារឹកបុរាណ និងជាទីតាំងដែលរំលឹកដល់ព្រាហ្មណ៍ហិរណ្យទាម (Hiraṇyadama) ដែលជាព្រាហ្មណ៍បុរាណធ្វើពិធីរាជាភិសេកថ្វាយព្រះបាទជ័យវរ្ម័នទី២ ជាស្តេចចក្រវាលនៅលើភ្នំគូលែន។
-​​​            ​​​ ​​​​​​​​​  ​ កាលបរិច្ឆេទសាងសង់៖ ប្រាសាទនេះត្រូវបានសាងសង់ឡើងតាំងពី សតវត្សរ៍ទី១០ និងមានការកសាងពង្រីកបន្ថែមក្នុង សតវត្សរ៍ទី១១ ព្រមទាំងមានសិលាចារឹកសំខាន់ៗជាច្រើនដូចជា សិលាចារឹក K.356 (ឆ្នាំ៩០២ នៃគ.ស.) និង K.661។
-                 ស្ថាបត្យកម្ម និងប្លង់៖ បរិវេណប្រាសាទមានកំផែងថ្មបាយក្រៀមពីរជាន់ព័ទ្ធជុំវិញ មានតួប៉មឥដ្ឋ និងថ្មភក់ជាច្រើន រួមទាំងសំណង់រាងអក្សរ U នៅភាគខាងជើងដែលអ្នកជំនាញចាត់ទុកថាជាប្រភេទព្រះរាជដំណាក់ ឬអាស្រម (Virashama) ព្រមទាំងមានបណ្ណាល័យឥដ្ឋនៅជ្រុងអាគ្នេយ៍ដែលមានអាយុកាលចំណាស់ និងស្រស់ស្អាត។</p>
-                <p>Location & History:
-                Prasat Khnar is located near Krala Peas Village in Choam Khsant District, Preah Vihear Province. It is an exceptionally important historical site associated epigraphically with Hiraṇyadama,
-                the revered Brahmin priest who ordained King Jayavarman II as universal monarch during the foundational ceremonies of the Angkorian era.
-                Construction Timeline: The complex dates primarily to the 10th century, with significant additions and patronage continuing through the 11th century. It preserves several vital historical steles and inscriptions,
-                including K.356 (dating to 902 AD) and K.661.
-                Architecture & Layout: The expansive site features double laterite enclosure walls, central brick and sandstone temple sanctuaries, intricate lintels depicting deities, an iconic southeastern library building 
-                reminiscent of the Roluos group, and a unique U-shaped structure to the north often classified by researchers as an ancient palace or ashram.</p>
-                <p>Features intricate lintels and historical stone carvings.</p>
-            </div>
-
-            <!-- Temple 24 -->
-            <div class="temple-block">
-                <img src="IMG_4248.jpg" alt="Chaeng Maeng Temple" class="temple-img">
-                <h3>24. Chaeng Maeng Temple</h3>
-                <div class="khmer-title">ប្រាសាទចែងម៉ែង</div>
-                <p><strong>Century:</strong> 12th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖
-                ប្រាសាទចែងមេង ស្ថិតនៅក្នុងភូមិក្រឡភេសន៍ ឃុំព្រីងធំ ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ បុរាណដ្ឋាននេះត្រូវបានកត់ត្រាទុកក្នុងប្រវត្តិសាស្ត្រ និងបញ្ជីសារពើភណ្ឌបារាំងយូរមកហើយ (ដូចជាការកត់ត្រាដោយ ឯម៉ូនីយេ (E. Aymonier) និង លូណេ ដឺ ላចុងគីែរ (E. Lunet de Lajonquière))។
-                រចនាប័ទ្ម និងកាលបរិច្ឆេទ៖ ប្រាសាទនេះត្រូវបានកសាងឡើងក្នុង សតវត្សរ៍ទី១២ ដោយមានប្លង់ស្ថាបត្យកម្ម និងលក្ខណៈទម្រង់ប្រហាក់ប្រហែលទៅនឹង មន្ទីរពេទ្យសាសនា ឬអារ្យសាលា (Arogyasala / Hospital Chapel) សាងឡើងក្នុងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៧។
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះផ្សំឡើងពីថ្មបាយក្រៀម ដែលមានតួប៉មកណ្តាលរាងការ៉ូ អមដោយសាលមុខ (Mandapa) និងស៊ុមទ្វារធ្វើពីថ្មភក់។ ព័ទ្ធជុំវិញដោយកំផែងថ្មបាយក្រៀម មានខ្លោងទ្វារចូល (Gopura) ធំនៅខាងកើត ដែលបច្ចុប្បន្នត្រូវបានរុំព័ទ្ធ និងដុះគ្របដណ្តប់ដោយឫសឈើធំៗយ៉ាងស្រស់ស្អាត 
-                និងរំលេចដោយបំណែកបណ្ណាល័យនៅជ្រុងអាគ្នេយ៍។</p>
-                <p>Location & History:
-                Prasat Chaeng Meng is located in Krâlapeas Village, Pring Thum Commune, Choam Khsant District, Preah Vihear Province. It is a well-documented site featured in early French archaeological inventories by explorers like Étienne Aymonier and Lunet de Lajonquière.
-                Style & Date: Dating back to the 12th century, the structural layout and architectural cues strongly associate it with the network of hospital chapels (Arogyasala) built across the empire during the reign of King Jayavarman VII.
-                Architecture & Layout: Built primarily from laterite, the complex features a central square sanctuary tower connected to a short eastern entrance hall (mandapa) with fine sandstone doorframes.
-                It includes the remains of a southeastern library building and is enclosed by a laterite wall featuring an eastern gopura entrance that is famously and dramatically overtaken by large tree roots.</p>
-                <p>A historic ruin exhibiting laterite blocks and classic styling.</p>
-            </div>
-            <!-- Temple 25 -->
-<div class="temple-block">
-  <div class="image-row">
-    <img src="IMG_4358.JPG" alt="Kampheum Temple" class="temple-img">
-    <img src="IMG_4356.jpeg" alt="Second view of Kampheum Temple" class="temple-img">
-  </div>
-  <h3>25. Kampheum Temple</h3>
-  <div class="khmer-title">ប្រាសាទកំភើម</div>
-  <p><strong>Century:</strong> 7th Century (Chenla Period)</p>
-  <p>ទីតាំង និងប្រវត្តិ៖</p>
-</div>
-                ប្រាសាទកំភើម (ឬដែលអ្នកស្រាវជ្រាវបារាំងពីមុនហៅថា ប្រាសាទកំពង់) ស្ថិតនៅក្នុងភូមិរឡភេសន៍  ឃុំព្រីងធំ ស្រុកជាំក្សាន្ត ខេត្តព្រះវិហារ។ វាមានទីតាំងស្ថិតនៅភាគខាងត្បូងមិនឆ្ងាយប៉ុន្មានពីប្រាសាទខ្នារ។
-                កាលបរិច្ឆេទសាងសង់៖ ប្រាសាទនេះមានភាពល្បីល្បាញដោយសារការរកឃើញសិលាចារឹក (ចុះបញ្ជីលេខ K. 357) នៅលើមេទ្វារ ដែលត្រូវបានអ្នកជំនាញសន្និដ្ឋានថាមានអាយុកាលតាំងពី សតវត្សរ៍ទី៧ (សម័យមុនអង្គរ)។ សិលាចារឹកនេះមាន ២៣ បន្ទាត់ និយាយពីអ្នកបម្រើ និងដង្វាយដល់ប្រាសាទ។ ទោះជាយ៉ាងណា ទម្រង់តួប៉មឥដ្ឋដែលឈរបច្ចុប្បន្នអាចត្រូវបានកសាងឬជួសជុលឡើងវិញនៅសតវត្សរ៍ទី៩ ឬទី១០។
-​             ​​   ស្ថាបត្យកម្ម និងប្លង់៖ ដើមឡើយប្រាសាទនេះមានតួប៉មឥដ្ឋចំនួន ៣ ប៉ុន្តែបច្ចុប្បន្ននៅសល់តែតួប៉មកណ្តាលមួយប៉ុណ្ណោះដែលនៅឈរ។ វាជាប៉មរាងការ៉េ បែរមុខទៅទិសខាងកើត និងមានទ្វារបញ្ឆោតធ្វើពីឥដ្ឋនៅជ្រុងផ្សេងទៀត។ លក្ខណៈពិសេសរួមមាន ផ្តែរទ្វារឆ្លាក់រូបព្រះវិស្ណុគង់លើសត្វគ្រុឌយ៉ាងស្រស់ស្អាត ទងទឹក (សោមសូត្រ) និងបំណែកទម្រលិង្គដែលបន្សល់ទុកតាំងពីសម័យបុរាណ។</p>
-                <p>Location & History:
-                Prasat Kamphoeum (historically recorded by early French archaeologists as Prasat Kompong) is located just south of Krala Peas Village, Pring Thum Commune, Choam Khsant District, Preah Vihear Province. It belongs to the same dense archaeological zone as Prasat Khnar.
-                Construction Date: The site is heavily associated with the 7th-century (Pre-Angkorian) period, largely due to a 23-line Khmer text inscription on the eastern doorjamb registered as K. 357. The text details workers and offerings given to the temple. However,
-                because the standing brick architecture resembles 9th or 10th-century styles, experts believe the older 7th-century doorway pieces may have been recycled during a later reconstruction.
-                Architecture & Layout: Originally comprising a group of three brick temples enclosed by a moat, only the central square brick sanctuary remains standing today. It opens to the east with false doors on its other three sides. 
-                Key features include a decorative sandstone lintel depicting Vishnu on Garuda, intricately carved column capitals, and remnants of a somasutra (water spout) and linga pedestal scattered nearby.
-                <p>An ancient pre-Angkorian ruin dating back to the Chenla era.</p>
-            </div>
-
-            <!-- Temple 26 -->
-            <div class="temple-block">
-                <img src="IMG_4489.jpeg" alt="Prasat Preah Lean" class="temple-img">
-                <h3>26. Prasat Preah Lean</h3>
-                <div class="khmer-title">ប្រាសាទព្រះលាន</div>
-                <p><strong>Century:</strong> 12th Century</p>
-                <p>A remarkable site with collapsed structures and stone terraces.</p>
-            </div>
-
-            <!-- Temple 27 -->
-            <div class="temple-block">
-                <img src="IMG_4609.jpeg" alt="Krapum Chhouk Temple" class="temple-img">
-                <h3>27. Krapum Chhouk Temple</h3>
-                <div class="khmer-title">ប្រាសាទក្រពុំឈូក</div>
-                <p><strong>Century:</strong> 1០th Century</p>
-                ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទក្រពុំឈូក ស្ថិតនៅក្នុងស្រុកឆែប ខេត្តព្រះវិហារ។ ប្រាសាទនេះគឺជាបុរាណដ្ឋានសម័យអង្គរដ៏មានតម្លៃមួយ ដែលត្រូវបានសាងសង់ឡើងក្នុងអំឡុងសតវត្សរ៍ទី១០ (ប្រហែលចុងសតវត្សរ៍ទី១០ ក្នុងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៥)។
-               ​ ស្ថាបត្យកម្ម និងប្លង់៖ បុរាណដ្ឋាននេះលេចធ្លោដោយសារការប្រើប្រាស់ថ្មភក់ និងឥដ្ឋយ៉ាងប្រណិត។ វាមានតួប៉មប្រាសាទចំនួន ៥ ឈរលើខឿនថ្មបាយក្រៀមតែមួយ (រចនាប័ទ្មស្រដៀងនឹងប្រាសាទបន្ទាយស្រី ឬប្រាសាទភ្នំជីហូរ) ដែលមានប៉ម中央ធំជាងគេ និងប៉មរងចំនួនបួននៅតាមជ្រុង។
-                ភាពពិសេស និងសិល្បៈ៖ ប្រាសាទក្រពុំឈូកមានឈ្មោះល្បីល្បាញដោយសារស្នាដៃឆ្លាក់ក្បាច់ក្របខណ្ឌទ្វារ ផ្ដែ និងរូបចម្លាក់ទេវស្ថានធ្វើពីថ្មភក់ដ៏វិចិត្របំផុត ដែលឆ្លុះបញ្ចាំងពីសិល្បៈរចនាប័ទ្មបាខែង-កែវ និងបន្ទាយស្រី។</p>
-                <p>Location & History:
-                Prasat Krapum Chhouk (often referred to as the "Lotus Bud Temple") is located in Chhaeb District, Preah Vihear Province. It is a magnificent 10th-century Angkorian-era architectural site,
-                dating roughly to the late 10th century during the reign of King Jayavarman V.
-                Architecture & Layout: The complex is renowned for its refined use of fine-grained sandstone. It features a group of five towers built on a single raised platform (sharing stylistic design concepts with temples like Banteay Srei),
-                with a prominent central sanctuary flanked by four smaller corner towers.
-                Unique Features & Art: Prasat Krapum Chhouk is celebrated by art historians for its exceptionally well-preserved and intricate sandstone carvings, lintels, and deity figures,
-                which showcase the delicate sculptural mastery of the transition between the Bakheng-Khleang and Banteay Srei artistic styles.</p>
-                <p>A late-period architectural monument representing post-Angkor transition.</p>
-            </div>
-
-            <!-- Temple 28 -->
-            <div class="temple-block">
-                <img src="IMG_9877.JPG" alt="Khnar Phtol Temple" class="temple-img">
-                <h3>28. Khnar Phtol Temple</h3>
-                <div class="khmer-title">ប្រាសាទខ្នារផ្ទុល</div>
-                <p><strong>Century:</strong> 11th Century</p>
-                <p>ទីតាំង និងប្រវត្តិ៖ 
-                ប្រាសាទខ្នារផ្ទោល ស្ថិតនៅក្នុងភូមិខ្នារផ្ទោល ឃុំស្រែណូយ ស្រុកវ៉ារិន ខេត្តសៀមរាប។ បុរាណដ្ឋាននេះត្រូវបានដាក់បញ្ចូលក្នុងគម្រោងជួសជុល និងអភិរក្សបន្ទាន់ដោយ អាជ្ញាធរជាតិអប្សរា ដើម្បីការពារពីការទ្រុឌទ្រោម។
-                ស្ថាបត្យកម្ម និងប្លង់៖ ប្រាសាទនេះផ្សំឡើងពីសំណង់ឥដ្ឋ និងថ្មបាយក្រៀម ដោយដើមឡើយមានតួប៉មចំនួនបី ប៉ុន្តែបច្ចុប្បន្ននៅសល់តួប៉មកណ្តាលធ្វើពីឥដ្ឋ និងតួប៉មខាងជើងធ្វើពីថ្មបាយក្រៀម (ខណៈតួប៉មខាងត្បូងបានបាក់បែកសាបបសូន្យហើយ)។ តួប៉មទាំងនោះបែរមុខទៅទิសកើត ដោយតួប៉មឥដ្ឋមានរៀបចំទ្វារបញ្ឆោតអមសងខាងយ៉ាងប្រណិត។
-               ​ រចនាសម្ព័ន្ធរង៖ នៅខាងមុខតួប៉ម មានអាគារបណ្ណាល័យធ្វើពីថ្មបាយក្រៀមមួយបែរមុខទៅទិសលិច ដែលមានរន្ធបង្អួចខ្យល់កាត់ទទឹងផ្ដេកយ៉ាងប្លែកភ្នែក ព្រមទាំងមានគូទឹកព័ទ្ធជុំវិញ និងស្រះទឹកធំនៅផ្នែកខាងជើង។</p>
-                <p>Location & History:
-                Prasat Khnar Phtol is located in Khnar Phtol Village, Srae Nouy Commune, Varin District, Siem Reap Province. Due to its remote nature and structural aging,
-                it has been the subject of recent emergency stabilization and restoration efforts by the APSARA National Authority.
-                Architecture & Layout: The temple complex originally consisted of three sanctuaries, of which two principal towers remain: a central brick tower and a northern laterite tower
-                (while the southern tower has completely vanished). Both existing towers open toward the east, and the central brick tower features intricately detailed brick-crafted false doors on its other sides.
-                Associated Features: Fronting the towers is a laterite library building opening westward, notable for its upper-level horizontal slit windows. 
-                The site is also defined by an encompassing moat and a large ancient water basin situated to the north.</p>
-                <p>The final majestic site in our catalog, showcasing classic 11th-century temple design.</p>
-            </div>
-
-            <!-- Additional Carvings Section -->
-            <div class="temple-block">
-                <img src="IMG_9118.JPG" alt="Ancient Temple Carvings" class="temple-img">
-                <h3>Intricate Bas-Relief Carvings</h3>
-                <div class="khmer-title">ប្រាសាទតាទួត ឬដែលគេស្គាល់ក្នុងក្រុមប្រាសាទព្រះពិធូរថា «ប៉មអិច» (Preah Pithu X) គឺជាបុរាណដ្ឋានដ៏មានតម្លៃមួយស្ថិតនៅចំកណ្តាលទីក្រុងបុរាណអង្គរធំ។ ប្រាសាទនេះត្រូវបានសាងសង់ឡើងដំបូងក្នុងអំឡុងសតវត្សរ៍ទី១២ ក្រោមរជ្ជកាល ព្រះបាទសូរ្យវរ្ម័នទី២ 
-                ជាទេវស្ថានព្រហ្មញ្ញសាសនាឧទ្ទិសដល់ព្រះវិស្ណុ ឬព្រះសិវៈ ស្របតាមរចនាប័ទ្មទូទៅនៃក្រុមប្រាសាទព្រះពិធូរ។
-                ចំណុចពិសេស និងជាប្រវត្តិសាស្ត្រដ៏សំខាន់បំផុតរបស់ប្រាសាទតាតូច គឺការផ្លាស់ប្តូរជំនឿសាសនា។ នៅប្រហែលសតវត្សរ៍ទី១៤ ប្រាសាទនេះត្រូវបានកែប្រែពីទេវស្ថានហិណ្ឌូទៅជាទីអារាមព្រះពុទ្ធសាសនា។ ក្នុងអំឡុងពេលនៃការប្រែក្លាយនេះ ជាងចម្លាក់ជំនាន់ក្រោយបានឆ្លាក់រូបព្រះពុទ្ធអង្គតូចៗជាច្រើនអង្គ (ប្រហែលជាងសាមសិបអង្គ)
-                នៅលើជញ្ជាំងផ្នែកខាងលើ និងខាងក្នុងនៃតួប៉ម ដែលឆ្លុះបញ្ចាំងពីការផ្លាស់ប្តូរទស្សនៈសាសនានៅក្នុងរាជធានីអង្គរ។
-                ស្ថាបត្យកម្មរបស់ប្រាសាទនេះសាងសង់ពីថ្មភក់ មានរាងជាពីរ៉ាមីតថ្នាក់ៗ មានកាំជណ្តើរឡើងទាំងបួនទិស និងមានរានហាលទាក់ទងទៅនឹងស្រះទឹកបុរាណ។ ការសិក្សាអំពីប្រាសាទតាតូចផ្តល់នូវតម្រុយដ៏មានតម្លៃអំពីការវិវត្តនៃសាសនា និងសិល្បៈនៅចុងសម័យអង្គរ។​ Ta Tout Temple, widely designated in 
-                archaeological records as Preah Pithu X, is a fascinating monument located within the heart of the ancient city of Angkor Thom. Originally constructed in the 12th century during the reign of King Suryavarman II,
-                the temple started as a Hindu sanctuary dedicated to Vishnu or Shiva, aligning with the architectural traditions of the broader Preah Pithu group.
-                The most defining historical characteristic of Ta Tout is its religious transformation. Around the 14th century, the site underwent a major transition, being converted from a Hindu temple into a vibrant Buddhist sanctuary.
-                During this later phase, artisans carved numerous small Buddha images onto the upper interior walls of the central tower, reflecting the shifting spiritual landscape and religious tolerance within the Angkorian capital.
-                Architecturally, Ta Tout is built of fine sandstone on a stepped pyramid platform, featuring stairways on all four sides and an eastern terrace extending toward an ancient water basin. Studying Ta Tout provides valuable
-                insights into how religious spaces were adapted and reused during the later periods of the Khmer Empire.</div>
-                <p><strong>Description:</strong> Ancient Wall Carvings</p>
-                <p>A stunning ancient wall featuring rows of intricate seated figures carved directly into the sandstone blocks.</p>
-            </div>
-
-        </main>
-
-        <aside class="sidebar">
-            <!-- Social Media Box -->
-            <div class="social-box">
-                <h3>Urban Explorer 4K</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com" target="_blank" class="social-btn fb-btn">
-                        📘 Facebook: Urban Explorer 4K
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-3">
+                    <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition shadow-sm" title="YouTube">
+                        <i class="fa-brands fa-youtube text-sm"></i>
                     </a>
-                    <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="social-btn yt-btn">
-                        ▶️ YouTube: Urban Walk Studio
+                    <a href="https://www.facebook.com/UrbanExplorer4K" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition shadow-sm" title="Facebook Page">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
                     </a>
-                    <a href="https://www.instagram.com/samnang_91" target="_blank" class="social-btn ig-btn">
-                        📸 Instagram: @samnang_91
+                    <a href="https://www.instagram.com/samnang_2022" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-600 to-purple-700 text-white flex items-center justify-center hover:opacity-90 transition shadow-sm" title="Instagram">
+                        <i class="fa-brands fa-instagram text-sm"></i>
                     </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-neutral-700 hover:text-cyan-600 text-xl p-2 cursor-pointer">
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-neutral-200 px-4 pt-2 pb-4 space-y-3">
+            <a href="#" class="block text-neutral-600 hover:text-cyan-600 font-medium py-1">Angkor</a>
+            <a href="#" class="block text-neutral-600 hover:text-cyan-600 font-medium py-1">Temple Groups</a>
+            <a href="#" class="block text-neutral-600 hover:text-cyan-600 font-medium py-1">Creator</a>
+            <a href="#about" class="block text-neutral-600 hover:text-cyan-600 font-medium py-1">About</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Slideshow Section -->
+        <section class="hero-banner relative py-28 md:py-40 flex flex-col items-center justify-center px-4 sm:px-6 shadow-inner bg-neutral-900 overflow-hidden w-full max-w-7xl mx-auto rounded-3xl my-6">
+            <img src="IMG_0713.JPG" class="slide active absolute inset-0 w-full h-full object-cover" alt="Temple Slide 1">
+            <img src="01000787.JPG" class="slide absolute inset-0 w-full h-full object-cover" alt="Temple Slide 2">
+            <img src="01012482.JPG" class="slide absolute inset-0 w-full h-full object-cover" alt="Temple Slide 3">
+            <img src="01000713 2.JPG" class="slide absolute inset-0 w-full h-full object-cover" alt="Temple Slide 4">
+
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+            <div class="w-full max-w-4xl mx-auto text-center z-20 relative px-4">
+                <span class="inline-block py-1 px-4 rounded-full bg-white/25 backdrop-blur-md text-white text-xs font-medium tracking-wider uppercase mb-4 border border-white/30">
+                    CURATED BY SAMNANG (@samnang_2026/sep)
+                </span>
+                <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-8 drop-shadow-lg">
+                    Search Temples, Attractions & Angkor Heritage
+                </h1>
+                
+                <div class="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-2xl w-full border border-white/20">
+                    <div class="relative flex items-center w-full">
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            onkeyup="handleLiveSearch(event)"
+                            placeholder="Search temples, ruins, architecture..." 
+                            class="w-full px-5 py-4 pr-32 bg-neutral-50 rounded-xl text-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 text-base border border-neutral-200 shadow-inner"
+                        >
+                        <button 
+                            onclick="handleSearch()"
+                            class="absolute right-1.5 bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-3 rounded-lg font-medium transition flex items-center gap-2 shadow-md cursor-pointer"
+                        >
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Temple Cards Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+               
+               <!-- Card 1 -->
+               <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="1. Prasat Pram ប្រាសាទប្រាំ ព្រំប្រទល់ខេត្តសៀមរាប-ព្រះវិហារ 10th Century Koh Ker">
+                    <div>
+                        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទប្រាំ', '10th Century - Prasat Pram', ['01000711 2.JPG', '01000747.JPG', '01000713 2.JPG'], `<strong>ទីតាំង និងប្រវត្តិ៖</strong><br>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបុរាណវិទ្យា កោះកេរ (ខេត្តព្រះវិហារ/សៀមរាប)។<br><br><strong>សម័យកាលសាងសង់៖</strong> សាងសង់ឡើងនៅសតវត្សរ៍ទី១០ (ប្រហែលឆ្នាំ ៩២១ - ៩៤១) ក្នុងរជ្ជកាលព្រះបាទជ័យវរ្ម័នទី៤។`)">
+                            <img src="01000713 2.JPG" alt="Prasat Pram" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="px-2 mb-4">
+                            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                                1. Prasat Pram <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទប្រាំ</span>
+                            </h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed">
+                                <strong>ទីតាំង និងប្រវត្តិ៖</strong> ប្រាសាទប្រាំ ស្ថាបត្យកម្មបុរាណក្នុងតំបន់កោះកេរ សតវត្សរ៍ទី១០។
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 pt-0">
+                        <button onclick="openModal('ប្រាសាទប្រាំ', '10th Century - Prasat Pram', ['01000711 2.JPG', '01000747.JPG', '01000713 2.JPG'], `<strong>ទីតាំង និងប្រវត្តិ៖</strong><br>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបុរាណវិទ្យា កោះកេរ្តិ៍។`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+                            EXPLORE GUIDE &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="2. Prasat Pram Koh Ker ប្រាសាទប្រាំ កោះកេរ 10th Century">
+                    <div>
+                        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទប្រាំ (កោះកេរ)', '10th Century - Koh Ker', ['01000787.JPG'], `ប្រាសាទប្រាំ ស្ថិតក្នុងតំបន់បេតិកភណ្ឌពិភពលោក UNESCO កោះកេរ (ឆោកគគីរ)។`)">
+                            <img src="01000787.JPG" alt="Koh Ker" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="px-2 mb-4">
+                            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                                2. Prasat Pram (Koh Ker) <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទប្រាំ (តំបន់កោះកេរ)</span>
+                            </h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed">
+                                <strong>ទីតាំង៖</strong> តំបន់បេតិកភណ្ឌពិភពលោក UNESCO កោះកេរ។
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 pt-0">
+                        <button onclick="openModal('ប្រាសាទប្រាំ (កោះកេរ)', '10th Century - Koh Ker', ['01000787.JPG'], `ប្រាសាទប្រាំ ស្ថិតក្នុងតំបន់បេតិកភណ្ឌពិភពលោក UNESCO កោះកេរ។`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+                            EXPLORE GUIDE &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="3. Preah Khan Kampong Svay ប្រាសាទព្រះខ័នកំពង់ស្វាយ 12th Century">
+                    <div>
+                        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទព្រះខ័នកំពង់ស្វាយ', '12th Century - Preah Khan', ['01012482.JPG'], `ប្រាសាទព្រះខ័នកំពង់ស្វាយ គឺជាទីតាំងរមណីយដ្ឋានប្រាសាទបុរាណដ៏ធំល្វឹងល្វើយបំផុតក្នុងសម័យអង្គរ។`)">
+                            <img src="01012482.JPG" alt="Preah Khan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="px-2 mb-4">
+                            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                                3. Preah Khan Kampong Svay <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទព្រះខ័នកំពង់ស្វាយ</span>
+                            </h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed">
+                                <strong>សារៈសំខាន់យោធា៖</strong> មជ្ឈមណ្ឌលយោធាដ៏សំខាន់ក្នុងសម័យអង្គរ។
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 pt-0">
+                        <button onclick="openModal('ប្រាសាទព្រះខ័នកំពង់ស្វាយ', '12th Century - Preah Khan', ['01012482.JPG'], `ប្រាសាទព្រះខ័នកំពង់ស្វាយ។`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+                            EXPLORE GUIDE &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="4. Pong Toek Temple ប្រាសាទពងទឹក 11th-12th Century">
+                    <div>
+                        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទពងទឹក', '11th-12th Century - Pong Toek', ['01000713 4.jpg'], `ប្រាសាទពងទឹក គឺជាប្រាសាទបុរាណសម័យអង្គរដ៏គួរឱ្យទាក់ទាញ និងលាក់ខ្លួនក្នុងព្រៃធម្មជាតិ។`)">
+                            <img src="01000713 4.jpg" alt="Pong Toek" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="px-2 mb-4">
+                            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                                4. Pong Toek Temple <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទពងទឹក</span>
+                            </h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed">
+                                <strong>ភាពលាក់ខ្លួន៖</strong> ប្រាសាទបុរាណលាក់ខ្លួនក្នុងព្រៃធម្មជាតិ។
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 pt-0">
+                        <button onclick="openModal('ប្រាសាទពងទឹក', '11th-12th Century - Pong Toek', ['01000713 4.jpg'], `ប្រាសាទពងទឹក។`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+                            EXPLORE GUIDE &rarr;
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="sidebar-box">
-                <h3>Follow your Favorite Topics.</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Sign up to our Free Weekly Newsletter</p>
-                <input type="email" placeholder="Email Address">
-                <br>
-                <button>Subscribe</button>
+            <!-- Hidden Additional Cards (Revealed via LOAD MORE button) -->
+            <div id="extraCards" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                <!-- Card 5 -->
+                <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="5. Po Damnak Temple ប្រាសាទពោធិ៍ដំណាក់ 10th-11th Century">
+                    <div>
+                        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទពោធិ៍ដំណាក់', '10th-11th Century - Po Damnak', ['01000713 5.jpg'], `ប្រាសាទពោធិ៍ដំណាក់ គឺជាប្រាសាទបុរាណសម័យអង្គរដ៏ស្ងាត់ស្ងាត់ ស្ថិតក្នុងខេត្តព្រះវិហារ។`)">
+                            <img src="01000713 5.jpg" alt="Po Damnak Temple" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="px-2 mb-4">
+                            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                                5. Po Damnak Temple <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទពោធិ៍ដំណាក់</span>
+                            </h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed">
+                                <strong>ប្រវត្តិ និងទីតាំង៖</strong> ប្រាសាទបុរាណសម័យអង្គរដ៏ស្ងាត់ស្ងាត់។
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 pt-0">
+                        <button onclick="openModal('ប្រាសាទពោធិ៍ដំណាក់', '10th-11th Century - Po Damnak', ['01000713 5.jpg'], `ប្រាសាទពោធិ៍ដំណាក់។`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+                            EXPLORE GUIDE &rarr;
+                        </button>
+                    </div>
+                </div>
             </div>
-        </aside>
+
+            <!-- LOAD MORE Button Section -->
+            <div class="text-center mt-10">
+                <button id="loadMoreBtn" onclick="loadMoreTemples()" class="px-8 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-xl text-xs font-bold uppercase transition shadow-md cursor-pointer">
+                    LOAD MORE TEMPLES
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="about" class="bg-white border-t border-neutral-200 py-12 text-center text-sm text-neutral-600">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-neutral-900 font-bold text-lg mb-2">AngkorLens &bull; Heritage Discovery</h3>
+            <p class="mb-6">រុករកកេរដំណែលប្រវត្តិសាស្ត្រ និងស្ថាបត្យកម្មប្រាសាទបុរាណខ្មែរ</p>
+            <div class="flex justify-center items-center space-x-4 mb-6">
+                <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/UrbanExplorer4K" target="_blank" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/samnang_2022" target="_blank" class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-600 to-purple-700 text-white flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <p class="text-xs text-neutral-400">&copy; 2026 AngkorLens &bull; Curated by Samnang.</p>
+        </div>
+    </footer>
+
+    <!-- Detail Modal Popup -->
+    <div id="templeModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-neutral-100 hover:bg-neutral-200 rounded-full flex items-center justify-center text-neutral-700 font-bold cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 id="modalTitle" class="text-2xl font-bold text-neutral-900 mb-1"></h2>
+            <p id="modalSubtitle" class="text-xs font-semibold text-cyan-600 uppercase tracking-wider mb-4"></p>
+            
+            <div id="modalImages" class="grid grid-cols-2 gap-2 mb-4">
+                <!-- Dynamic Images -->
+            </div>
+
+            <div id="modalContent" class="text-sm text-neutral-600 leading-relaxed space-y-3">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
     </div>
 
+    <!-- JavaScript Handler -->
     <script>
-        // Slideshow functionality script
-        let slideIndex = 1;
-        showSlides(slideIndex);
+        // Hero Slideshow Script
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function nextSlide() {
+            if(slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 4000);
 
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
         }
 
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            if (slides.length > 0) {
-                slides[slideIndex - 1].classList.add("active");
-            }
+        // Load More Temples Function
+        function loadMoreTemples() {
+            const extraCards = document.getElementById('extraCards');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            extraCards.classList.remove('hidden');
+            loadMoreBtn.style.display = 'none'; // លាក់ប៊ូតុងពេលបង្ហាញរួច
         }
 
-        // Auto slide every 5 seconds
-        setInterval(function() {
-            changeSlide(1);
-        }, 5000);
+        // Live Search Filter Function
+        function handleLiveSearch(event) {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.temple-card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if(title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function handleSearch() {
+            handleLiveSearch();
+        }
+
+        // Modal Functions
+        function openModal(title, subtitle, images, contentHtml) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalSubtitle').innerText = subtitle;
+            document.getElementById('modalContent').innerHTML = contentHtml;
+            
+            const imgContainer = document.getElementById('modalImages');
+            imgContainer.innerHTML = '';
+            images.forEach(imgSrc => {
+                imgContainer.innerHTML += `<div class="aspect-video overflow-hidden rounded-xl bg-neutral-100"><img src="${imgSrc}" class="w-full h-full object-cover"></div>`;
+            });
+
+            document.getElementById('templeModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('templeModal').classList.add('hidden');
+        }
     </script>
 </body>
 </html>
