@@ -75,11 +75,17 @@
         <section id="temples" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-black text-neutral-900 tracking-tight">Featured Monuments</h2>
-                <p class="text-neutral-500 mt-2">Browse through sacred sanctuaries and archaeological marvels.</p>
+                <p class="text-neutral-500 mt-2">Browse through sacred sanctuaries and archaeological marvels. You can add as many cards as you like below!</p>
             </div>
 
-            <!-- Temple Grid -->
+            <!-- 
+              INFINITE FLEXIBLE GRID:
+              Change 'lg:grid-cols-3' to 'lg:grid-cols-4' if you want 4 columns, 
+              or use 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5' 
+              to accommodate as many columns as you want automatically!
+            -->
             <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <!-- Card 1 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Angkor Wat">
                     <div>
@@ -124,15 +130,22 @@
                         <button onclick="openModal('Ta Prohm', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Ta Prohm is the modern name of the temple at Angkor, Siem Reap, built in the Bayon style largely in the late 12th and early 13th century and left largely in its natural overgrown state.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Dynamic extra batches containers (hidden initially) -->
-            <div id="extraCards-1" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-                <!-- Extra content placeholders if needed -->
-            </div>
+                <!-- Card 4 (You can easily duplicate this block to add as many columns/cards as you want!) -->
+                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Banteay Srei">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Banteay Srei" class="w-full h-52 object-cover">
+                        <div class="p-6">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
+                            <h3 class="text-xl font-bold text-neutral-900 mt-1 mb-2">Banteay Srei</h3>
+                            <p class="text-neutral-600 text-sm leading-relaxed">A 10th-century Cambodian temple dedicated to the Hindu god Shiva, known for intricate pinkish sandstone carvings.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openModal('Banteay Srei', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Banteay Srei is built of a red sandstone that bears elaborate decorative wall carvings which are still remarkably well preserved today.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-sm font-semibold py-2.5 rounded-xl transition">View Details</button>
+                    </div>
+                </div>
 
-            <div class="text-center mt-12">
-                <button id="loadMoreBtn" onclick="loadMoreTemples()" class="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-8 py-3 rounded-full transition text-sm">Load More Temples</button>
             </div>
         </section>
     </main>
@@ -228,26 +241,6 @@
             menu.classList.toggle('hidden');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-xmark');
-        }
-
-        // Load More Temples Functionality
-        let currentBatch = 0;
-        const totalBatches = 5;
-
-        function loadMoreTemples() {
-            currentBatch++;
-            if (currentBatch <= totalBatches) {
-                const extraCard = document.getElementById(`extraCards-${currentBatch}`);
-                if (extraCard) {
-                    extraCard.classList.remove('hidden');
-                }
-            }
-            if (currentBatch >= totalBatches) {
-                const loadBtn = document.getElementById('loadMoreBtn');
-                if (loadBtn) {
-                    loadBtn.style.display = 'none';
-                }
-            }
         }
 
         // Modal Functionality
