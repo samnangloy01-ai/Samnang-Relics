@@ -82,28 +82,27 @@
             <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 
                 <!-- Card 1 (Multiple images array passed in openModal) -->
-                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Angkor Wat">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Angkor Wat" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Angkor Wat</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">The largest religious monument in the world, featuring magnificent bas-reliefs and iconic towers.</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal(
-                            'Angkor Wat - The Grand Masterpiece of Khmer Architecture', 
-                            'Siem Reap, Cambodia', 
-                            [
-                                'https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800',
-                                'https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800',
-                                'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'
-                            ], 
-                            'Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world. Originally constructed as a Hindu temple dedicated to the god Vishnu before being transitioned to a Buddhist temple.'
-                        )" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
+                <div class="temple-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-neutral-100 flex flex-col justify-between p-4" data-title="1. Prasat Pram ប្រាសាទប្រាំ ព្រំប្រទល់ខេត្តសៀមរាប-ព្រះវិហារ 10th Century Koh Ker">
+    <div>
+        <div class="overflow-hidden aspect-[4/3] bg-neutral-100 rounded-2xl mb-4 relative cursor-pointer" onclick="openModal('ប្រាសាទប្រាំ', '10th Century - Prasat Pram', ['01000711 2.JPG', '01000725 2.JPG', '01000747.JPG', '01000713 2.JPG'], `<strong>ទីតាំង និងប្រវត្តិ៖</strong><br>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបុរាណវិទ្យា កោះកេរ (ស្ថិតក្នុងឃុំស្រយ៉ង ស្រុកគូលែន ខេត្តព្រះវិហារ ដែលជាតំបន់ព្រំប្រទល់ជិតខេត្តសៀមរាប)។<br><br><strong>សម័យកាលសាងសង់៖</strong> ប្រាសាទនេះត្រូវបានសាងសង់ឡើងនៅសតវត្សរ៍ទី១០ (ប្រហែលឆ្នាំ ៩២១ ដល់ ៩៤១ គ្រិស្តសករាជ) ក្នុងរជ្ជកាល ព្រះបាទជ័យវរ្ម័នទី៤ ពេលដែលព្រះអង្គបានទ្រង់យកក្រុងកោះកេរ ជាយរាជធានីនៃអាណាចក្រខ្មែរ។<br><br><strong>រចនាសម្ព័ន្ធ៖</strong> ទោះបីជាឈ្មោះហៅថា «ប្រាសាទប្រាំ» ក៏ដោយ តាមការពិតស្ថាបត្យកម្មនេះមានតួប៉មចំនួន ៦ សាងសង់ពីឥដ្ឋ និងថ្មភក់ ឈរលើខឿនតែមួយ ដោយបែរមុខទៅទិសខាងកើត។<br><br><strong>ភាពល្បីល្បាញនិងធម្មជាតិ៖</strong> ភាពទាក់ទាញដ៏ខ្លាំងបំផុតនៃប្រាសាទនេះ គឺតួប៉មឥដ្ឋមួយត្រូវបានឫសឈើបុរាណគ្របដណ្តប់ និងរុំព័ទ្ធយ៉ាងជិតស្និទ្ធ បង្កើតបានជារូបរាងធម្មជាតិលាយឡំប្រវត្តិសាស្ត្រយ៉ាងស្រស់ស្អាត។<br><br>Prasat Pram is an impressive 10th-century temple located within the Koh Ker archaeological landscape.<br><br>The temple was built during the 10th century during the reign of King Jayavarman IV when Koh Ker was the capital of the Khmer Empire.`)">
+            <img src="01000713 2.JPG" alt="Prasat Pram" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+        </div>
+        <div class="px-2 mb-4">
+            <h3 class="font-bold text-neutral-800 text-base sm:text-lg leading-snug group-hover:text-cyan-600 transition mb-2">
+                1. Prasat Pram <span class="text-sm font-normal text-neutral-500 block">ប្រាសាទប្រាំ (ព្រំប្រទល់ខេត្តសៀមរាប-ព្រះវិហារ)</span>
+            </h3>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+                <strong>ទីតាំង និងប្រវត្តិ៖</strong> ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃក្នុងតំបន់កោះកេរ សាងសង់ឡើងនៅសតវត្សរ៍ទី១០។
+            </p>
+        </div>
+    </div>
+    <div class="px-2 pb-2 pt-0">
+        <button onclick="openModal('ប្រាសាទប្រាំ', '10th Century - Prasat Pram', ['01000711 2.JPG', '01000725 2.JPG', '01000747.JPG', '01000713 2.JPG'], `<strong>ទីតាំង និងប្រវត្តិ៖</strong><br>ប្រាសាទប្រាំ គឺជាស្ថាបត្យកម្មបុរាណដ៏មានតម្លៃមួយ ដែលមានទីតាំងស្ថិតនៅក្នុងតំបន់រមណីយដ្ឋានបុរាណវិទ្យា កោះកេរ (ស្ថិតក្នុងឃុំស្រយ៉ង ស្រុកគូលែន ខេត្តព្រះវិហារ ដែលជាតំបន់ព្រំប្រទល់ជិតខេត្តសៀមរាប)។<br><br><strong>សម័យកាលសាងសង់៖</strong> ប្រាសាទនេះត្រូវបានសាងសង់ឡើងនៅសតវត្សរ៍ទី១០ (ប្រហែលឆ្នាំ ៩២១ ដល់ ៩៤១ គ្រិស្តសករាជ) ក្នុងរជ្ជកាល ព្រះបាទជ័យវរ្ម័នទី៤ ពេលដែលព្រះអង្គបានទ្រង់យកក្រុងកោះកេរ ជាយរាជធានីនៃអាណាចក្រខ្មែរ។<br><br><strong>រចនាសម្ព័ន្ធ៖</strong> ទោះបីជាឈ្មោះហៅថា «ប្រាសាទប្រាំ» ក៏ដោយ តាមការពិតស្ថាបត្យកម្មនេះមានតួប៉មចំនួន ៦ សាងសង់ពីឥដ្ឋ និងថ្មភក់ ឈរលើខឿនតែមួយ ដោយបែរមុខទៅទិសខាងកើត។<br><br><strong>ភាពល្បីល្បាញនិងធម្មជាតិ៖</strong> ភាពទាក់ទាញដ៏ខ្លាំងបំផុតនៃប្រាសាទនេះ គឺតួប៉មឥដ្ឋមួយត្រូវបានឫសឈើបុរាណគ្របដណ្តប់ និងរុំព័ទ្ធយ៉ាងជិតស្និទ្ធ បង្កើតបានជារូបរាងធម្មជាតិលាយឡំប្រវត្តិសាស្ត្រយ៉ាងស្រស់ស្អាត។<br><br>Prasat Pram is an impressive 10th-century temple located within the Koh Ker archaeological landscape.<br><br>The temple was built during the 10th century during the reign of King Jayavarman IV when Koh Ker was the capital of the Khmer Empire.`)" class="text-xs font-bold uppercase tracking-wider text-cyan-600 hover:text-cyan-800 transition cursor-pointer">
+            EXPLORE GUIDE &rarr;
+        </button>
+    </div>
+</div>
+
 
                 <!-- Card 2 -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Bayon">
