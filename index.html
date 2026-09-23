@@ -3,151 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AngkorLens - Heritage Explorer</title>
-    <!-- Tailwind CSS CDN -->
+    <title>AngkorLens Heritage Discovery</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-neutral-50 text-neutral-800 font-sans antialiased">
 
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-200">
+    <!-- Cookie Consent Banner (Appears on Visit) -->
+    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900 text-white p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-800">
+        <p class="text-xs sm:text-sm text-neutral-300">We use cookies to ensure you get the best experience on AngkorLens. By continuing, you agree to our use of cookies.</p>
+        <button onclick="acceptCookies()" class="bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-semibold px-6 py-2 rounded-full transition flex-shrink-0">Accept & Close</button>
+    </div>
+
+    <!-- Top Builder / Preview Toolbar (Matching your screenshot) -->
+    <div class="bg-neutral-100 border-b border-neutral-200 px-4 py-3 flex items-center justify-between text-xs text-neutral-600">
+        <div class="flex items-center space-x-2 font-medium">
+            <span class="text-neutral-900 font-bold">AngkorLens Heritage Discovery</span>
+            <i class="fa-solid fa-cloud text-neutral-400"></i>
+        </div>
+        <div class="flex items-center bg-white border border-neutral-300 rounded-full p-1 shadow-sm space-x-1">
+            <button onclick="switchTab('code')" id="codeBtn" class="px-4 py-1.5 rounded-full font-medium transition text-neutral-600 hover:text-neutral-900">Code</button>
+            <button onclick="switchTab('preview')" id="previewBtn" class="px-4 py-1.5 rounded-full font-medium transition bg-neutral-900 text-white shadow-sm">Preview</button>
+        </div>
+        <div class="flex items-center space-x-3 text-neutral-600">
+            <button class="bg-white border border-neutral-200 hover:bg-neutral-50 px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 font-medium"><i class="fa-solid fa-download text-xs"></i> Download</button>
+            <button class="hover:text-neutral-900"><i class="fa-solid fa-share-nodes"></i></button>
+            <button class="hover:text-neutral-900"><i class="fa-solid fa-expand"></i></button>
+            <button class="hover:text-neutral-900"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white border-b border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <a href="#" class="text-2xl font-black tracking-tight text-neutral-900">Angkor<span class="text-cyan-600">Lens</span></a>
-            </div>
+            <a href="#" class="text-2xl font-black tracking-tight text-neutral-900">Angkor <span class="text-cyan-600">Lens</span></a>
             
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
-                <a href="#" class="hover:text-cyan-600 transition">Discover</a>
-                <a href="#" class="hover:text-cyan-600 transition">Temples</a>
-                <a href="#" class="hover:text-cyan-600 transition">Expeditions</a>
+                <a href="#" class="hover:text-cyan-600 transition">Angkor</a>
+                <a href="#" class="hover:text-cyan-600 transition">Temple Groups</a>
+                <a href="#" class="hover:text-cyan-600 transition">Creator</a>
                 <a href="#" class="hover:text-cyan-600 transition">About</a>
             </nav>
 
-            <div class="hidden md:flex items-center space-x-4">
-                <div class="relative">
-                    <input type="text" id="searchInput" oninput="handleLiveSearch(event)" placeholder="Search temples..." class="bg-neutral-100 text-sm rounded-full pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500 w-60">
-                    <button onclick="handleSearch()" class="absolute right-3 top-2.5 text-neutral-400 hover:text-cyan-600">
-                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    </button>
-                </div>
+            <div class="flex items-center space-x-3">
+                <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition"><i class="fa-brands fa-youtube text-xs"></i></a>
+                <a href="https://www.facebook.com/UrbanExplorer4K" target="_blank" class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-rose-600 to-purple-600 text-white flex items-center justify-center hover:opacity-90 transition"><i class="fa-brands fa-instagram text-xs"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Wrapper -->
-    <main class="min-h-screen">
-        <!-- Temple Directory Section -->
-        <section id="temples" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black text-neutral-900 tracking-tight">Featured Monuments</h2>
-                <p class="text-neutral-500 mt-2">All columns and cards are now strictly uniform in height and layout.</p>
-            </div>
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- Dynamic Uniform Cards Grid -->
+        <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Cards populated dynamically via JS for infinite adding -->
+        </div>
 
-            <!-- Single Uniform Grid Container for ALL cards -->
-            <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                
-                <!-- Card 1: Prasat Pram (Fixed with Image) -->
-                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="prasat pram">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Prasat Pram" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Koh Ker Region</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Prasat Pram</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">ប្រាសាទប្រាំ (ព្រៃប្រទាក់ខេត្តសៀមរាប-ព្រះវិហារ) ទីតាំង និងប្រវត្តិសាស្ត្រប្រាសាទ គឺជាបូជនីយដ្ឋានបុរាណ។</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Prasat Pram', 'Koh Ker', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Detailed description of Prasat Pram.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
-
-                <!-- Card 2: Bayon -->
-                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="bayon">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800" alt="Bayon" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Angkor Thom</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Bayon</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">Famous for its serene, smiling stone faces carved into massive towers throughout the central peak.</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Bayon', 'Angkor Thom', ['https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'], 'Detailed description of Bayon.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
-
-                <!-- Card 3: Ta Prohm -->
-                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="ta prohm">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800" alt="Ta Prohm" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Ta Prohm</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">Known famously as the jungle temple, where enormous tree roots intertwine with ancient stone corridors.</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Ta Prohm', 'Siem Reap', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Detailed description of Ta Prohm.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
-
-                <!-- Card 4: Banteay Srei -->
-                <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="banteay srei">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800" alt="Banteay Srei" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Siem Reap</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Banteay Srei</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">A 10th-century temple known for its intricate pinkish sandstone carvings and exceptional detail.</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Banteay Srei', 'Siem Reap', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Detailed description of Banteay Srei.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
-
-                <!-- Card 5: Beng Mealea -->
-                <div id="extraBatch-1" class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md hidden" data-title="beng mealea">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Beng Mealea" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">Batch 1</span>
-                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">Beng Mealea</h3>
-                            <p class="text-neutral-600 text-xs leading-relaxed">A mysterious temple completely swallowed by the jungle and forest vines.</p>
-                        </div>
-                    </div>
-                    <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Beng Mealea', 'Cambodia', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Detailed description.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- See More Button -->
-            <div class="text-center mt-12">
-                <button id="seeMoreBtn" onclick="loadMoreBatches()" class="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-8 py-3 rounded-full transition text-sm shadow-md">See More Temples</button>
-            </div>
-        </section>
+        <!-- Load More Temples Button -->
+        <div class="text-center mt-16">
+            <button onclick="loadMoreTemples()" id="loadMoreBtn" class="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-full transition shadow-md">
+                Load More Temples
+            </button>
+        </div>
     </main>
 
+    <!-- Multi-Image Modal Lightbox -->
+    <div id="mediaModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 hidden px-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 bg-black/50 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/80"><i class="fa-solid fa-xmark"></i></button>
+            <div class="relative w-full h-80 bg-black">
+                <img id="modalMainImg" class="w-full h-full object-cover">
+                <button onclick="prevPhoto()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
+                <button onclick="nextPhoto()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div id="modalThumbnails" class="flex gap-2 p-3 bg-neutral-100 overflow-x-auto"></div>
+            <div class="p-6 overflow-y-auto">
+                <span id="modalCategory" class="text-xs font-bold text-cyan-600 uppercase"></span>
+                <h3 id="modalHeading" class="text-2xl font-bold text-neutral-900 mb-2"></h3>
+                <p id="modalDesc" class="text-neutral-600 text-sm mb-4 leading-relaxed"></p>
+                <button onclick="closeModal()" class="w-full bg-neutral-900 text-white py-3 rounded-xl text-sm font-medium">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3-Column Footer Matching Screenshot -->
+    <footer class="bg-white border-t border-neutral-200 pt-16 pb-16 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-neutral-900 font-bold text-sm tracking-widest uppercase mb-6">Navigate the Khmer Empire</h3>
+                <ul class="space-y-3 text-sm text-neutral-600">
+                    <li><a href="#" class="hover:text-cyan-600 transition">The Temples of Angkor</a></li>
+                    <li><a href="#" class="hover:text-cyan-600 transition">Angkor Wat</a></li>
+                    <li><a href="#" class="hover:text-cyan-600 transition">Angkor Thom</a></li>
+                    <li><a href="#" class="hover:text-cyan-600 transition">Small Circuit & Grand Circuit</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-neutral-900 font-bold text-sm tracking-widest uppercase mb-6">Recent Posts</h3>
+                <ul class="space-y-3 text-sm text-neutral-600">
+                    <li><a href="#" class="hover:text-cyan-600 transition">A Journey into the Ancient Khmer World, 1000 Years Before Angkor</a></li>
+                    <li><a href="#" class="hover:text-cyan-600 transition">Our New Book: Essential Siem Reap 2026 – The New Explorer's Manual</a></li>
+                    <li><a href="#" class="hover:text-cyan-600 transition">In Pictures: The Siem Reap Giant Puppet Parade 2026</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-neutral-900 font-bold text-sm tracking-widest uppercase mb-6">Contact Us</h3>
+                <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+                    AngkorLens is based in beautiful Siem Reap, Cambodia – Find out more & Contact. About Privacy and TOC, Data and Reference.
+                </p>
+                <span class="text-xs font-bold text-neutral-900 tracking-wider uppercase block mb-2">Social</span>
+                <div class="flex items-center space-x-3">
+                    <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/UrbanExplorer4K" target="_blank" class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script to handle infinite cards, multi-image modals, and cookies -->
     <script>
-        let currentBatch = 0;
-        function loadMoreBatches() {
-            currentBatch++;
-            const batchEl = document.getElementById(`extraBatch-${currentBatch}`);
-            if (batchEl) {
-                batchEl.classList.remove('hidden');
+        const allTemples = [
+            {
+                title: "Prasat Pram",
+                category: "Koh Ker Region",
+                description: "ប្រាសាទប្រាំ (ព្រៃប្រទាក់ខេត្តសៀមរាប-ព្រះវិហារ) ទីតាំង និងប្រវត្តិសាស្ត្រប្រាសាទ គឺជាបូជនីយដ្ឋានបុរាណ។",
+                images: [
+                    "https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Bayon",
+                category: "Angkor Thom",
+                description: "Famous for its serene, smiling stone faces carved into massive towers throughout the central peak.",
+                images: [
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Ta Prohm",
+                category: "Siem Reap",
+                description: "Known famously as the jungle temple, where enormous tree roots intertwine with ancient stone corridors.",
+                images: [
+                    "https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Banteay Srei",
+                category: "Siem Reap",
+                description: "A 10th-century temple known for its intricate pinkish sandstone carvings and exceptional detail.",
+                images: [
+                    "https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Beng Mealea",
+                category: "Jungle Ruins",
+                description: "A mysterious temple completely swallowed by the jungle and forest vines.",
+                images: [
+                    "https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800"
+                ]
+            },
+            {
+                title: "Preah Khan",
+                category: "Angkor",
+                description: "A ruined monastic complex filled with intricate stone chambers and forest surroundings.",
+                images: [
+                    "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800"
+                ]
+            }
+        ];
+
+        let visibleCount = 4;
+
+        function renderTemples() {
+            const grid = document.getElementById('templeGrid');
+            grid.innerHTML = '';
+            const subset = allTemples.slice(0, visibleCount);
+
+            subset.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md";
+                card.innerHTML = `
+                    <div>
+                        <img src="${item.images[0]}" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-cyan-600 uppercase tracking-wider">${item.category}</span>
+                            <h3 class="text-lg font-bold text-neutral-900 mt-1 mb-2">${item.title}</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">${item.description}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick='openModal(${JSON.stringify(item)})' class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2.5 rounded-xl transition">
+                            View Gallery (${item.images.length} Photos)
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (visibleCount >= allTemples.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
             }
         }
-        function handleLiveSearch(event) {
-            const query = event.target.value.toLowerCase().trim();
-            document.querySelectorAll('.temple-card').forEach(card => {
-                const title = card.getAttribute('data-title').toLowerCase();
-                card.style.display = (title.includes(query) || query === '') ? 'flex' : 'none';
+
+        function loadMoreTemples() {
+            visibleCount += 2;
+            renderTemples();
+        }
+
+        let activeImages = [];
+        let activeIdx = 0;
+
+        function openModal(item) {
+            activeImages = item.images;
+            activeIdx = 0;
+            document.getElementById('modalCategory').innerText = item.category;
+            document.getElementById('modalHeading').innerText = item.title;
+            document.getElementById('modalDesc').innerText = item.description;
+            updateModalUI();
+            document.getElementById('mediaModal').classList.remove('hidden');
+        }
+
+        function updateModalUI() {
+            document.getElementById('modalMainImg').src = activeImages[activeIdx];
+            const thumbBox = document.getElementById('modalThumbnails');
+            thumbBox.innerHTML = '';
+            activeImages.forEach((img, i) => {
+                const t = document.createElement('img');
+                t.src = img;
+                t.className = `w-16 h-12 object-cover rounded cursor-pointer border-2 ${i === activeIdx ? 'border-cyan-600 scale-105' : 'border-transparent opacity-60'}`;
+                t.onclick = () => { activeIdx = i; updateModalUI(); };
+                thumbBox.appendChild(t);
             });
         }
+
+        function nextPhoto() {
+            activeIdx = (activeIdx + 1) % activeImages.length;
+            updateModalUI();
+        }
+
+        function prevPhoto() {
+            activeIdx = (activeIdx - 1 + activeImages.length) % activeImages.length;
+            updateModalUI();
+        }
+
+        function closeModal() {
+            document.getElementById('mediaModal').classList.add('hidden');
+        }
+
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        function switchTab(tab) {
+            const codeBtn = document.getElementById('codeBtn');
+            const previewBtn = document.getElementById('previewBtn');
+            if (tab === 'code') {
+                codeBtn.className = "px-4 py-1.5 rounded-full font-medium transition bg-neutral-900 text-white shadow-sm";
+                previewBtn.className = "px-4 py-1.5 rounded-full font-medium transition text-neutral-600 hover:text-neutral-900";
+            } else {
+                previewBtn.className = "px-4 py-1.5 rounded-full font-medium transition bg-neutral-900 text-white shadow-sm";
+                codeBtn.className = "px-4 py-1.5 rounded-full font-medium transition text-neutral-600 hover:text-neutral-900";
+            }
+        }
+
+        window.onload = renderTemples;
     </script>
 </body>
 </html>
