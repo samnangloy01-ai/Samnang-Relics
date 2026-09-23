@@ -81,7 +81,7 @@
             <!-- Grid Container for Endless Columns -->
             <div id="templeGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 
-                <!-- Card 1 -->
+                <!-- Card 1 (Multiple images array passed in openModal) -->
                 <div class="temple-card bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden flex flex-col justify-between transition hover:shadow-md" data-title="Angkor Wat">
                     <div>
                         <img src="https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800" alt="Angkor Wat" class="w-full h-48 object-cover">
@@ -92,7 +92,16 @@
                         </div>
                     </div>
                     <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Angkor Wat - The Grand Masterpiece of Khmer Architecture', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'], 'Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world. Originally constructed as a Hindu temple dedicated to the god Vishnu before being transitioned to a Buddhist temple.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                        <button onclick="openModal(
+                            'Angkor Wat - The Grand Masterpiece of Khmer Architecture', 
+                            'Siem Reap, Cambodia', 
+                            [
+                                'https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800',
+                                'https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800',
+                                'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'
+                            ], 
+                            'Angkor Wat is a temple complex in Cambodia and is the largest religious monument in the world. Originally constructed as a Hindu temple dedicated to the god Vishnu before being transitioned to a Buddhist temple.'
+                        )" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
@@ -107,7 +116,15 @@
                         </div>
                     </div>
                     <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Bayon Temple with Iconic Smiling Faces of Avalokiteshvara', 'Angkor Thom, Cambodia', ['https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'], 'The Bayon is a richly decorated Khmer temple at Angkor in Cambodia. Built in the late 12th or early 13th century, it stands as the official state temple of the Mahayana Buddhist King Jayavarman VII.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                        <button onclick="openModal(
+                            'Bayon Temple with Iconic Smiling Faces of Avalokiteshvara', 
+                            'Angkor Thom, Cambodia', 
+                            [
+                                'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800',
+                                'https://images.unsplash.com/photo-1609854731429-454d95997d0c?auto=format&fit=crop&q=80&w=800'
+                            ], 
+                            'The Bayon is a richly decorated Khmer temple at Angkor in Cambodia. Built in the late 12th or early 13th century, it stands as the official state temple of the Mahayana Buddhist King Jayavarman VII.'
+                        )" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
@@ -122,7 +139,15 @@
                         </div>
                     </div>
                     <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Ta Prohm - The Overgrown Jungle Temple Intertwined with Giant Tree Roots', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800'], 'Ta Prohm is left largely in its natural overgrown state, allowing giant silk-cotton and fig trees to wrap their massive roots around ancient temple galleries.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                        <button onclick="openModal(
+                            'Ta Prohm - The Overgrown Jungle Temple Intertwined with Giant Tree Roots', 
+                            'Siem Reap, Cambodia', 
+                            [
+                                'https://images.unsplash.com/photo-1588598124976-809c91f16597?auto=format&fit=crop&q=80&w=800',
+                                'https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'
+                            ], 
+                            'Ta Prohm is left largely in its natural overgrown state, allowing giant silk-cotton and fig trees to wrap their massive roots around ancient temple galleries.'
+                        )" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
@@ -137,7 +162,15 @@
                         </div>
                     </div>
                     <div class="px-5 pb-5 pt-0">
-                        <button onclick="openModal('Banteay Srei - The Citadel of Women with Intricate Pink Sandstone Carvings', 'Siem Reap, Cambodia', ['https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800'], 'Banteay Srei is built of a hard red sandstone that bears elaborate decorative wall carvings which are still remarkably well preserved today.')" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
+                        <button onclick="openModal(
+                            'Banteay Srei - The Citadel of Women with Intricate Pink Sandstone Carvings', 
+                            'Siem Reap, Cambodia', 
+                            [
+                                'https://images.unsplash.com/photo-1596401057633-54a8fea4cb54?auto=format&fit=crop&q=80&w=800',
+                                'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=800'
+                            ], 
+                            'Banteay Srei is built of a hard red sandstone that bears elaborate decorative wall carvings which are still remarkably well preserved today.'
+                        )" class="w-full bg-neutral-100 hover:bg-cyan-600 hover:text-white text-neutral-800 text-xs font-semibold py-2 rounded-xl transition">View Details</button>
                     </div>
                 </div>
 
@@ -231,20 +264,40 @@
         </section>
     </main>
 
-    <!-- BIGGER & LONGER-TITLE MODAL POPUP -->
+    <!-- MULTI-IMAGE CAROUSEL MODAL POPUP -->
     <div id="templeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 hidden px-4">
         <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
-            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
-            <!-- BIGGER PICTURE CONTAINER (h-80 or h-96) -->
-            <img id="modalImage" src="" alt="Temple Preview" class="w-full h-80 sm:h-96 object-cover flex-shrink-0">
+            
+            <!-- IMAGE CAROUSEL CONTAINER -->
+            <div class="relative w-full h-80 sm:h-96 bg-black flex-shrink-0">
+                <img id="modalImage" src="" alt="Temple Preview" class="w-full h-full object-cover">
+                
+                <!-- Previous Image Button -->
+                <button onclick="prevImage()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <!-- Next Image Button -->
+                <button onclick="nextImage()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- Image Counter Indicator -->
+                <div class="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-3 py-1 rounded-full font-medium">
+                    <span id="currentImgIndex">1</span> / <span id="totalImgCount">1</span>
+                </div>
+            </div>
+
+            <!-- THUMBNAILS ROW (Shows small preview buttons for every picture) -->
+            <div id="modalThumbnails" class="flex gap-2 p-3 bg-neutral-100 overflow-x-auto flex-shrink-0"></div>
+
             <!-- SCROLLABLE CONTENT AREA FOR LONG TITLES & TEXT -->
             <div class="p-6 sm:p-8 overflow-y-auto">
                 <span id="modalSubtitle" class="text-xs font-bold text-cyan-600 uppercase tracking-wider block mb-1"></span>
-                <!-- Long Title Ready Heading -->
                 <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4 leading-snug"></h3>
-                <!-- Long Description Ready Paragraph -->
                 <p id="modalDescription" class="text-neutral-600 text-sm sm:text-base leading-relaxed mb-6"></p>
                 <button onclick="closeModal()" class="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-3 rounded-xl transition text-sm">Close Window</button>
             </div>
@@ -350,15 +403,75 @@
             }
         }
 
-        // Modal Functionality
-        function openModal(title, subtitle, images, descriptionHtml) {
+        // Multi-Image Carousel Modal State
+        let currentImages = [];
+        let activeImageIndex = 0;
+
+        function openModal(title, subtitle, imagesArray, descriptionHtml) {
+            currentImages = imagesArray;
+            activeImageIndex = 0;
+
             const modal = document.getElementById('templeModal');
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalSubtitle').innerText = subtitle;
-            document.getElementById('modalImage').src = images[0];
             document.getElementById('modalDescription').innerHTML = descriptionHtml;
+            
+            updateModalImageDisplay();
+            buildThumbnails();
+
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+        }
+
+        function updateModalImageDisplay() {
+            if (currentImages.length === 0) return;
+            document.getElementById('modalImage').src = currentImages[activeImageIndex];
+            document.getElementById('currentImgIndex').innerText = activeImageIndex + 1;
+            document.getElementById('totalImgCount').innerText = currentImages.length;
+        }
+
+        function nextImage() {
+            if (currentImages.length === 0) return;
+            activeImageIndex = (activeImageIndex + 1) % currentImages.length;
+            updateModalImageDisplay();
+            highlightThumbnail();
+        }
+
+        function prevImage() {
+            if (currentImages.length === 0) return;
+            activeImageIndex = (activeImageIndex - 1 + currentImages.length) % currentImages.length;
+            updateModalImageDisplay();
+            highlightThumbnail();
+        }
+
+        function setImageIndex(index) {
+            activeImageIndex = index;
+            updateModalImageDisplay();
+            highlightThumbnail();
+        }
+
+        function buildThumbnails() {
+            const container = document.getElementById('modalThumbnails');
+            container.innerHTML = '';
+            
+            currentImages.forEach((imgSrc, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = `w-16 h-12 object-cover rounded cursor-pointer transition border-2 ${idx === activeImageIndex ? 'border-cyan-600 scale-105' : 'border-transparent opacity-60 hover:opacity-100'}`;
+                thumb.onclick = () => setImageIndex(idx);
+                container.appendChild(thumb);
+            });
+        }
+
+        function highlightThumbnail() {
+            const thumbs = document.getElementById('modalThumbnails').children;
+            for (let i = 0; i < thumbs.length; i++) {
+                if (i === activeImageIndex) {
+                    thumbs[i].className = 'w-16 h-12 object-cover rounded cursor-pointer transition border-2 border-cyan-600 scale-105';
+                } else {
+                    thumbs[i].className = 'w-16 h-12 object-cover rounded cursor-pointer transition border-2 border-transparent opacity-60 hover:opacity-100';
+                }
+            }
         }
 
         function closeModal() {
