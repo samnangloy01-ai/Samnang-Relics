@@ -417,66 +417,56 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer id="about" class="bg-white border-t border-neutral-200 mt-20 py-12 text-center text-sm text-neutral-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="font-semibold text-neutral-800 mb-2">AngkorLens - Temples, Architecture & Heritage Discovery</p>
-            <p class="mb-4">Curated with passion for Cambodian cultural heritage and exploration.</p>
-            <p>&copy; 2026 AngkorLens. All rights reserved.</p>
+    <footer class="bg-white border-t border-neutral-200 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+            <p>&copy; 2026 AngkorLens. Curated by Samnang. All rights reserved.</p>
+            <div class="flex items-center space-x-6">
+                <a href="https://www.youtube.com/@Urbanwalkstudio" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-600 transition">YouTube</a>
+                <a href="https://www.facebook.com/UrbanExplorer4K" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-600 transition">Facebook</a>
+                <a href="https://www.instagram.com/samnang_2022" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-600 transition">Instagram</a>
+            </div>
         </div>
     </footer>
 
-    <!-- MODAL POPUP CONTAINER -->
-    <div id="templeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700 hover:bg-neutral-200 transition cursor-pointer">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <h3 id="modalTitle" class="text-2xl font-bold text-neutral-900 mb-2"></h3>
-            <span id="modalSubtitle" class="inline-block text-xs font-semibold px-3 py-1 rounded-md bg-cyan-50 text-cyan-700 mb-4"></span>
-            <div id="modalImages" class="grid grid-cols-2 gap-2 mb-4"></div>
-            <p id="modalDescription" class="text-sm text-neutral-600 leading-relaxed"></p>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JavaScript Actions -->
     <script>
-        // Hero Banner Slide Rotation
+        // Hero Slider Script
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.hero-banner .slide');
         function nextSlide() {
-            if (slides.length === 0) return;
+            if(slides.length === 0) return;
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-        setInterval(nextSlide, 4000);
+        setInterval(nextSlide, 5000);
 
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            const icon = document.getElementById('menuIcon');
             menu.classList.toggle('hidden');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
         }
 
-        // Search Handlers
+        // Load More Temples Function
+        let currentExtraBatch = 1;
+        function loadMoreTemples() {
+            const batchElement = document.getElementById(`extraCards-${currentExtraBatch}`);
+            if(batchElement) {
+                batchElement.classList.remove('hidden');
+                currentExtraBatch++;
+            }
+            if(currentExtraBatch > 5) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+
+        // Live Search Filter Function
         function handleLiveSearch(event) {
             const query = event.target.value.toLowerCase();
-            filterCards(query);
-        }
-
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            filterCards(query);
-        }
-
-        function filterCards(query) {
             const cards = document.querySelectorAll('.temple-card');
             cards.forEach(card => {
                 const title = card.getAttribute('data-title').toLowerCase();
-                if (title.includes(query)) {
+                if(title.includes(query)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -484,40 +474,16 @@
             });
         }
 
-        // Load More Temples functionality
-        let currentExtraBatch = 1;
-        const maxBatches = 5;
-        function loadMoreTemples() {
-            const batchEl = document.getElementById(`extraCards-${currentExtraBatch}`);
-            if (batchEl) {
-                batchEl.classList.remove('hidden');
-                currentExtraBatch++;
-                if (currentExtraBatch > maxBatches) {
-                    document.getElementById('loadMoreBtn').style.display = 'none';
-                }
+        function handleSearch() {
+            const inputVal = document.getElementById('searchInput').value;
+            if(inputVal.trim() !== '') {
+                alert('Searching for: ' + inputVal);
             }
         }
 
-        // Modal Popups
+        // Dummy Modal Handler (Placeholder)
         function openModal(title, subtitle, images, description) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalSubtitle').innerText = subtitle;
-            document.getElementById('modalDescription').innerText = description;
-            
-            const imgContainer = document.getElementById('modalImages');
-            imgContainer.innerHTML = '';
-            images.forEach(imgSrc => {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.className = 'w-full h-36 object-cover rounded-xl';
-                imgContainer.appendChild(img);
-            });
-
-            document.getElementById('templeModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('templeModal').classList.add('hidden');
+            alert('Opening Guide for: ' + title + ' (' + subtitle + ')');
         }
     </script>
 </body>
